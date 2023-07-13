@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'screens/home_screen.dart';
+
 void main() {
   runApp(const MaterialApp(
-    home: Home(),
+    home: HomeScreen(),
   ));
-}
-
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Luno Budget Money'),
-        centerTitle: true,
-      ),
-    );
-  }
 }
