@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'login_screen.dart';
+import 'package:luno_budget_money/routes/routes.dart';
 import 'register_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -44,12 +43,7 @@ class HomeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(
-                        //push-Replacement
-                        builder: (context) {
-                          return const LoginScreen();
-                        },
-                      ));
+                      Navigator.pushReplacementNamed(context, Routes.login);
                     },
                     icon: const Icon(Icons.login),
                     label: const Text('ເຂົ້າສູ່ລະບົບ')),

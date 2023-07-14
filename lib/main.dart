@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_screen.dart';
+import 'routes/routes.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: HomeScreen(),
-  ));
+      initialRoute: Routes.home, onGenerateRoute: Routes.generateRoute));
 }
