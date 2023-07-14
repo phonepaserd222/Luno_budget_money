@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/routes/routes.dart';
-import 'register_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -30,11 +29,7 @@ class HomeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const RegisterScreen();
-                        },
-                      ));
+                      Navigator.pushReplacementNamed(context, Routes.register);
                     },
                     icon: const Icon(Icons.add),
                     label: const Text('ສ້າງບັນຊີຜູ້ໃຊ້')),

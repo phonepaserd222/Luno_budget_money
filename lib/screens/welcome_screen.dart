@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'home_screen.dart';
+import 'package:luno_budget_money/routes/routes.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -15,12 +14,7 @@ class WelcomeScreen extends StatelessWidget {
         // width: double.infinity,
         child: ElevatedButton.icon(
             onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                //push-Replacement
-                builder: (context) {
-                  return const HomeScreen();
-                },
-              ));
+              Navigator.pushReplacementNamed(context, Routes.home);
             },
             icon: const Icon(Icons.login),
             label: const Text('BYE BYE')),

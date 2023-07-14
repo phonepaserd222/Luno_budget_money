@@ -4,5 +4,7 @@ import 'routes/routes.dart';
 
 void main() {
   runApp(const MaterialApp(
-      initialRoute: Routes.home, onGenerateRoute: Routes.generateRoute));
+    initialRoute: Routes.home,
+    onGenerateRoute: Routes.generateRoute,
+  ));
 }

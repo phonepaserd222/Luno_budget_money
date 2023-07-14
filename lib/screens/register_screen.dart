@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luno_budget_money/screens/home_screen.dart';
+import 'package:luno_budget_money/routes/routes.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -14,12 +14,7 @@ class RegisterScreen extends StatelessWidget {
         // width: double.infinity,
         child: ElevatedButton.icon(
             onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                //push-Replacement
-                builder: (context) {
-                  return const HomeScreen();
-                },
-              ));
+              Navigator.pushReplacementNamed(context, Routes.home);
             },
             icon: const Icon(Icons.login),
             label: const Text('Register')),

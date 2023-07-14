@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luno_budget_money/screens/welcome_screen.dart';
+import 'package:luno_budget_money/routes/routes.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -14,12 +14,7 @@ class LoginScreen extends StatelessWidget {
         // width: double.infinity,
         child: ElevatedButton.icon(
             onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                //push-Replacement
-                builder: (context) {
-                  return const WelcomeScreen();
-                },
-              ));
+              Navigator.pushReplacementNamed(context, Routes.welcome);
             },
             icon: const Icon(Icons.login),
             label: const Text('ເຂົ້າສູ່ລະບົບ')),
