@@ -96,8 +96,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         TextFormField(
                           decoration: InputDecoration(
                               labelText: 'Password',
-                              prefixIcon: const Icon(Icons.password_outlined),
-                              suffixIcon: const Icon(Icons.visibility_outlined),
+                              prefixIcon: const Icon(Icons.password),
+                              // suffixIcon: const Icon(Icons.visibility_outlined),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20))),
                           validator:
@@ -109,7 +109,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const SizedBox(height: 30),
                         SizedBox(
+                          width: 150,
                           child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size.fromHeight(35),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
                             child: const Text(
                               'register',
                               style: TextStyle(fontSize: 20),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:luno_budget_money/screens/home_screen.dart';
 import 'package:luno_budget_money/screens/login_screen.dart';
 import 'package:luno_budget_money/screens/register_screen.dart';
 import 'package:luno_budget_money/screens/welcome_screen.dart';
@@ -20,7 +19,7 @@ class Routes {
       case welcome:
         return MaterialPageRoute(builder: (context) => WelcomeScreen());
       default:
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
     }
   }
 }

@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                 // width: double.infinity,
                 child: ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, Routes.login);
+                      Navigator.pushNamed(context, Routes.login);
                     },
                     icon: const Icon(Icons.login),
                     label: const Text('ເຂົ້າສູ່ລະບົບ')),

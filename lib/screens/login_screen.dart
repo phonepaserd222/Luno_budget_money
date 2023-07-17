@@ -53,17 +53,33 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Form(
                   key: formkey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
-                        'ອີເມວ',
-                        style: TextStyle(fontSize: 20),
+                      // const Text(
+                      //   'ອີເມວ',
+                      //   style: TextStyle(fontSize: 20),
+                      // ),
+                      const SizedBox(height: 150),
+                      Text(
+                        "Welcome Back",
+                        style: Theme.of(context).textTheme.headlineLarge,
                       ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "Login to your account",
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      const SizedBox(height: 60),
                       TextFormField(
                         validator: MultiValidator([
                           EmailValidator(errorText: 'ກອກອີເມວບໍ່ຖືກຕ້ອງ'),
                           RequiredValidator(errorText: 'ກະລຸນາກອກ ອີເມວ'),
                         ]),
+                        decoration: InputDecoration(
+                            labelText: 'Email',
+                            prefixIcon: const Icon(Icons.email_outlined),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20))),
                         keyboardType: TextInputType.emailAddress,
                         onSaved: (email) {
                           profile.email = email!;
@@ -72,11 +88,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 15,
                       ),
-                      const Text(
-                        'ລະຫັດຜ່ານ',
-                        style: TextStyle(fontSize: 20),
-                      ),
+                      // const Text(
+                      //   'ລະຫັດຜ່ານ',
+                      //   style: TextStyle(fontSize: 20),
+                      // ),
                       TextFormField(
+                        decoration: InputDecoration(
+                            labelText: 'Password',
+                            prefixIcon: const Icon(Icons.password_outlined),
+                            // suffixIcon: const Icon(Icons.visibility_outlined),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20))),
                         validator:
                             RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
                         obscureText: true,
@@ -84,10 +106,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           profile.password = password!;
                         },
                       ),
+                      const SizedBox(height: 30),
                       SizedBox(
+                        width: 150,
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(35),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
                           child: const Text(
-                            'ເຂົ້າລະບົບ',
+                            'Login',
                             style: TextStyle(fontSize: 20),
                           ),
                           onPressed: () async {
@@ -112,6 +142,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           },
                         ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Don't have an account?"),
+                          TextButton(
+                            onPressed: () {
+                              formkey.currentState?.reset();
+
+                              Navigator.pushNamed(context, Routes.register);
+                            },
+                            child: const Text("Signup"),
+                          ),
+                        ],
                       ),
                     ],
                   ),

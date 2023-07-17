@@ -11,7 +11,7 @@ void main() async {
   );
 
   runApp(MaterialApp(
-    initialRoute: Routes.home,
+    initialRoute: Routes.login,
     onGenerateRoute: Routes.generateRoute,
     theme: ThemeData(primarySwatch: Colors.purple),
   ));
