@@ -22,20 +22,20 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                     height: size.width * 0.8,
-                    width: size.width * 0.8,
+                    // width: size.width * 0.8,
+                    width: double.infinity,
                     child: Image.asset('assets/images/Budget-Planning.jpg')),
               ),
               SizedBox(
-                width: double.infinity,
                 child: ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, Routes.register);
+                      Navigator.pushNamed(context, Routes.register);
                     },
                     icon: const Icon(Icons.add),
                     label: const Text('ສ້າງບັນຊີຜູ້ໃຊ້')),
               ),
               SizedBox(
-                width: double.infinity,
+                // width: double.infinity,
                 child: ElevatedButton.icon(
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, Routes.login);

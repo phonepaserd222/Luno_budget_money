@@ -18,7 +18,7 @@ class Routes {
       case login:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
       case welcome:
-        return MaterialPageRoute(builder: (context) => const WelcomeScreen());
+        return MaterialPageRoute(builder: (context) => WelcomeScreen());
       default:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
     }
