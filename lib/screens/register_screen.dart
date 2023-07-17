@@ -49,22 +49,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             body: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Form(
                   key: formkey,
                   child: SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          'ອີເມວ',
-                          style: TextStyle(fontSize: 20),
+                        const SizedBox(height: 150),
+                        Text(
+                          "Register",
+                          style: Theme.of(context).textTheme.headlineLarge,
                         ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Create your account",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        const SizedBox(height: 60),
+                        // const Text(
+                        //   'ອີເມວ',
+                        //   style: TextStyle(fontSize: 20),
+                        // ),
                         TextFormField(
                           validator: MultiValidator([
                             EmailValidator(errorText: 'ກອກອີເມວບໍ່ຖືກຕ້ອງ'),
                             RequiredValidator(errorText: 'ກະລຸນາກອກ ອີເມວ'),
                           ]),
+                          decoration: InputDecoration(
+                              labelText: 'Email',
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20))),
                           keyboardType: TextInputType.emailAddress,
                           onSaved: (email) {
                             profile.email = email!;
@@ -73,11 +88,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const SizedBox(
                           height: 15,
                         ),
-                        const Text(
-                          'ລະຫັດຜ່ານ',
-                          style: TextStyle(fontSize: 20),
-                        ),
+                        // const Text(
+                        //   'ລະຫັດຜ່ານ',
+                        //   style: TextStyle(fontSize: 20),
+                        // ),
                         TextFormField(
+                          decoration: InputDecoration(
+                              labelText: 'Password',
+                              prefixIcon: const Icon(Icons.password_outlined),
+                              suffixIcon: const Icon(Icons.visibility_outlined),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20))),
                           validator:
                               RequiredValidator(errorText: 'please password'),
                           obscureText: true,
@@ -85,6 +106,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             profile.password = password!;
                           },
                         ),
+                        const SizedBox(height: 30),
                         SizedBox(
                           child: ElevatedButton(
                             child: const Text(
@@ -132,6 +154,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               }
                             },
                           ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Already have an account?"),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text("Login"),
+                            ),
+                          ],
                         ),
                       ],
                     ),
