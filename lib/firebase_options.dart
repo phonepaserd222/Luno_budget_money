@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBH1vC9mQ3oFEqFanqDBk6Q2ThJ8BGyZ-o',
-    appId: '1:221429173207:android:1b4506161d528d9238d992',
+    appId: '1:221429173207:android:a039c02bf7134b3d38d992',
     messagingSenderId: '221429173207',
     projectId: 'luno-budget-money',
     storageBucket: 'luno-budget-money.appspot.com',
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC0K2g-gCXxYCMMb58kQeHkouGvQZlXIKc',
-    appId: '1:221429173207:ios:93ed6a4f1b55487f38d992',
+    appId: '1:221429173207:ios:06dac70a8d3267e838d992',
     messagingSenderId: '221429173207',
     projectId: 'luno-budget-money',
     storageBucket: 'luno-budget-money.appspot.com',

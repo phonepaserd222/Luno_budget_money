@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:221429173207:android:1b4506161d528d9238d992",
+        "mobilesdk_app_id": "1:221429173207:android:a039c02bf7134b3d38d992",
         "android_client_info": {
           "package_name": "com.example.luno_budget_money"
         }
       },
       "oauth_client": [
         {
-          "client_id": "221429173207-se5m7rcbbdpmh27hq8d3vil7u8pk6jt7.apps.googleusercontent.com",
+          "client_id": "221429173207-ee87dgpm4p4itu2fsceohbvr25ch23p0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +27,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "221429173207-se5m7rcbbdpmh27hq8d3vil7u8pk6jt7.apps.googleusercontent.com",
+              "client_id": "221429173207-ee87dgpm4p4itu2fsceohbvr25ch23p0.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "221429173207-f5fh0sstqp41bgnplvcm093hrjngpn0p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lunoBudgetMoney"
+              }
             }
           ]
         }
