@@ -158,19 +158,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      InkWell(
-                        onTap: () => AuthService().signInWithGoogle(),
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/images/google2.png')
-                            ],
-                          ),
-                        ),
-                      )
+                      // InkWell(
+                      //   onTap: () => AuthService().signInWithGoogle(),
+                      //   child: SizedBox(
+                      //     height: 100,
+                      //     width: 100,
+                      //     child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         Image.asset('assets/images/google2.png')
+                      //       ],
+                      //     ),
+                      //   ),
+                      // )
                     ],
                   ),
                 ),
