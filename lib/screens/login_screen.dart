@@ -157,6 +157,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Image.asset('assets/images/google2.png')],
+                      )
                     ],
                   ),
                 ),
