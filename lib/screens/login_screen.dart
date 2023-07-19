@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:luno_budget_money/services/auth_service.dart';
 
 import '../models/profile.dart';
 import '../routes/routes.dart';
@@ -157,9 +158,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Image.asset('assets/images/google2.png')],
+                      InkWell(
+                        onTap: () => AuthService().signInWithGoogle(),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/images/google2.png')
+                            ],
+                          ),
+                        ),
                       )
                     ],
                   ),
