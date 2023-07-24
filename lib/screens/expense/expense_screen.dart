@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter/services.dart'; // Import for FilteringTextInputFormatter
+
+import 'package:intl/intl.dart';
+
 class ExpenScreen extends StatefulWidget {
   const ExpenScreen({super.key});
 
@@ -8,6 +12,8 @@ class ExpenScreen extends StatefulWidget {
 }
 
 class _ExpenScreenState extends State<ExpenScreen> {
+  String dateText = 'Select Date';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +49,20 @@ class _ExpenScreenState extends State<ExpenScreen> {
 
             // T1 Date
             InkWell(
-              onTap: () {},
+              onTap: () async {
+                DateTime? pickeddate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2023, 12, 31),
+                );
+                if (pickeddate != null) {
+                  setState(() {
+                    dateText =
+                        DateFormat('dd-MM-yyyy').format(pickeddate).toString();
+                  });
+                }
+              },
               child: Container(
                 height: 60,
                 padding: EdgeInsets.all(10.0),
@@ -56,7 +75,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.calendar_today),
-                    Text('Select Date'),
+                    Text(dateText),
                     Icon(Icons.arrow_forward_ios),
                   ],
                 ),
@@ -75,10 +94,23 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(Icons.attach_money),
                     Text('Enter Cost'),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(labelText: ""),
+                        keyboardType: TextInputType.number,
+
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        // Only numbers can be entered
+                      ),
+                    ),
+                    // Icon(Icons.attach_money),
+
                     Icon(Icons.arrow_forward_ios),
                   ],
                 ),
