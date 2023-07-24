@@ -97,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           decoration: InputDecoration(
                               labelText: 'Password',
                               prefixIcon: const Icon(Icons.password),
-                              // suffixIcon: const Icon(Icons.visibility_outlined),
+                              suffixIcon: const Icon(Icons.visibility_outlined),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20))),
                           validator:
