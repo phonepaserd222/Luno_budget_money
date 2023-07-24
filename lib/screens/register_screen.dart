@@ -1,192 +1,160 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:luno_budget_money/routes/routes.dart';
 
-import '../models/profile.dart';
-// import 'package:firebase_auth_platform_interface/src/method_channel/method_channel_firebase_auth.dart'
+import '../constants/image_contants.dart';
+import '../routes/routes.dart';
+import '../services/auth_service.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  final formkey = GlobalKey<FormState>();
-  Profile profile = Profile(email: '', password: '');
-  final Future<FirebaseApp> firebase = Firebase.initializeApp();
-  @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: firebase,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-
-        if (snapshot.hasError) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('error'),
-            ),
-            body: Center(
-              child: Text('${snapshot.error}'),
-            ),
-          );
-        }
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Create User'),
-            ),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Form(
-                  key: formkey,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 150),
-                        Text(
-                          "Register",
-                          style: Theme.of(context).textTheme.headlineLarge,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "Create your account",
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: 60),
-                        // const Text(
-                        //   'ອີເມວ',
-                        //   style: TextStyle(fontSize: 20),
-                        // ),
-                        TextFormField(
-                          validator: MultiValidator([
-                            EmailValidator(errorText: 'ກອກອີເມວບໍ່ຖືກຕ້ອງ'),
-                            RequiredValidator(errorText: 'ກະລຸນາກອກ ອີເມວ'),
-                          ]),
-                          decoration: InputDecoration(
-                              labelText: 'Email',
-                              prefixIcon: const Icon(Icons.email_outlined),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20))),
-                          keyboardType: TextInputType.emailAddress,
-                          onSaved: (email) {
-                            profile.email = email!;
-                          },
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        // const Text(
-                        //   'ລະຫັດຜ່ານ',
-                        //   style: TextStyle(fontSize: 20),
-                        // ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: 'Password',
-                              prefixIcon: const Icon(Icons.password),
-                              suffixIcon: const Icon(Icons.visibility_outlined),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20))),
-                          validator:
-                              RequiredValidator(errorText: 'please password'),
-                          obscureText: true,
-                          onSaved: (password) {
-                            profile.password = password!;
-                          },
-                        ),
-                        const SizedBox(height: 30),
-                        SizedBox(
-                          width: 150,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(35),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                            child: const Text(
-                              'register',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            onPressed: () async {
-                              if (formkey.currentState!.validate()) {
-                                formkey.currentState?.save();
-                                try {
-                                  await FirebaseAuth.instance
-                                      .createUserWithEmailAndPassword(
-                                          email: profile.email,
-                                          password: profile.password)
-                                      .then((value) {
-                                    Fluttertoast.showToast(
-                                        msg: "ສ້າງບັນຊີສຳເລັດແລ້ວ",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.TOP,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.red,
-                                        textColor: Colors.black,
-                                        fontSize: 16.0);
-                                    formkey.currentState?.reset();
-                                    // ignore: use_build_context_synchronously
-                                    Navigator.pushReplacementNamed(
-                                        context, Routes.home);
-                                  });
-                                } on FirebaseAuthException catch (e) {
-                                  // ignore: avoid_print
-                                  print(e.code);
-                                  String message;
-                                  if (e.code == 'email-already-in-use') {
-                                    message = 'ອີເມວຖືກໃຊ້ແລ້ວ';
-                                  } else if (e.code == 'weak-password') {
-                                    message =
-                                        'ລະຫັດຜ່ານຕ້ອງມີຄວາມຍາວ 6 ໂຕຂື້ນໄປ';
-                                  } else {
-                                    message = e.message!;
-                                  }
-                                  Fluttertoast.showToast(
-                                      msg: message,
-                                      gravity: ToastGravity.CENTER);
-                                }
-                              }
-                            },
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 246, 226, 184),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(0.0),
+          child: Form(
+            child: Column(
+              children: [
+                // 3
+                const SizedBox(height: 150),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Register",
+                            style: TextStyle(
+                                fontSize: 35, fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Already have an account?"),
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text("Login"),
+                          TextFormField(
+                            validator: MultiValidator([
+                              RequiredValidator(
+                                  errorText: 'ກະລຸນາກອກ ຊື່ຜູ້ໃຊ້'),
+                            ]),
+                            decoration: const InputDecoration(
+                              labelText: 'Username',
+                              // prefixIcon: Icon(Icons.person),
                             ),
-                          ],
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              labelText: 'Password',
+                              // prefixIcon: Icon(Icons.password_outlined),
+                            ),
+                            validator:
+                                RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
+                            obscureText: true,
+                          ),
+                          const SizedBox(height: 30),
+                          SizedBox(
+                            height: 50,
+                            width: 319,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size.fromHeight(35),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
+                              child: const Text(
+                                'Register',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              onPressed: () {
+                                Navigator.pushNamed(context, Routes.login);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 30, top: 25),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: Divider(
+                        color: Colors.grey,
+                      )),
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "or",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 182, 180, 180)),
                         ),
+                      ),
+                      Expanded(
+                          child: Divider(
+                        color: Colors.grey,
+                      ))
+                    ],
+                  ),
+                ),
+//
+                InkWell(
+                  onTap: () => AuthService().signInWithGoogle(),
+                  child: Container(
+                    height: 50,
+                    width: 350,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: Image.asset(ImageConstants.logoGoogle),
+                        ),
+                        const SizedBox(width: 10),
+                        const Text('Connect With Google'),
                       ],
                     ),
                   ),
                 ),
-              ),
+                //
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Already have an account?"),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.login);
+                      },
+                      child: const Text("Login"),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          );
-        }
-        return const Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
