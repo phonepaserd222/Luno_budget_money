@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/routes/routes.dart';
+import 'package:luno_budget_money/screens/expense/expense_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,6 +44,18 @@ class HomeScreen extends StatelessWidget {
                     icon: const Icon(Icons.login),
                     label: const Text('ເຂົ້າສູ່ລະບົບ')),
               ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  child: Text('Go to expenScreen'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ExpenScreen()),
+                    );
+                  },
+                ),
+              )
             ],
           ),
         ),
