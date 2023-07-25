@@ -23,19 +23,15 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 246, 226, 184), //#FFFCEF
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 246, 226, 184), //#FFFCEF
+        // centerTitle: true,
         title: const Text('LUNO Budget Buddy'),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: () => _signOut(context),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              child: const Text('Sign Out'),
+            padding: const EdgeInsets.only(right: 10),
+            child: CircleAvatar(
+              radius: 30,
+              backgroundImage: NetworkImage(user.photoURL!),
             ),
           ),
         ],
