@@ -1,17 +1,40 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:luno_budget_money/routes/routes.dart';
+import 'package:luno_budget_money/screens/home_screen.dart';
 
 class AuthService {
-  signInWithGoogle() async {
-    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
-    //
-    final GoogleSignInAuthentication? gAuth = await gUser?.authentication;
-    //
-    final credential = GoogleAuthProvider.credential(
-      accessToken: gAuth!.accessToken,
-      idToken: gAuth.idToken,
-    );
-    //
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  signInWithGoogle(BuildContext context) async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? user = userCredential.user;
+
+      if (user == null) {
+        print("null");
+        return;
+      } else {
+        Future.delayed(Duration.zero)
+            // .then((value) => Navigator.pushNamed(context, Routes.home));
+            .then((value) => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeScreen(user: user),
+                )));
+      }
+
+      // TODO: Navigate to the home screen or perform other actions
+    } catch (e) {
+      print(e);
+    }
   }
 }

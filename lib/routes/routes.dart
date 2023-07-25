@@ -1,3 +1,4 @@
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/screens/login_screen.dart';
 import 'package:luno_budget_money/screens/register_screen.dart';
@@ -18,6 +19,8 @@ class Routes {
         return MaterialPageRoute(builder: (context) => const LoginScreen());
       case welcome:
         return MaterialPageRoute(builder: (context) => WelcomeScreen());
+      // case home:
+      //   return MaterialPageRoute(builder: (context) => HomeScreen());
       default:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
     }

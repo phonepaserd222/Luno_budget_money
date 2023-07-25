@@ -114,7 +114,7 @@ class LoginScreen extends StatelessWidget {
                 ),
 //
                 InkWell(
-                  onTap: () => AuthService().signInWithGoogle(),
+                  onTap: () => AuthService().signInWithGoogle(context),
                   child: Container(
                     height: 50,
                     width: 350,
