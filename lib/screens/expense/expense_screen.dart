@@ -24,25 +24,6 @@ class _ExpenScreenState extends State<ExpenScreen> {
         padding: const EdgeInsets.all(12),
         child: Column(
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.all(5.0),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Container(
-            //         child: SizedBox(
-            //             height: 80,
-            //             width: 80,
-            //             child:
-            //                 Image.asset('assets/images/Budget-Planning.jpg')),
-            //       ),
-            //       const Text('deta', style: TextStyle(fontSize: 30)),
-            //       const Icon(Icons.arrow_forward_ios),
-            //     ],
-            //   ),
-            // ),
-
-            // T2
             const SizedBox(
               height: 15,
             ),
@@ -153,42 +134,12 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(Icons.calculate),
-                    Text('Total'),
+                    Text('Title'),
                     Icon(Icons.arrow_forward_ios),
                   ],
                 ),
               ),
             ),
-
-            // Container(
-            //   height: 110,
-            //   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            //   padding: EdgeInsets.all(10),
-            //   decoration: BoxDecoration(
-            //     color: const Color.fromARGB(255, 241, 116, 116),
-            //     borderRadius: BorderRadius.circular(10),
-            //   ),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Container(
-            //         height: 80,
-            //         width: 80,
-            //         child: Image.asset('assets/images/Budget-Planning.jpg'),
-            //       ),
-            //       const Text('deta', style: TextStyle(fontSize: 30)),
-            //       const Padding(
-            //         padding: EdgeInsets.symmetric(vertical: 5),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.end,
-            //           children: [
-            //             Icon(Icons.arrow_forward_ios),
-            //           ],
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // )
           ],
         ),
       ),
