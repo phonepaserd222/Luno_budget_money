@@ -63,6 +63,15 @@ class RegisterScreen extends StatelessWidget {
                                 RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
                             obscureText: true,
                           ),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              labelText: 'Confirm Password',
+                              // prefixIcon: Icon(Icons.password_outlined),
+                            ),
+                            validator:
+                                RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
+                            obscureText: true,
+                          ),
                           const SizedBox(height: 30),
                           SizedBox(
                             height: 50,
