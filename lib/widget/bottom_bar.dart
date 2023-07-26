@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/screens/page/page_home.dart';
+
+import '../screens/page/page_profile.dart';
 // import 'package:luno_budget_money/screens/page/page_profile.dart';
 
 class BottomNavigationBarExample extends StatefulWidget {
@@ -15,14 +17,14 @@ class _BottomNavigationBarExampleState
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     // pages Home
-    PageHome(),
+    const PageHome(),
     // pages Home
-    PageHome(),
-    // PageProfile(user: null,),
+    // PageHome(),
+    PageProfile(),
     // pages Home
-    Text(
+    const Text(
       'Index 2: School',
       style: optionStyle,
     ),
