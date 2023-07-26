@@ -63,6 +63,9 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Icon(Icons.calendar_today),
+                        SizedBox(
+                          width: 16,
+                        ),
                         Text(dateText),
                       ],
                     ),
@@ -78,15 +81,14 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Expanded(
-                          child: InkWell(
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                  hintText: 'Cost',
-                                  prefixIcon: const Icon(Icons.attach_money),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              keyboardType: TextInputType.number,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Cost',
+                              prefixIcon: const Icon(Icons.money),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
                             ),
+                            keyboardType: TextInputType.number,
                           ),
                         ),
                         // Icon(Icons.attach_money),
@@ -117,6 +119,9 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Icon(Icons.category),
+                        SizedBox(
+                          width: 16,
+                        ),
                         Text('Select Category'),
                       ],
                     ),
