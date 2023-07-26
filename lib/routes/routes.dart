@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/widget/date_pop_screen.dart';
 import 'package:luno_budget_money/screens/home_screen.dart';
 import 'package:luno_budget_money/screens/login_screen.dart';
 import 'package:luno_budget_money/screens/register_screen.dart';
@@ -10,6 +11,7 @@ class Routes {
   static const String register = '/registerscreen';
   static const String login = '/loginscreen';
   static const String welcome = '/welcomescreen';
+  static const String datepopscreen = '/datepopscreen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -19,6 +21,8 @@ class Routes {
         return MaterialPageRoute(builder: (context) => const LoginScreen());
       case welcome:
         return MaterialPageRoute(builder: (context) => const WelcomeScreen());
+      case datepopscreen:
+        return MaterialPageRoute(builder: (context) => CategoryItemPage());
       default:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
     }
