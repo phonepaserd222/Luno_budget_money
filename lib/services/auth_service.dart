@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:luno_budget_money/routes/routes.dart';
 // import 'package:luno_budget_money/routes/routes.dart';
 import 'package:luno_budget_money/screens/home_screen.dart';
 
@@ -21,7 +20,7 @@ class AuthService {
       final User? user = userCredential.user;
 
       if (user == null) {
-        print("null");
+        debugPrint("null");
         return;
       } else {
         Future.delayed(Duration.zero)
@@ -45,7 +44,7 @@ class AuthService {
 
       // TODO: Navigate to the home screen or perform other actions
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 }

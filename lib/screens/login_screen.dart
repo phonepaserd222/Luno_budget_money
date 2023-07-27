@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:luno_budget_money/services/api_login_by_password.dart';
 
 import '../constants/image_contants.dart';
 import '../routes/routes.dart';
@@ -10,6 +11,9 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController userNameController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 246, 226, 184), //#FFFCEF
       body: SingleChildScrollView(
@@ -50,6 +54,7 @@ class LoginScreen extends StatelessWidget {
                               // prefixIcon: Icon(Icons.person),
                             ),
                             keyboardType: TextInputType.emailAddress,
+                            controller: userNameController,
                           ),
                           const SizedBox(
                             height: 15,
@@ -62,6 +67,7 @@ class LoginScreen extends StatelessWidget {
                             validator:
                                 RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
                             obscureText: true,
+                            controller: passwordController,
                           ),
                           const SizedBox(height: 30),
                           SizedBox(
@@ -79,7 +85,17 @@ class LoginScreen extends StatelessWidget {
                                 style: TextStyle(fontSize: 20),
                               ),
                               onPressed: () {
-                                Navigator.pushNamed(context, Routes.welcome);
+                                // Navigator.pushNamed(context, Routes.welcome);
+                                ApiLoginByPassword.loginByPassword(
+                                  userName: userNameController.text,
+                                  password: passwordController.text,
+                                  context: context,
+                                ).then((value) {
+                                  if (value == null) {
+                                  } else {
+                                    Navigator.pushNamed(context, Routes.home);
+                                  }
+                                });
                               },
                             ),
                           ),
