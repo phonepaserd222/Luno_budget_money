@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/screens/page/page_category.dart';
 import 'package:luno_budget_money/screens/page/page_home.dart';
 
 import '../screens/page/page_profile.dart';
@@ -19,10 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // pages Home
     const PageHome(),
     // pages Home
-    const Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    const PageCategory(),
     // pages Home
     PageProfile(),
   ];
@@ -36,9 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('BottomNavigationBar Sample'),
-      // ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
