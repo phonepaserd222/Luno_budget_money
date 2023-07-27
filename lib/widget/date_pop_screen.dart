@@ -17,7 +17,20 @@ class CategoryItemPage extends StatelessWidget {
         color: Colors.green),
     Category(name: "Shopping", icon: Icons.shopping_cart, color: Colors.orange),
     Category(name: "Entertainment", icon: Icons.movie, color: Colors.purple),
-
+    Category(name: "Food", icon: Icons.fastfood, color: Colors.blue),
+    Category(
+        name: "Transportation",
+        icon: Icons.directions_car,
+        color: Colors.green),
+    Category(name: "Shopping", icon: Icons.shopping_cart, color: Colors.orange),
+    Category(name: "Entertainment", icon: Icons.movie, color: Colors.purple),
+    Category(name: "Food", icon: Icons.fastfood, color: Colors.blue),
+    Category(
+        name: "Transportation",
+        icon: Icons.directions_car,
+        color: Colors.green),
+    Category(name: "Shopping", icon: Icons.shopping_cart, color: Colors.orange),
+    Category(name: "Entertainment", icon: Icons.movie, color: Colors.purple),
     // Add more categories as needed
   ];
 
@@ -26,35 +39,37 @@ class CategoryItemPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Categories")),
       body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns in the grid
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3, // Number of columns in the grid
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,
         ),
         itemCount: categories.length,
         itemBuilder: (context, index) {
-          return _buildCategoryCard(categories[index]);
+          return _buildCategoryCard(context, categories[index]);
         },
       ),
     );
   }
 
-  Widget _buildCategoryCard(Category category) {
-    return Card(
+  Widget _buildCategoryCard(BuildContext context, Category category) {
+    return Container(
+      width: 100,
+      height: 50,
       color: category.color,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: InkWell(
-        onTap: () {
-          // Handle category selection here, e.g., navigate to another page
-          print("Category selected: ${category.name}");
-        },
+        // onTap: () {
+        //   // Show the alert when a category is tapped
+
+        //   print("Category selected: ${category.name}");
+        // },
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 category.icon,
-                size: 40,
+                size: 30,
                 color: Colors.white,
               ),
               SizedBox(height: 8.0),

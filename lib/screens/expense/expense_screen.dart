@@ -57,8 +57,8 @@ class _ExpenScreenState extends State<ExpenScreen> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: Color.fromARGB(255, 135, 134, 134))),
+                        border:
+                            Border.all(color: Color.fromRGBO(112, 20, 204, 1))),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -85,8 +85,18 @@ class _ExpenScreenState extends State<ExpenScreen> {
                             decoration: InputDecoration(
                               labelText: 'Cost',
                               prefixIcon: const Icon(Icons.money),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                    width: 1,
+                                    color: Color.fromRGBO(112, 20, 204, 1)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 1,
+                                    color: Color.fromRGBO(112, 20, 204, 1)),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
                             keyboardType: TextInputType.number,
                           ),
@@ -97,14 +107,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   ),
                 ),
 
-                // T3
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CategoryItemPage()));
-                  },
                   child: Container(
                     height: 60,
                     width: double.infinity,
@@ -113,20 +116,41 @@ class _ExpenScreenState extends State<ExpenScreen> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: Color.fromARGB(255, 135, 134, 134))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.category),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Text('Select Category'),
-                      ],
+                        border:
+                            Border.all(color: Color.fromRGBO(112, 20, 204, 1))),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                          backgroundColor: Colors.white),
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CategoryItemPage();
+                          },
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.category,
+                            color: Colors.black,
+                          ),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          Text(
+                            'Select Category',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
+
                 // T4
                 InkWell(
                   onTap: () {},
@@ -139,8 +163,18 @@ class _ExpenScreenState extends State<ExpenScreen> {
                             decoration: InputDecoration(
                               labelText: 'Title',
                               prefixIcon: const Icon(Icons.calculate),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                    width: 1,
+                                    color: Color.fromRGBO(112, 20, 204, 1)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 1,
+                                    color: Color.fromRGBO(112, 20, 204, 1)),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
                             keyboardType: TextInputType.text,
                           ),
