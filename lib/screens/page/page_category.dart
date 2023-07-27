@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/widget/alert_dialog_yes_no.dart';
 
 class PageCategory extends StatelessWidget {
   const PageCategory({super.key});
@@ -113,7 +114,9 @@ class PageCategory extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        DialogYesNO(context: context);
+                      },
                       icon: const Icon(
                         Icons.delete,
                         color: Colors.red,
