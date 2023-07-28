@@ -41,8 +41,6 @@ class AuthService {
           ),
         );
       }
-
-      // TODO: Navigate to the home screen or perform other actions
     } catch (e) {
       debugPrint(e.toString());
     }

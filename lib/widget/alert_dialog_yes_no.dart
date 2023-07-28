@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
+// ignore: non_constant_identifier_names
 void DialogYesNO({required BuildContext context}) {
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
         backgroundColor: Colors.pink,
-        title: Text('Delete'),
+        title: const Text('Delete'),
         actions: [
           MaterialButton(
             onPressed: () {},
-            child: Text('Yes'),
+            child: const Text('Yes'),
           ),
           MaterialButton(
             onPressed: () {},
@@ -26,32 +27,3 @@ void DialogYesNO({required BuildContext context}) {
     },
   );
 }
-
-// 
-// 
-// void DialogYesNo(){
-//   showDialog(
-//     context: context, 
-//     builder: (context) {
-//       return AlertDialog(
-//         backgroundColor: Colors.pink,
-//         title: Text('Delete'),
-//         content: Text('Are you sure you want to delete?'),
-//         actions: [
-//           FlatButton(
-//             child: Text('Yes'),
-//             onPressed: () {
-//               // Perform action when user selects "Yes"
-//             },
-//           ),
-//           FlatButton(
-//             child: Text('No'),
-//             onPressed: () {
-//               // Perform action when user selects "No"
-//             },
-//           ),
-//         ],
-//       );
-//     },
-//   );
-// }

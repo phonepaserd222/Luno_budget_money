@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'response_login_by_password_model.g.dart';

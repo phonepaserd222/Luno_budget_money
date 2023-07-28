@@ -11,9 +11,10 @@ class PageProfile extends StatelessWidget {
     try {
       await _googleSignIn.disconnect();
       await FirebaseAuth.instance.signOut();
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 
@@ -94,8 +95,7 @@ class PageProfile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    const Text('User name',
-                        style: const TextStyle(fontSize: 20)),
+                    const Text('User name', style: TextStyle(fontSize: 20)),
                   ],
                 ),
                 Text(
@@ -138,7 +138,7 @@ class PageProfile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    const Text('Email', style: const TextStyle(fontSize: 20)),
+                    const Text('Email', style: TextStyle(fontSize: 20)),
                   ],
                 ),
                 Text(
@@ -182,7 +182,7 @@ class PageProfile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    const Text('Log out', style: const TextStyle(fontSize: 20)),
+                    const Text('Log out', style: TextStyle(fontSize: 20)),
                   ],
                 ),
               ],

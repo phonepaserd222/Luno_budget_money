@@ -58,7 +58,8 @@ class PageCategory extends StatelessWidget {
                   suffixIcon: Padding(
                     padding: const EdgeInsets.only(bottom: 5, top: 5, right: 5),
                     child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.amber),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.amber),
                         onPressed: () {},
                         child: const Text('Add')),
                   ),

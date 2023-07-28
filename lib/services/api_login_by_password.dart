@@ -1,7 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/constants/api_constants.dart';
@@ -39,7 +36,7 @@ class ApiLoginByPassword {
     } catch (e) {
       Loading.hide(context);
       errorDialog(context: context, error: e.toString());
-      print(e);
+      debugPrint(e.toString());
       return null;
     }
   }
