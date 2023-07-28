@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const PageHome(),
     // pages Home
     const PageCategory(),
+    // PageImages(),
     // pages Home
     PageProfile(),
   ];

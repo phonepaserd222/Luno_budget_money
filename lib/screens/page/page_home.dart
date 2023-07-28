@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/text_edit.dart';
+import '../../widget/text_edit.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome({
