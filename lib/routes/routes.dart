@@ -1,3 +1,4 @@
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:luno_budget_money/widget/date_pop_screen.dart';
 import 'package:luno_budget_money/screens/home_screen.dart';
@@ -21,14 +22,13 @@ class Routes {
       case login:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
       case welcome:
-        return MaterialPageRoute(builder: (context) => const WelcomeScreen());
+        return MaterialPageRoute(builder: (context) => WelcomeScreen());
+      // case home:
+      //   return MaterialPageRoute(builder: (context) => HomeScreen());
 
-      // case datepopscreen:
-      //   return MaterialPageRoute(builder: (context) => const CategoryItemPage());
-      //    case expensescreen:
-      //   return MaterialPageRoute(builder: (context) => const Expensescreen());
+
       default:
-        return MaterialPageRoute(builder: (context) => const HomeScreen());
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
     }
   }
 }

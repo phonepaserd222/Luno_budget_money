@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "221429173207",
+    "project_id": "luno-budget-money",
+    "storage_bucket": "luno-budget-money.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221429173207:android:a039c02bf7134b3d38d992",
+        "android_client_info": {
+          "package_name": "com.example.luno_budget_money"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221429173207-ee87dgpm4p4itu2fsceohbvr25ch23p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH1vC9mQ3oFEqFanqDBk6Q2ThJ8BGyZ-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221429173207-ee87dgpm4p4itu2fsceohbvr25ch23p0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "221429173207-f5fh0sstqp41bgnplvcm093hrjngpn0p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lunoBudgetMoney"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
