@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/routes/routes.dart';
-import 'package:luno_budget_money/screens/expense/expense_screen.dart';
+import 'package:luno_budget_money/screens/expense_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
