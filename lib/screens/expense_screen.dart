@@ -1,25 +1,30 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart'; // Import for FilteringTextInputFormatter
 
 import 'package:intl/intl.dart';
+import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/date_pop_screen.dart';
 
 import 'package:luno_budget_money/model/data.dart'; // Import the category data from the other page
-// Import the CategoryItemPage
 
 class ExpenScreen extends StatefulWidget {
-  final Category? selectedCategory;
-
-  ExpenScreen({this.selectedCategory});
-
   @override
   State<ExpenScreen> createState() => _ExpenScreenState();
 }
 
 class _ExpenScreenState extends State<ExpenScreen> {
+  CategoryStrem categoryStrem = CategoryStrem();
   Category? selectedCategory;
   String dateText = 'Select Date';
+
+  @override
+  void dispose() {
+    categoryStrem.onDispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,57 +115,53 @@ class _ExpenScreenState extends State<ExpenScreen> {
               ),
             ),
 
-            InkWell(
-              onTap: () {},
-              child: Container(
-                height: 60,
-                width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
-                padding: EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Color.fromRGBO(112, 20, 204, 1))),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0.0,
-                      shadowColor: Colors.transparent,
-                      backgroundColor: Colors.white),
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return CategoryItemPage(
-                          onCategorySelected: (category) {
-                            setState(() {
-                              selectedCategory =
-                                  category; // Store the selected category
-                            });
-                            Navigator.pop(context); // Close the bottom sheet
-                          },
-                        );
-                      },
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.category,
-                        color: Colors.black,
-                      ),
-                      SizedBox(
-                        width: 16,
-                      ),
-                      Text(
-                        // 'Select Category',
-                        widget.selectedCategory != null
-                            ? widget.selectedCategory!.name
-                            : 'No Category Selected',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ],
-                  ),
+            Container(
+              height: 60,
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Color.fromRGBO(112, 20, 204, 1))),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Colors.white),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CategoryItemPage(
+                        onCategorySelected: (category) {
+                          categoryStrem.onCategorySelected(category);
+                        },
+                      );
+                    },
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.category,
+                      color: Colors.black,
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    StreamBuilder<Category>(
+                        stream: categoryStrem.categoryStremController,
+                        builder: (context, snapshot) {
+                          return Text(
+                            snapshot.hasData
+                                ? snapshot.data?.name ?? ""
+                                : 'No Category Selected',
+                            style: TextStyle(color: Colors.black),
+                          );
+                        }),
+                  ],
                 ),
               ),
             ),
@@ -203,11 +204,11 @@ class _ExpenScreenState extends State<ExpenScreen> {
               height: 58,
 
               // Color: const Colors.fromRGBO(112, 20, 204, 1)
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 12,
                 right: 12,
               ),
-              margin: EdgeInsets.only(top: 10),
+              margin: const EdgeInsets.only(top: 10),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(17),
                 child: ElevatedButton(
