@@ -42,7 +42,10 @@ class _PageCategoryState extends State<PageCategory> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _image == null
-                    ? Text('No image selected.')
+                    ? const CircleAvatar(
+                        radius: 80.0,
+                        backgroundColor: Colors.grey,
+                      )
                     : CircleAvatar(
                         radius: 80.0,
                         backgroundImage: FileImage(_image!),
