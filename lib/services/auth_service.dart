@@ -20,21 +20,29 @@ class AuthService {
       final User? user = userCredential.user;
 
       if (user == null) {
-        print("null");
+        debugPrint("null");
         return;
       } else {
         Future.delayed(Duration.zero)
             // .then((value) => Navigator.pushNamed(context, Routes.home));
-            .then((value) => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(user: user),
-                )));
+            .then(
+          (value) =>
+              // Navigator.pushNamed(context, Routes.home, arguments: user)
+              Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+              // Pass the arguments as part of the RouteSettings. The
+              // DetailScreen reads the arguments from these settings.
+              settings: RouteSettings(
+                arguments: user,
+              ),
+            ),
+          ),
+        );
       }
-
-      // TODO: Navigate to the home screen or perform other actions
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 }
