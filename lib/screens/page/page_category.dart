@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:luno_budget_money/models/category_screen_add_model.dart';
 import 'package:luno_budget_money/widget/alert_dialog_yes_no.dart';
 
 class PageCategory extends StatefulWidget {
@@ -12,7 +13,12 @@ class PageCategory extends StatefulWidget {
 }
 
 class _PageCategoryState extends State<PageCategory> {
+  // TextEditingController iconAddController = TextEditingController();
+  TextEditingController iconNameController = TextEditingController();
+
   File? _image;
+
+  List<CAtegoryScreenAddModel> listIcon = [];
 
   Future<void> _getImage(ImageSource source) async {
     final picker = ImagePicker();
@@ -88,6 +94,7 @@ class _PageCategoryState extends State<PageCategory> {
                     height: 40,
                     width: 250,
                     child: TextFormField(
+                      controller: iconNameController,
                       decoration: InputDecoration(
                         // labelText: 'Email',
                         suffixIcon: const Padding(
@@ -129,39 +136,45 @@ class _PageCategoryState extends State<PageCategory> {
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.only(left: 30, right: 30),
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.purple)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 20,
-                            backgroundColor: Colors.amber,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: listIcon.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.purple)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Colors.amber,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text('Donut'),
+                            ],
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text('Donut'),
-                        ],
-                      ),
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              DialogYesNO(context: context);
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ))
+                      ],
                     ),
-                    IconButton(
-                        onPressed: () {
-                          DialogYesNO(context: context);
-                        },
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ))
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ],
@@ -170,3 +183,39 @@ class _PageCategoryState extends State<PageCategory> {
     );
   }
 }
+
+
+// Container(
+//                 height: 50,
+//                 decoration: BoxDecoration(
+//                     borderRadius: BorderRadius.circular(5),
+//                     border: Border.all(color: Colors.purple)),
+//                 child: Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     const Padding(
+//                       padding: EdgeInsets.only(left: 10),
+//                       child: Row(
+//                         children: [
+//                           CircleAvatar(
+//                             radius: 20,
+//                             backgroundColor: Colors.amber,
+//                           ),
+//                           SizedBox(
+//                             width: 10,
+//                           ),
+//                           Text('Donut'),
+//                         ],
+//                       ),
+//                     ),
+//                     IconButton(
+//                         onPressed: () {
+//                           DialogYesNO(context: context);
+//                         },
+//                         icon: const Icon(
+//                           Icons.delete,
+//                           color: Colors.red,
+//                         ))
+//                   ],
+//                 ),
+//               ),
