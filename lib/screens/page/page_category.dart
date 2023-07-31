@@ -148,18 +148,18 @@ class _PageCategoryState extends State<PageCategory> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 10),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
                           child: Row(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 radius: 20,
                                 backgroundColor: Colors.amber,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Text('Donut'),
+                              Text('iconName:${listIcon[index].iconName}'),
                             ],
                           ),
                         ),
