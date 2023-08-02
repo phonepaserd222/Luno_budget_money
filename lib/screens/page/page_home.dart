@@ -11,12 +11,12 @@ class PageHome extends StatelessWidget {
     final user = ModalRoute.of(context)!.settings.arguments as User;
     return Scaffold(
       appBar: AppBar(
-        title: Text('LUNO Budget Buddy'),
+        title: const Text('LUNO Budget Buddy'),
         actions: [
           CircleAvatar(
             backgroundImage: NetworkImage(user.photoURL!),
           ),
-          SizedBox(
+          const SizedBox(
             width: 30,
           )
         ],
