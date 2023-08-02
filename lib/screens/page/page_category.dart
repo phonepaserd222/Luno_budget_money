@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luno_budget_money/models/category_screen_add_model.dart';
-import 'package:luno_budget_money/widget/alert_dialog_yes_no.dart';
 
 class PageCategory extends StatefulWidget {
   const PageCategory({super.key});
@@ -127,6 +126,8 @@ class _PageCategoryState extends State<PageCategory> {
                                 0,
                                 CAtegoryScreenAddModel(
                                     iconAdd: _image!, iconName: iconName));
+                            _image = null;
+                            iconNameController.clear();
                           });
                         }
                       },
@@ -163,13 +164,13 @@ class _PageCategoryState extends State<PageCategory> {
                           child: Row(
                             children: [
                               CircleAvatar(
-                                radius: 20,
+                                radius: 30,
                                 backgroundColor: Colors.amber,
                                 backgroundImage:
                                     FileImage(listIcon[index].iconAdd),
                               ),
                               const SizedBox(
-                                width: 10,
+                                width: 5,
                               ),
                               Text(listIcon[index].iconName),
                             ],
@@ -181,9 +182,9 @@ class _PageCategoryState extends State<PageCategory> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: const Text('Delete Item'),
-                                  content: const Text(
-                                      'Are you sure you want to delete this item?'),
+                                  title: const Text('Delete ?'),
+                                  // content: const Text(
+                                  //     'Are you sure you want to delete this item?'),
                                   actions: [
                                     MaterialButton(
                                       child: const Text('Yes'),
@@ -223,39 +224,3 @@ class _PageCategoryState extends State<PageCategory> {
     );
   }
 }
-
-
-// Container(
-//                 height: 50,
-//                 decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(5),
-//                     border: Border.all(color: Colors.purple)),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                   children: [
-//                     const Padding(
-//                       padding: EdgeInsets.only(left: 10),
-//                       child: Row(
-//                         children: [
-//                           CircleAvatar(
-//                             radius: 20,
-//                             backgroundColor: Colors.amber,
-//                           ),
-//                           SizedBox(
-//                             width: 10,
-//                           ),
-//                           Text('Donut'),
-//                         ],
-//                       ),
-//                     ),
-//                     IconButton(
-//                         onPressed: () {
-//                           DialogYesNO(context: context);
-//                         },
-//                         icon: const Icon(
-//                           Icons.delete,
-//                           color: Colors.red,
-//                         ))
-//                   ],
-//                 ),
-//               ),
