@@ -94,7 +94,7 @@ class PageProfile extends StatelessWidget {
                         size: 40,
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: 30),
                     const Text('User name', style: TextStyle(fontSize: 20)),
                   ],
                 ),
@@ -107,7 +107,7 @@ class PageProfile extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
+            padding: EdgeInsets.only(left: 80, right: 15),
             child: Divider(color: Colors.black),
           ),
           const SizedBox(height: 30),
@@ -137,7 +137,7 @@ class PageProfile extends StatelessWidget {
                         size: 40,
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: 30),
                     const Text('Email', style: TextStyle(fontSize: 20)),
                   ],
                 ),
@@ -150,7 +150,7 @@ class PageProfile extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
+            padding: EdgeInsets.only(left: 80, right: 15),
             child: Divider(color: Colors.black),
           ),
           // const SizedBox(height: 32),
@@ -187,10 +187,6 @@ class PageProfile extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            child: Divider(color: Colors.black),
           ),
           const SizedBox(height: 50),
           ElevatedButton(
