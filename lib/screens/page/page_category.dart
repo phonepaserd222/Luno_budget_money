@@ -119,7 +119,17 @@ class _PageCategoryState extends State<PageCategory> {
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.amber),
-                      onPressed: () {},
+                      onPressed: () {
+                        String iconName = iconNameController.text.trim();
+                        if (iconName.isNotEmpty) {
+                          setState(() {
+                            listIcon.insert(
+                                0,
+                                CAtegoryScreenAddModel(
+                                    iconAdd: _image!, iconName: iconName));
+                          });
+                        }
+                      },
                       child: const Text('Add')),
                 ],
               ),
@@ -152,14 +162,16 @@ class _PageCategoryState extends State<PageCategory> {
                           padding: const EdgeInsets.only(left: 10),
                           child: Row(
                             children: [
-                              const CircleAvatar(
+                              CircleAvatar(
                                 radius: 20,
                                 backgroundColor: Colors.amber,
+                                backgroundImage:
+                                    FileImage(listIcon[index].iconAdd),
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
-                              Text('iconName:${listIcon[index].iconName}'),
+                              Text(listIcon[index].iconName),
                             ],
                           ),
                         ),
