@@ -176,13 +176,41 @@ class _PageCategoryState extends State<PageCategory> {
                           ),
                         ),
                         IconButton(
-                            onPressed: () {
-                              DialogYesNO(context: context);
-                            },
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                            ))
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Delete Item'),
+                                  content: const Text(
+                                      'Are you sure you want to delete this item?'),
+                                  actions: [
+                                    MaterialButton(
+                                      child: const Text('Yes'),
+                                      onPressed: () {
+                                        // remove item from list
+                                        setState(() {
+                                          listIcon.remove(listIcon[index]);
+                                        });
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    MaterialButton(
+                                      child: const Text('No'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                        )
                       ],
                     ),
                   );

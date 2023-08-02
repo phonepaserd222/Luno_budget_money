@@ -9,8 +9,10 @@ void DialogYesNO({required BuildContext context}) {
         backgroundColor: Colors.pink,
         title: const Text('Delete'),
         actions: [
-          MaterialButton(
-            onPressed: () {},
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
             child: const Text('Yes'),
           ),
           MaterialButton(
