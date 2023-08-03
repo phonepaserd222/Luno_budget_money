@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '221429173207',
     projectId: 'luno-budget-money',
     storageBucket: 'luno-budget-money.appspot.com',
+    androidClientId: '221429173207-kt0pacjrcsaa79d1dfol32sbvg0l6f09.apps.googleusercontent.com',
     iosClientId: '221429173207-f5fh0sstqp41bgnplvcm093hrjngpn0p.apps.googleusercontent.com',
     iosBundleId: 'com.example.lunoBudgetMoney',
   );

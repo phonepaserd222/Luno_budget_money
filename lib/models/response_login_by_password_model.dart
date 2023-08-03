@@ -9,12 +9,10 @@ class ResponseLoginByPasswordModel {
   final String accessToken;
   @JsonKey(defaultValue: "")
   final String refreshToken;
-
   ResponseLoginByPasswordModel({
     required this.accessToken,
     required this.refreshToken,
   });
-
   factory ResponseLoginByPasswordModel.fromJson(Map<String, dynamic> json) =>
       _$ResponseLoginByPasswordModelFromJson(json);
 

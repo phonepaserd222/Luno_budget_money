@@ -14,7 +14,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "221429173207-ee87dgpm4p4itu2fsceohbvr25ch23p0.apps.googleusercontent.com",
+          "client_id": "221429173207-kt0pacjrcsaa79d1dfol32sbvg0l6f09.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.luno_budget_money",
+            "certificate_hash": "e167f49a6d1e0983a84b90a7af2bb18f7cd470df"
+          }
+        },
+        {
+          "client_id": "221429173207-qgshhlt7ouces1ktkhk4hcfnmnt5khbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.luno_budget_money",
+            "certificate_hash": "de6db1a055fec89b18ed91b6cb6e39bde50274d8"
+          }
+        },
+        {
+          "client_id": "221429173207-sj48vhed51l4c9d1sff0tot761n5jhb9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
