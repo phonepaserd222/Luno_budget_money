@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../routes/routes.dart';
+import '../../widget/date_home.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome();
@@ -21,9 +22,99 @@ class PageHome extends StatelessWidget {
       ),
       body: Column(
         children: [
-          MyRowWithContainers(), // Add the MyRowWithContainers widget here
+          Datehome(), // Add the MyRowWithContainers widget here
+          SizedBox(height: 16),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Column(
+                  children: [
+                    Text('Start Date'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: 90,
+                      height: 44,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                              color: const Color.fromRGBO(112, 20, 204, 1))),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: SizedBox(
+                    width: 18,
+                    child: const Divider(
+                      color: Colors.black, // Customize the color of the divider
+                      // height: 30, // Set the height of the divider
+                      // thickness: 3, // Set the thickness of the divider
+                      // indent: 20, // Set the left indent of the divider
+                      // endIndent: 20, // Set the right indent of the divider
+                    ),
+                  ),
+                ),
+                Column(
+                  children: [
+                    Text('End Date'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: 90,
+                      height: 44,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                              color: const Color.fromRGBO(112, 20, 204, 1))),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: 18,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 25),
+                  child: Container(
+                    width: 90,
+                    height: 44,
+                    // color: const Color.fromRGBO(152, 111, 249, 1),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(152, 111, 249, 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Text(
+                      'Search',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const Padding(
+            padding: EdgeInsets.all(28),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [Text('Date of Category'), Text('Total: 200000')],
+            ),
+          ),
+          const Divider(
+            color: Colors.black, // Customize the color of the divider
+          ),
           SizedBox(
-              height: 16), // Add a little space between the row and the button
+            height: 40,
+          ),
+          const Divider(
+            color: Colors.black, // Customize the color of the divider
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, Routes.expensescreen);
@@ -31,48 +122,6 @@ class PageHome extends StatelessWidget {
             child: Text('Go to Expense Screen'),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class MyRowWithContainers extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        buildContainerWithShadow('Daily', Colors.blue),
-        SizedBox(width: 8),
-        buildContainerWithShadow('Weekly', Colors.red),
-        SizedBox(width: 8),
-        buildContainerWithShadow('Monthly', Colors.red),
-        SizedBox(width: 8),
-        buildContainerWithShadow('Yearly', Colors.red),
-      ],
-    );
-  }
-
-  Widget buildContainerWithShadow(String text, Color color) {
-    return Expanded(
-      child: Container(
-        padding: EdgeInsets.all(16),
-        margin: EdgeInsets.only(left: 10, right: 10, top: 35),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Text(text,
-            style: TextStyle(color: Colors.white, fontSize: 15),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis),
       ),
     );
   }

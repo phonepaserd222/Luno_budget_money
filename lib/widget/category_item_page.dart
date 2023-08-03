@@ -33,41 +33,31 @@ class CategoryItemPage extends StatelessWidget {
   }
 
   Widget _buildCategoryCard(BuildContext context, Category category) {
-    return Container(
-      color: category.color,
-      child: InkWell(
-        onTap: () {
-          // showDialog(
-          //   context: context,
-          //   builder: (BuildContext context) {
-          //     TextEditingController editNameController =
-          //         TextEditingController(text: (index).name);
-
-          //     // Show the alert when a category is tapped
-          //     print("Category selected: ${category.name}");
-          //   },
-          // );
-
-          _onCategorySelected(category, context);
-
-          // Close the CategoryItemPage
-        },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                category.icon,
-                size: 30,
-                color: Colors.white,
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                category.name,
-                style: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ],
+    return Expanded(
+      child: Container(
+        // margin: EdgeInsets.all(5),
+        color: category.color,
+        child: InkWell(
+          onTap: () {
+            _onCategorySelected(category, context);
+          },
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  category.icon,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  category.name,
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
         ),
       ),
