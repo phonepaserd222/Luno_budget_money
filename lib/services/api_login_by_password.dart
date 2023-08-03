@@ -10,7 +10,7 @@ import '../widget/error_dialog.dart';
 class ApiLoginByPassword {
   static final dio = Dio();
 
-  static Future<ResponseLoginByPaaswordModel?> loginByPassword({
+  static Future<ResponseLoginByPasswordModel?> loginByPassword({
     required String userName,
     required String password,
     required BuildContext context,
@@ -24,8 +24,8 @@ class ApiLoginByPassword {
       if (res.statusCode == 200) {
         Loading.hide(context);
 
-        final ResponseLoginByPaaswordModel data =
-            ResponseLoginByPaaswordModel.fromJson(res.data);
+        final ResponseLoginByPasswordModel data =
+            ResponseLoginByPasswordModel.fromJson(res.data);
         return data;
       } else {
         Loading.hide(context);

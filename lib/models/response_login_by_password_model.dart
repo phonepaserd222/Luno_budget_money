@@ -4,19 +4,19 @@ import 'package:json_annotation/json_annotation.dart';
 part 'response_login_by_password_model.g.dart';
 
 @JsonSerializable()
-class ResponseLoginByPaaswordModel {
+class ResponseLoginByPasswordModel {
   @JsonKey(defaultValue: "")
   final String accessToken;
   @JsonKey(defaultValue: "")
   final String refreshToken;
 
-  ResponseLoginByPaaswordModel({
+  ResponseLoginByPasswordModel({
     required this.accessToken,
     required this.refreshToken,
   });
 
-  factory ResponseLoginByPaaswordModel.fromJson(Map<String, dynamic> json) =>
-      _$ResponseLoginByPaaswordModelFromJson(json);
+  factory ResponseLoginByPasswordModel.fromJson(Map<String, dynamic> json) =>
+      _$ResponseLoginByPasswordModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ResponseLoginByPaaswordModelToJson(this);
+  Map<String, dynamic> toJson() => _$ResponseLoginByPasswordModelToJson(this);
 }

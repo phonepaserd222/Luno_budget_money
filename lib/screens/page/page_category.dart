@@ -89,49 +89,55 @@ class _PageCategoryState extends State<PageCategory> {
               padding: const EdgeInsets.only(left: 30, right: 30),
               child: Row(
                 children: [
-                  SizedBox(
-                    height: 40,
-                    width: 250,
-                    child: TextFormField(
-                      controller: iconNameController,
-                      decoration: InputDecoration(
-                        // labelText: 'Email',
-                        suffixIcon: const Padding(
-                          padding: EdgeInsets.only(bottom: 5, top: 5, right: 5),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          // ignore: prefer_const_constructors
+                  Expanded(
+                    flex: 3,
+                    child: SizedBox(
+                      height: 40,
+                      width: 250,
+                      child: TextFormField(
+                        controller: iconNameController,
+                        decoration: InputDecoration(
+                          // labelText: 'Email',
+                          suffixIcon: const Padding(
+                            padding:
+                                EdgeInsets.only(bottom: 5, top: 5, right: 5),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            // ignore: prefer_const_constructors
 
-                          borderRadius: BorderRadius.circular(3),
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.purple),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.purple),
-                          borderRadius: BorderRadius.circular(3),
+                            borderRadius: BorderRadius.circular(3),
+                            borderSide: const BorderSide(
+                                width: 1, color: Colors.purple),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                width: 1, color: Colors.purple),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber),
-                      onPressed: () {
-                        String iconName = iconNameController.text.trim();
-                        if (iconName.isNotEmpty) {
-                          setState(() {
-                            listIcon.insert(
-                                0,
-                                CAtegoryScreenAddModel(
-                                    iconAdd: _image!, iconName: iconName));
-                            _image = null;
-                            iconNameController.clear();
-                          });
-                        }
-                      },
-                      child: const Text('Add')),
+                  Expanded(
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.amber),
+                        onPressed: () {
+                          String iconName = iconNameController.text.trim();
+                          if (iconName.isNotEmpty) {
+                            setState(() {
+                              listIcon.insert(
+                                  0,
+                                  CAtegoryScreenAddModel(
+                                      iconAdd: _image!, iconName: iconName));
+                              _image = null;
+                              iconNameController.clear();
+                            });
+                          }
+                        },
+                        child: const Text('Add')),
+                  ),
                 ],
               ),
             ),
@@ -187,18 +193,18 @@ class _PageCategoryState extends State<PageCategory> {
                                   //     'Are you sure you want to delete this item?'),
                                   actions: [
                                     MaterialButton(
+                                      child: const Text('No'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    MaterialButton(
                                       child: const Text('Yes'),
                                       onPressed: () {
                                         // remove item from list
                                         setState(() {
                                           listIcon.remove(listIcon[index]);
                                         });
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                    MaterialButton(
-                                      child: const Text('No'),
-                                      onPressed: () {
                                         Navigator.of(context).pop();
                                       },
                                     ),

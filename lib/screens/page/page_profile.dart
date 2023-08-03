@@ -20,7 +20,7 @@ class PageProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = ModalRoute.of(context)!.settings.arguments as User;
+    final user = ModalRoute.of(context)!.settings.arguments as User?;
     return Scaffold(
       backgroundColor: ColorConstants.colors0, //#FFFCEF
       appBar: AppBar(
@@ -40,8 +40,8 @@ class PageProfile extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  radius: 50,
-                  backgroundImage: NetworkImage(user.photoURL!),
+                  backgroundImage: NetworkImage(user?.photoURL ??
+                      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png'),
                 ),
                 const SizedBox(
                   width: 30,
@@ -51,11 +51,11 @@ class PageProfile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        ' ${user.displayName}',
+                        ' ${user?.displayName ?? ''}',
                         style: const TextStyle(fontSize: 15),
                       ),
                       Text(
-                        ' ${user.email}',
+                        ' ${user?.email ?? ''}',
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 30),
                       ),
@@ -77,31 +77,39 @@ class PageProfile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 45,
-                      width: 45,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 225, 164, 236),
-                        border: Border.all(
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 45,
+                        decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 225, 164, 236),
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 225, 164, 236),
+                          ),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        child: const Icon(
+                          Icons.person,
+                          size: 40,
+                        ),
                       ),
-                      child: const Icon(
-                        Icons.person,
-                        size: 40,
-                      ),
-                    ),
-                    const SizedBox(width: 30),
-                    const Text('User name', style: TextStyle(fontSize: 20)),
-                  ],
+                      const SizedBox(width: 30),
+                      const Text('User name', style: TextStyle(fontSize: 20)),
+                    ],
+                  ),
                 ),
-                Text(
-                  ' ${user.displayName}',
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 15),
+                // const SizedBox(width: 100),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    ' ${user?.displayName ?? ''}',
+                    textAlign: TextAlign.end,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 15),
+                  ),
                 ),
               ],
             ),
@@ -120,31 +128,39 @@ class PageProfile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 45,
-                      width: 45,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 225, 164, 236),
-                        border: Border.all(
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 45,
+                        decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 225, 164, 236),
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 225, 164, 236),
+                          ),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        child: const Icon(
+                          Icons.email_outlined,
+                          size: 40,
+                        ),
                       ),
-                      child: const Icon(
-                        Icons.email_outlined,
-                        size: 40,
-                      ),
-                    ),
-                    const SizedBox(width: 30),
-                    const Text('Email', style: TextStyle(fontSize: 20)),
-                  ],
+                      const SizedBox(width: 30),
+                      const Text('Email', style: TextStyle(fontSize: 20)),
+                    ],
+                  ),
                 ),
-                Text(
-                  ' ${user.email}',
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 15),
+                // const SizedBox(width: 50),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    ' ${user?.email ?? ''}',
+                    textAlign: TextAlign.end,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 15),
+                  ),
                 ),
               ],
             ),
