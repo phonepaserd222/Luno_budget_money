@@ -1,37 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../routes/routes.dart';
 import '../../widget/date_home.dart';
 
 class PageHome extends StatelessWidget {
-  const PageHome();
+  const PageHome({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = ModalRoute.of(context)!.settings.arguments as User?;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Luno budget buddy'),
-        actions: const [
-          SizedBox(
-            child: Icon(
-              Icons.person,
-              size: 40,
-            ),
+        actions: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(user?.photoURL ??
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png'),
           ),
+          const SizedBox(
+            width: 30,
+          )
         ],
       ),
       body: Column(
         children: [
-          Datehome(), // Add the MyRowWithContainers widget here
-          SizedBox(height: 16),
+          const Datehome(), // Add the MyRowWithContainers widget here
+          const SizedBox(height: 16),
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Row(
               children: [
                 Column(
                   children: [
-                    Text('Start Date'),
-                    SizedBox(
+                    const Text('Start Date'),
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -45,19 +48,19 @@ class PageHome extends StatelessWidget {
                     )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(5),
+                const Padding(
+                  padding: EdgeInsets.all(5),
                   child: SizedBox(
                     width: 18,
-                    child: const Divider(
+                    child: Divider(
                       color: Colors.black,
                     ),
                   ),
                 ),
                 Column(
                   children: [
-                    Text('End Date'),
-                    SizedBox(
+                    const Text('End Date'),
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -71,7 +74,7 @@ class PageHome extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 18,
                 ),
                 Container(
@@ -107,7 +110,7 @@ class PageHome extends StatelessWidget {
           const Divider(
             color: Colors.black, // Customize the color of the divider
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           const Divider(
@@ -117,7 +120,7 @@ class PageHome extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, Routes.expensescreen);
             },
-            child: Icon(
+            child: const Icon(
               Icons.add,
             ),
           ),

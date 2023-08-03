@@ -7,6 +7,8 @@ import 'package:luno_budget_money/screens/register_screen.dart';
 import 'package:luno_budget_money/screens/welcome_screen.dart';
 import 'package:luno_budget_money/screens/expense_screen.dart';
 
+import '../screens/home_screen.dart';
+
 class Routes {
   Routes._();
   static const String home = '/homescreen';
@@ -25,9 +27,9 @@ class Routes {
       case welcome:
         return MaterialPageRoute(builder: (context) => WelcomeScreen());
       case expensescreen:
-        return MaterialPageRoute(builder: (context) => ExpenScreen());
-      // case home:
-      //   return MaterialPageRoute(builder: (context) => HomeScreen());
+        return MaterialPageRoute(builder: (context) => const ExpenScreen());
+      case home:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
 
       default:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
