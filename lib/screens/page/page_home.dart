@@ -25,7 +25,7 @@ class PageHome extends StatelessWidget {
           Datehome(), // Add the MyRowWithContainers widget here
           SizedBox(height: 16),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(10),
             child: Row(
               children: [
                 Column(
@@ -35,7 +35,7 @@ class PageHome extends StatelessWidget {
                       height: 10,
                     ),
                     Container(
-                      width: 90,
+                      width: 95,
                       height: 44,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -50,11 +50,7 @@ class PageHome extends StatelessWidget {
                   child: SizedBox(
                     width: 18,
                     child: const Divider(
-                      color: Colors.black, // Customize the color of the divider
-                      // height: 30, // Set the height of the divider
-                      // thickness: 3, // Set the thickness of the divider
-                      // indent: 20, // Set the left indent of the divider
-                      // endIndent: 20, // Set the right indent of the divider
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -65,7 +61,7 @@ class PageHome extends StatelessWidget {
                       height: 10,
                     ),
                     Container(
-                      width: 90,
+                      width: 95,
                       height: 44,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -78,20 +74,22 @@ class PageHome extends StatelessWidget {
                 SizedBox(
                   width: 18,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 25),
-                  child: Container(
-                    width: 90,
-                    height: 44,
-                    // color: const Color.fromRGBO(152, 111, 249, 1),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(152, 111, 249, 1),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Text(
-                      'Search',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
+                Container(
+                  width: 95,
+                  height: 44,
+                  margin: const EdgeInsets.only(top: 25),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0.0,
+                          shadowColor: Colors.transparent,
+                          backgroundColor:
+                              const Color.fromRGBO(152, 111, 249, 1)),
+                      onPressed: () {},
+                      child: const Text(
+                        'Search',
+                      ),
                     ),
                   ),
                 ),
@@ -115,11 +113,13 @@ class PageHome extends StatelessWidget {
           const Divider(
             color: Colors.black, // Customize the color of the divider
           ),
-          ElevatedButton(
+          FloatingActionButton(
             onPressed: () {
               Navigator.pushNamed(context, Routes.expensescreen);
             },
-            child: Text('Go to Expense Screen'),
+            child: Icon(
+              Icons.add,
+            ),
           ),
         ],
       ),
