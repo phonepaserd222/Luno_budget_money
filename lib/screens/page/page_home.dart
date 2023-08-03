@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../routes/routes.dart';
 import '../../widget/date_home.dart';
@@ -7,17 +8,19 @@ class PageHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = ModalRoute.of(context)!.settings.arguments as User?;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Luno budget buddy'),
-        actions: const [
-          SizedBox(
-            child: Icon(
-              Icons.person,
-              size: 40,
-            ),
+        actions: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(user?.photoURL ??
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png'),
           ),
+          const SizedBox(
+            width: 30,
+          )
         ],
       ),
       body: Column(
