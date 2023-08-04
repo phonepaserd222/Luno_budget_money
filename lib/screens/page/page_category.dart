@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luno_budget_money/models/category_screen_add_model.dart';
+import 'package:luno_budget_money/services/api_post_category.dart';
 
 class PageCategory extends StatefulWidget {
   const PageCategory({super.key});
@@ -13,11 +14,12 @@ class PageCategory extends StatefulWidget {
 
 class _PageCategoryState extends State<PageCategory> {
   // TextEditingController iconAddController = TextEditingController();
-  TextEditingController iconNameController = TextEditingController();
+  final TextEditingController iconNameController = TextEditingController();
 
   File? _image;
 
   List<CAtegoryScreenAddModel> listIcon = [];
+  // List<ResponseCategoryModel> postCategory = [];
 
   Future<void> _getImage(ImageSource source) async {
     final picker = ImagePicker();
@@ -128,9 +130,10 @@ class _PageCategoryState extends State<PageCategory> {
                           if (iconName.isNotEmpty) {
                             setState(() {
                               listIcon.insert(
-                                  0,
-                                  CAtegoryScreenAddModel(
-                                      iconAdd: _image!, iconName: iconName));
+                                0,
+                                CAtegoryScreenAddModel(
+                                    iconAdd: _image!, iconName: iconName),
+                              );
                               _image = null;
                               iconNameController.clear();
                             });
@@ -195,7 +198,7 @@ class _PageCategoryState extends State<PageCategory> {
                                     MaterialButton(
                                       child: const Text('No'),
                                       onPressed: () {
-                                        Navigator.of(context).pop();
+                                        ApiPostCategory.createCategory();
                                       },
                                     ),
                                     MaterialButton(
