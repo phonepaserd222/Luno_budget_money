@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../routes/routes.dart';
 import '../../widget/date_home.dart';
+import '../../widget/show_category.dart';
 
 class PageHome extends StatelessWidget {
   const PageHome();
@@ -116,15 +117,15 @@ class PageHome extends StatelessWidget {
           const Divider(
             color: Colors.black, // Customize the color of the divider
           ),
-          FloatingActionButton(
-            onPressed: () {
-              Navigator.pushNamed(context, Routes.expensescreen);
-            },
-            child: Icon(
-              Icons.add,
-            ),
-          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.expensescreen);
+        },
+        child: Icon(
+          Icons.add,
+        ),
       ),
     );
   }

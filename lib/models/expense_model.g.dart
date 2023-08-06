@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'expense_model.dart';
+part of 'category_expense_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

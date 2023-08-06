@@ -1,23 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/model/data.dart';
 
-// import 'package:luno_budget_money/screens/expense_screen.dart';
+import '../services/category_expense_service.dart';
 
 class CategoryItemPage extends StatelessWidget {
   final void Function(Category category) onCategorySelected;
 
   const CategoryItemPage({super.key, required this.onCategorySelected});
+  void saveExpense() async {
+    String date = 'dateText';
+    String cost = "";
+    String categoryId = "";
+    //   String categoryId = categoryStrem
+    // .selectedCategoryId;
+    String title = "";
+
+    Map<String, String> body = {
+      "date": date,
+      "cost": cost,
+      "categoryId": categoryId,
+      "title": title,
+    };
+
+    try {
+      await ExpenseService.saveExpense(body);
+      print(body);
+      // await ExpenseService.saveExpense(body);
+    } catch (e) {
+      debugPrint("API call failed: ${e.toString()}");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Categories'),
-          backgroundColor: const Color.fromRGBO(112, 20, 204, 1)),
+        title: Text('Categories'),
+        backgroundColor: const Color.fromRGBO(112, 20, 204, 1),
+      ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3, // Number of columns in the grid
-          crossAxisSpacing: 8.0,
-          mainAxisSpacing: 8.0,
+          crossAxisSpacing: 1.0,
+          mainAxisSpacing: 1.0,
         ),
         itemCount: categories.length,
         itemBuilder: (context, index) {
@@ -33,28 +58,32 @@ class CategoryItemPage extends StatelessWidget {
   }
 
   Widget _buildCategoryCard(BuildContext context, Category category) {
-    return Expanded(
+    return Padding(
+      padding: EdgeInsets.all(2),
       child: Container(
-        // margin: EdgeInsets.all(5),
-        color: category.color,
+        // margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.black),
+        ),
         child: InkWell(
           onTap: () {
+            saveExpense();
             _onCategorySelected(category, context);
           },
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  category.icon,
-                  size: 30,
-                  color: Colors.white,
-                ),
-                const SizedBox(height: 8.0),
+                Icon(category.icon,
+                    size: 30, color: Color.fromRGBO(112, 20, 204, 1)),
+                SizedBox(height: 8.0),
                 Text(
                   category.name,
-                  style: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
               ],
             ),

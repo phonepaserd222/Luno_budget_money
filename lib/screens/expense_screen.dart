@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
+import 'package:luno_budget_money/widget/show_category.dart';
+import '../services/category_expense_service.dart';
 
 import 'package:luno_budget_money/model/data.dart'; // Import the category data from the other page
 
@@ -25,6 +27,30 @@ class _ExpenScreenState extends State<ExpenScreen> {
     categoryStrem.onDispose();
     super.dispose();
   }
+
+  // void saveExpense() async {
+  //   String date = dateText;
+  //   String cost = "";
+  //   String categoryId = "";
+  //   //   String categoryId = categoryStrem
+  //   // .selectedCategoryId;
+  //   String title = "";
+
+  //   Map<String, String> body = {
+  //     "date": date,
+  //     "cost": cost,
+  //     "categoryId": categoryId,
+  //     "title": title,
+  //   };
+
+  //   try {
+  //     await ExpenseService.saveExpense(body);
+  //     print(body);
+  //     // await ExpenseService.saveExpense(body);
+  //   } catch (e) {
+  //     debugPrint("API call failed: ${e.toString()}");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +110,6 @@ class _ExpenScreenState extends State<ExpenScreen> {
 
             // T2  Cost
             InkWell(
-              onTap: () {},
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -171,7 +196,6 @@ class _ExpenScreenState extends State<ExpenScreen> {
 
             // T4
             InkWell(
-              onTap: () {},
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -220,15 +244,8 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       shadowColor: Colors.transparent,
                       backgroundColor: const Color.fromRGBO(112, 20, 204, 1)),
                   onPressed: () {
-                    // final updatedCategory = Category(
-                    //   icon: Category[index].IconData,
-
-                    //   // id: int.tryParse(idController.text) ?? 0,
-                    //   name: Category[index].text,
-
-                    // );
-                    // updateTask(index, updatedTask);
-                    // Navigator.of(context).pop();
+                    // saveExpense();
+                    print("object");
                   },
                   child: const Text(
                     'Save',
