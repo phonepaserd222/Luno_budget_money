@@ -9,6 +9,7 @@ class PageHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = ModalRoute.of(context)!.settings.arguments as User?;
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 246, 226, 184),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Luno budget buddy'),
@@ -22,9 +23,22 @@ class PageHome extends StatelessWidget {
           )
         ],
       ),
-      body: const Column(
+      body: Column(
         children: [
-          TabView(),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  // borderRadius: BorderRadius.only(
+                  //     topLeft: Radius.circular(30),
+                  //     topRight: Radius.circular(30)),
+                ),
+                child: const TabView(),
+              ),
+            ),
+          )
         ],
       ),
     );

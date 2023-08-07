@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
 
-import 'package:luno_budget_money/model/data.dart'; // Import the category data from the other page
+import 'package:luno_budget_money/models/data.dart';
+
+import '../models/expense_screen_model.dart'; // Import the category data from the other page
 
 class ExpenScreen extends StatefulWidget {
   const ExpenScreen({super.key});
@@ -13,6 +16,12 @@ class ExpenScreen extends StatefulWidget {
 }
 
 class _ExpenScreenState extends State<ExpenScreen> {
+  List<ExpenseScreenModel> listdata = [];
+  FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+  final TextEditingController costController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+  //
+
   CategoryStrem categoryStrem = CategoryStrem();
   Category? selectedCategory;
   String dateText = 'Select Date';
@@ -89,6 +98,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: costController,
                         decoration: InputDecoration(
                           labelText: 'Cost',
                           prefixIcon: const Icon(Icons.money),
@@ -175,6 +185,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: titleController,
                         decoration: InputDecoration(
                           labelText: 'Title',
                           prefixIcon: const Icon(Icons.calculate),
@@ -226,10 +237,105 @@ class _ExpenScreenState extends State<ExpenScreen> {
                     // );
                     // updateTask(index, updatedTask);
                     // Navigator.of(context).pop();
+                    String cost = costController.text.trim();
+                    String title = titleController.text.trim();
+                    if (cost.isEmpty || title.isEmpty) {
+                      setState(() {
+                        listdata.insert(
+                            0,
+                            ExpenseScreenModel(
+                                // dateText: dateText,
+                                cost: cost,
+                                // categorySelected: categoryStrem
+                                // .categoryStremController
+                                // .toString(),
+                                title: title));
+                        costController.clear();
+                        titleController.clear();
+                        // dateText = null;
+                      });
+                    }
                   },
                   child: const Text(
                     'Save',
                   ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                child: ListView.builder(
+                  itemCount: listdata.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: Colors.purple)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Row(
+                              children: [
+                                const Column(
+                                  children: [
+                                    // Text(listdata[index].categorySelected),
+                                    // Text(listdata[index].dateText),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(listdata[index].title),
+                                Text(listdata[index].cost),
+                              ],
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('Delete ?'),
+                                    // content: const Text(
+                                    //     'Are you sure you want to delete this item?'),
+                                    actions: [
+                                      MaterialButton(
+                                        child: const Text('No'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      MaterialButton(
+                                        child: const Text('Yes'),
+                                        onPressed: () {
+                                          // remove item from list
+                                          setState(() {
+                                            listdata.remove(listdata[index]);
+                                          });
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

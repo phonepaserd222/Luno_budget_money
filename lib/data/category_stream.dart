@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:luno_budget_money/model/data.dart';
+import 'package:luno_budget_money/models/data.dart';
 
 class CategoryStrem {
   final StreamController<Category> _categoryStremController =
