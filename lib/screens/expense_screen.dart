@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
-import 'package:luno_budget_money/widget/show_category.dart';
-import '../services/category_expense_service.dart';
 
 import 'package:luno_budget_money/model/data.dart'; // Import the category data from the other page
 
@@ -243,10 +241,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       elevation: 0.0,
                       shadowColor: Colors.transparent,
                       backgroundColor: const Color.fromRGBO(112, 20, 204, 1)),
-                  onPressed: () {
-                    // saveExpense();
-                    print("object");
-                  },
+                  onPressed: () {},
                   child: const Text(
                     'Save',
                   ),

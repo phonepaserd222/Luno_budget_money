@@ -108,6 +108,7 @@ class PageHome extends StatelessWidget {
               children: [Text('Date of Category'), Text('Total: 200000')],
             ),
           ),
+
           const Divider(
             color: Colors.black, // Customize the color of the divider
           ),
@@ -118,6 +119,16 @@ class PageHome extends StatelessWidget {
             color: Colors.black, // Customize the color of the divider
           ),
         ],
+
+        // showDialog(
+        //   context: context,
+        //   builder: (BuildContext context) {
+        //     return ShowCategoryDialog(
+        //       icon: icon,
+        //       name: name,
+        //     );
+        //   },
+        // );
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
