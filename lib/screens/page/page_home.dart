@@ -27,7 +27,7 @@ class PageHome extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 0),
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,

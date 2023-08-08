@@ -17,39 +17,42 @@ class TabView extends StatelessWidget {
           length: 4,
           child: Column(
             children: [
-              TabBar(
-                indicator: BoxDecoration(
-                    border: Border.all(color: Colors.blue),
+              Container(
+                color: Colors.white,
+                child: TabBar(
+                  indicator: BoxDecoration(
+                      border: Border.all(color: Colors.blue),
 
-                    // borderRadius: BorderRadius.circular(30),
-                    color: Colors.white),
-                labelStyle: const TextStyle(
-                  color: Colors.red,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
+                      // borderRadius: BorderRadius.circular(30),
+                      color: Colors.white),
+                  labelStyle: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  tabs: const [
+                    Tab(
+                        child: Text(
+                      'Daily',
+                      style: TextStyle(color: Colors.black),
+                    )),
+                    Tab(
+                        child: Text(
+                      'Weekly',
+                      style: TextStyle(color: Colors.black),
+                    )),
+                    Tab(
+                        child: Text(
+                      'Monthly',
+                      style: TextStyle(color: Colors.black),
+                    )),
+                    Tab(
+                        child: Text(
+                      'yearly',
+                      style: TextStyle(color: Colors.black),
+                    )),
+                  ],
                 ),
-                tabs: const [
-                  Tab(
-                      child: Text(
-                    'Daily',
-                    style: TextStyle(color: Colors.grey),
-                  )),
-                  Tab(
-                      child: Text(
-                    'Weekly',
-                    style: TextStyle(color: Colors.grey),
-                  )),
-                  Tab(
-                      child: Text(
-                    'Monthly',
-                    style: TextStyle(color: Colors.grey),
-                  )),
-                  Tab(
-                      child: Text(
-                    'yearly',
-                    style: TextStyle(color: Colors.grey),
-                  )),
-                ],
               ),
               const Expanded(
                 child: TabBarView(
