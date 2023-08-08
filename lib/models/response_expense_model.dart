@@ -1,6 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
-import 'package:luno_budget_money/models/expense_model.dart';
+import 'package:luno_budget_money/models/category_expense_model.dart';
 
 part 'response_expense_model.g.dart';
 
