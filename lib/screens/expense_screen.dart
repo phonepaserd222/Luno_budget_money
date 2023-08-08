@@ -264,7 +264,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: ListView.builder(
