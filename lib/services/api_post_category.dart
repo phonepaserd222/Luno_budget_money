@@ -14,9 +14,9 @@ class ApiPostCategory {
     Response res = await dio.get(url);
 
     if (res.statusCode == 200) {
-      ResponseCategoryModel category =
+      ResponseCategoryModel category1 =
           ResponseCategoryModel.fromJson(json.decode(res.data));
-      return category;
+      return category1;
     } else {
       throw Exception('Failed to load post');
     }

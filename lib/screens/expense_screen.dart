@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
-
-import 'package:luno_budget_money/model/data.dart';
 // Import the category data from the other page
 import 'package:http/http.dart' as http;
+
+import '../models/data.dart';
 
 class ExpenScreen extends StatefulWidget {
   const ExpenScreen({super.key});

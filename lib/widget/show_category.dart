@@ -207,10 +207,11 @@
 //   }
 // }
 import 'package:flutter/material.dart';
-import '../model/data.dart';
+
+import '../models/data.dart';
 
 class ShowCategory extends StatelessWidget {
-  ShowCategory({
+  const ShowCategory({
     Key? key,
     required this.name,
     required this.icon,
@@ -252,13 +253,13 @@ class ShowCategory extends StatelessWidget {
                               categories[index]
                                   .icon, // Use categories[index].icon
                               size: 30,
-                              color: Color.fromRGBO(112, 20, 204, 1),
+                              color: const Color.fromRGBO(112, 20, 204, 1),
                             ),
-                            SizedBox(height: 8.0),
+                            const SizedBox(height: 8.0),
                             Text(
                               categories[index]
                                   .name, // Use categories[index].name
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                               ),
                             ),
