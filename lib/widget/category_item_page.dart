@@ -7,6 +7,7 @@ class CategoryItemPage extends StatelessWidget {
   final void Function(Category category) onCategorySelected;
 
   const CategoryItemPage({super.key, required this.onCategorySelected});
+
   void saveExpense() async {
     String date = 'dateText';
     String cost = "";

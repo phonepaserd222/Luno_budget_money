@@ -49,10 +49,10 @@ class PageHome extends StatelessWidget {
                     )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(5),
+                const Padding(
+                  padding: EdgeInsets.only(top: 25, left: 5, right: 5),
                   child: SizedBox(
-                    width: 18,
+                    width: 20,
                     child: const Divider(
                       color: Colors.black,
                     ),
@@ -113,7 +113,7 @@ class PageHome extends StatelessWidget {
             color: Colors.black, // Customize the color of the divider
           ),
           SizedBox(
-            height: 40,
+            height: 30,
           ),
           const Divider(
             color: Colors.black, // Customize the color of the divider
