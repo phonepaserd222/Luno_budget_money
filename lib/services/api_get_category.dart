@@ -7,7 +7,7 @@ class ApiGetCategory {
   final dio = Dio();
   Future<ResponseGetCategoryScreen> getCategory() async {
     String url =
-        'http://192.168.1.4:5000/category/findOne?id=64d1f39e1b8bf7641bf972a1';
+        'http://192.168.1.12:5000/category/findOne?id=64d1f39e1b8bf7641bf972a1';
     Response res = await dio.get(url);
 
     if (res.statusCode == 200) {

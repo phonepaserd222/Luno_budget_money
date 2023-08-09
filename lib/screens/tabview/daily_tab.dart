@@ -11,26 +11,31 @@ class DailyTab extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 246, 226, 184),
       body: Column(
         children: [
+          const SizedBox(
+            height: 15,
+          ),
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(5),
             child: Row(
               children: [
-                Column(
-                  children: [
-                    const Text('Start Date'),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      width: 95,
-                      height: 44,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                              color: const Color.fromRGBO(112, 20, 204, 1))),
-                    )
-                  ],
+                Expanded(
+                  child: Column(
+                    children: [
+                      const Text('Start Date'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 90,
+                        height: 44,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                                color: const Color.fromRGBO(112, 20, 204, 1))),
+                      )
+                    ],
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(5),
@@ -41,22 +46,24 @@ class DailyTab extends StatelessWidget {
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    const Text('End Date'),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      width: 95,
-                      height: 44,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                              color: const Color.fromRGBO(112, 20, 204, 1))),
-                    )
-                  ],
+                Expanded(
+                  child: Column(
+                    children: [
+                      const Text('End Date'),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 90,
+                        height: 44,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                                color: const Color.fromRGBO(112, 20, 204, 1))),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 18,

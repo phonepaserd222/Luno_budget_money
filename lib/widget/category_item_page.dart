@@ -1,42 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/models/data.dart';
 
-import '../services/category_expense_service.dart';
+// import '../services/category_expense_service.dart';
 
 class CategoryItemPage extends StatelessWidget {
   final void Function(Category category) onCategorySelected;
 
   const CategoryItemPage({super.key, required this.onCategorySelected});
 
-  void saveExpense() async {
-    String date = 'dateText';
-    String cost = "";
-    String categoryId = "";
-    //   String categoryId = categoryStrem
-    // .selectedCategoryId;
-    String title = "";
+  // void saveExpense() async {
+  //   String date = 'dateText';
+  //   String cost = "";
+  //   String categoryId = "";
+  //   //   String categoryId = categoryStrem
+  //   // .selectedCategoryId;
+  //   String title = "";
 
-    Map<String, String> body = {
-      "date": date,
-      "cost": cost,
-      "categoryId": categoryId,
-      "title": title,
-    };
+  //   Map<String, String> body = {
+  //     "date": date,
+  //     "cost": cost,
+  //     "categoryId": categoryId,
+  //     "title": title,
+  //   };
 
-    try {
-      await ExpenseService.saveExpense(body);
-      (body);
-      // await ExpenseService.saveExpense(body);
-    } catch (e) {
-      debugPrint("API call failed: ${e.toString()}");
-    }
-  }
+  //   try {
+  //     await ExpenseService.saveExpense(body);
+  //     (body);
+  //     // await ExpenseService.saveExpense(body);
+  //   } catch (e) {
+  //     debugPrint("API call failed: ${e.toString()}");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categories'),
+        title: const Text('Categories'),
         backgroundColor: const Color.fromRGBO(112, 20, 204, 1),
       ),
       body: GridView.builder(
@@ -60,7 +60,7 @@ class CategoryItemPage extends StatelessWidget {
 
   Widget _buildCategoryCard(BuildContext context, Category category) {
     return Padding(
-      padding: EdgeInsets.all(2),
+      padding: const EdgeInsets.all(2),
       child: Container(
         // margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
         decoration: BoxDecoration(
@@ -70,7 +70,7 @@ class CategoryItemPage extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            saveExpense();
+            // saveExpense();
             _onCategorySelected(category, context);
           },
           child: Center(
@@ -78,11 +78,11 @@ class CategoryItemPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(category.icon,
-                    size: 30, color: Color.fromRGBO(112, 20, 204, 1)),
-                SizedBox(height: 8.0),
+                    size: 30, color: const Color.fromRGBO(112, 20, 204, 1)),
+                const SizedBox(height: 8.0),
                 Text(
                   category.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
