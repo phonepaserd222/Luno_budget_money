@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
 // Import the category data from the other page
-import 'package:http/http.dart' as http;
 
 import '../models/data.dart';
 
@@ -36,11 +35,11 @@ class _ExpenScreenState extends State<ExpenScreen> {
       final Dio dio = Dio();
       // dio.options.headers['Authorization'] =
       //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGM3Mzc5NjVjM2UwYTVjNzY5MzMzMGEiLCJ1c2VyTmFtZSI6bnVsbCwiaWF0IjoxNjkxNDgxNTMwLCJleHAiOjE2OTE0ODUxMzB9._QwBIxwvSCSW7baFaKyusKAQE9yzT-l9nwxJ_jSEq8Y';
-      print('start:');
-      print('test');
+      debugPrint('start:');
+      debugPrint('test');
       const uri = 'http://192.168.1.4:5000/auth/googleLogin?googleId=Tanoy888';
       final Response res = await dio.post(uri);
-      print("success");
+      debugPrint("success");
       if (res.statusCode == 200) {
       } else {
         print(res.statusCode);

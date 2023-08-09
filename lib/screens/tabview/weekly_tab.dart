@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../services/api_get_category.dart';
+
 class WeeklyTab extends StatelessWidget {
   const WeeklyTab({
     super.key,
@@ -8,36 +10,36 @@ class WeeklyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final ResponseGetCategoryScreen dataweek;
-    return const Column(
+    return Column(
       children: [
-        Text('Im ok Bro')
-        // FutureBuilder(
-        //   future: ApiGetCategory().getCategory(),
-        //   builder: (context, snapshot) {
-        //     if (snapshot.connectionState == ConnectionState.done) {
-        //       if (snapshot.hasData) {
-        //         return ListView.builder(
-        //           itemBuilder: (context, index) {
-        //             return Card(
-        //               child: ListTile(
-        //                 title: Text(snapshot.data!.categoryName),
-        //                 subtitle: Image.network(snapshot.data!.image),
-        //               ),
-        //             );
-        //           },
-        //         );
-        //       } else {
-        //         return const Center(
-        //           child: CircularProgressIndicator(),
-        //         );
-        //       }
-        //     } else {
-        //       return const Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     }
-        //   },
-        // )
+        // Text('Im ok Bro')
+        FutureBuilder(
+          future: ApiGetCategory().getCategory(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                        title: Text('${snapshot.data?.categoryName} '),
+                        subtitle: Image.network(snapshot.data!.image),
+                      ),
+                    );
+                  },
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        )
       ],
     );
   }
