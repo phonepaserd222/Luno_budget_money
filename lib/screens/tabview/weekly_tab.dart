@@ -30,6 +30,7 @@ class WeeklyTab extends StatelessWidget {
                           width: 100,
                           child:
                               Image.network('${snapshot.data?[index].image}')),
+                              
                     ],
                   );
                 },
