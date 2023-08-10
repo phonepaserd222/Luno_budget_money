@@ -1,18 +1,19 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:luno_budget_money/constants/api_constants.dart';
+import 'package:luno_budget_money/constants/token_constants.dart';
 import '../models/response_get_category_screen.dart';
 
 class ApiGetCategory {
   final dio = Dio();
   Future<List<ResponseCategoryModel>> getCategory() async {
-    String path = '/category/findMany';
-    dio.options.baseUrl = "http://192.168.1.8:5000";
-    dio.options.headers["authorization"] =
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGQ0ODdkZDY5YzUyNjU0MjZiNjYwYTMiLCJ1c2VyTmFtZSI6ImpvbnVkIiwiaWF0IjoxNjkxNjU0OTUzLCJleHAiOjE2OTE2NTg1NTN9.6-L17fPzogPD3MIeCbJgUNzma7Rg1JQyw7YuqO8jNSo";
+    String path = ApiConstants.pathGetCategory;
+    dio.options.baseUrl = ApiConstants.baseUrl;
+    dio.options.headers["authorization"] = TokenConstants.token;
     try {
       Response res = await dio.get(path);
-      print(res.data);
+      // print(res.data);
       // Process the response
       if (res.statusCode == 200) {
         List<ResponseCategoryModel> categoryScreen =

@@ -21,6 +21,7 @@ class _PageCategoryState extends State<PageCategory> {
   List<CAtegoryScreenAddModel> listIcon = [];
   // List<ResponseCategoryModel> postCategory = [];
 
+//TODO: sperate function
   Future<void> _getImage(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);

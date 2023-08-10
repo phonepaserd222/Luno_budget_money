@@ -7,6 +7,7 @@ class PageProfile extends StatelessWidget {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   PageProfile({super.key});
 
+//TODO:
   void _signOut(BuildContext context) async {
     try {
       await _googleSignIn.disconnect();
@@ -41,7 +42,8 @@ class PageProfile extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundImage: NetworkImage(user?.photoURL ??
-                      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png'),
+                      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/'
+                          '65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png'),
                 ),
                 const SizedBox(
                   width: 30,

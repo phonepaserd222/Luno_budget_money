@@ -21,11 +21,13 @@ class ApiLoginByPassword {
     Map<String, String> body = {"userName": userName, "password": password};
     try {
       Response res = await dio.post(url, data: body);
+
       if (res.statusCode == 200) {
         Loading.hide(context);
 
         final ResponseLoginByPasswordModel data =
             ResponseLoginByPasswordModel.fromJson(res.data);
+
         return data;
       } else {
         Loading.hide(context);
