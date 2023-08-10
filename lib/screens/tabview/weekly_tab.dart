@@ -13,39 +13,38 @@ class WeeklyTab extends StatelessWidget {
       appBar: AppBar(
         title: const Text('data'),
       ),
-      body: Column(
-        children: [
-          // Text('Im ok Bro')
-          FutureBuilder(
-            future: ApiGetCategory().getCategory(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: snapshot.data?.length,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          const Text('data'),
-                          Text('${snapshot.data?[index].categoryName} '),
-                          Image.network('${snapshot.data?[index].image}'),
-                        ],
-                      );
-                    },
+      body: FutureBuilder(
+        future: ApiGetCategory().getCategory(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data?.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      const Text('data'),
+                      Text('${snapshot.data?[index].categoryName} '),
+                      SizedBox(
+                          height: 100,
+                          width: 100,
+                          child:
+                              Image.network('${snapshot.data?[index].image}')),
+                    ],
                   );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          )
-        ],
+                },
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }

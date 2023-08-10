@@ -14,39 +14,35 @@ class Tester extends StatelessWidget {
       appBar: AppBar(
         title: Text('data'),
       ),
-      body: Column(
-        children: [
-          // Text('Im ok Bro')
-          FutureBuilder(
-            future: ApiGetCategory().getCategory(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: snapshot.data?.length,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          Text('data'),
-                          Text('${snapshot.data?[index].categoryName} '),
-                          Image.network('${snapshot.data?[index].image}'),
-                        ],
-                      );
-                    },
+      body: FutureBuilder(
+        future: ApiGetCategory().getCategory(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data?.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Text('data'),
+                      Text('${snapshot.data?[index].categoryName} '),
+                      Image.network('${snapshot.data?[index].image}'),
+                    ],
                   );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          )
-        ],
+                },
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
