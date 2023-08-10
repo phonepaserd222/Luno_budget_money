@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-List<ResponseCategoryModel> responseCategoryModelFromJson(String str) =>
-    List<ResponseCategoryModel>.from(
-        json.decode(str).map((x) => ResponseCategoryModel.fromJson(x)));
+List<ResponseGetCategoryModel> responseGetCategoryModelFromJson(String str) =>
+    List<ResponseGetCategoryModel>.from(
+        json.decode(str).map((x) => ResponseGetCategoryModel.fromJson(x)));
 
-String responseCategoryModelToJson(List<ResponseCategoryModel> data) =>
+String responseGetCategoryModelToJson(List<ResponseGetCategoryModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class ResponseCategoryModel {
+class ResponseGetCategoryModel {
   String id;
   String categoryName;
   String image;
@@ -15,7 +15,7 @@ class ResponseCategoryModel {
   String userId;
   User user;
 
-  ResponseCategoryModel({
+  ResponseGetCategoryModel({
     required this.id,
     required this.categoryName,
     required this.image,
@@ -24,8 +24,8 @@ class ResponseCategoryModel {
     required this.user,
   });
 
-  factory ResponseCategoryModel.fromJson(Map<String, dynamic> json) =>
-      ResponseCategoryModel(
+  factory ResponseGetCategoryModel.fromJson(Map<String, dynamic> json) =>
+      ResponseGetCategoryModel(
         id: json["id"],
         categoryName: json["categoryName"],
         image: json["image"],
