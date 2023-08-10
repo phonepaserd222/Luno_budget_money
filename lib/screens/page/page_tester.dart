@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../services/api_get_category.dart';
 
-class WeeklyTab extends StatelessWidget {
-  const WeeklyTab({
+class Tester extends StatelessWidget {
+  const Tester({
     super.key,
   });
 
@@ -11,7 +12,7 @@ class WeeklyTab extends StatelessWidget {
     // final ResponseGetCategoryScreen dataweek;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('data'),
+        title: Text('data'),
       ),
       body: Column(
         children: [
@@ -26,7 +27,7 @@ class WeeklyTab extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Row(
                         children: [
-                          const Text('data'),
+                          Text('data'),
                           Text('${snapshot.data?[index].categoryName} '),
                           Image.network('${snapshot.data?[index].image}'),
                         ],

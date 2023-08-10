@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/screens/page/page_tester.dart';
 
 class MonthlyTab extends StatefulWidget {
   const MonthlyTab({super.key});
@@ -56,7 +57,16 @@ class _MonthlyTabState extends State<MonthlyTab> {
           ),
           const SizedBox(height: 10),
           // 3
-          ElevatedButton(onPressed: () {}, child: Text('Save'))
+          ElevatedButton(onPressed: () {}, child: const Text('Save')),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return Tester();
+                  },
+                ));
+              },
+              child: const Text('next'))
         ],
       ),
     );
