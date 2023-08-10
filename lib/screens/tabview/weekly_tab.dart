@@ -13,6 +13,7 @@ class WeeklyTab extends StatelessWidget {
       appBar: AppBar(
         title: const Text('data'),
       ),
+      //TODO: add return type
       body: FutureBuilder(
         future: ApiGetCategory().getCategory(),
         builder: (context, snapshot) {

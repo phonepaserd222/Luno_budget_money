@@ -9,6 +9,7 @@ class PageImages extends StatefulWidget {
 }
 
 class _PageImagesState extends State<PageImages> {
+  //TODO: delete
   final List<Map<String, dynamic>> _items = [
     {
       'imageUrl': 'https://picsum.photos/id/237/200/300',

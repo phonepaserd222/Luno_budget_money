@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
-void DialogYesNO({required BuildContext context}) {
+void DialogYesNO({
+  required BuildContext context,
+  required Function() onPress,
+}) {
   showDialog(
     context: context,
     builder: (context) {
@@ -12,6 +15,7 @@ void DialogYesNO({required BuildContext context}) {
           InkWell(
             onTap: () {
               Navigator.of(context).pop();
+              onPress();
             },
             child: const Text('Yes'),
           ),

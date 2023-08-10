@@ -30,7 +30,6 @@ class Routes {
         return MaterialPageRoute(builder: (context) => const ExpenScreen());
       case home:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
-
       default:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
     }
