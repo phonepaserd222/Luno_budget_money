@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/image_contants.dart';
 import '../../services/api_get_category.dart';
 
 class WeeklyTab extends StatelessWidget {
@@ -23,15 +24,17 @@ class WeeklyTab extends StatelessWidget {
                 itemCount: snapshot.data?.length,
                 itemBuilder: (context, index) {
                   return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text('data'),
+                      // const Text('data'),
                       Text('${snapshot.data?[index].categoryName} '),
                       SizedBox(
                           height: 100,
                           width: 100,
-                          child:
-                              Image.network('${snapshot.data?[index].image}')),
-                              
+                          child: Image.network(
+                            // '${snapshot.data?[index].image}'
+                            '${ImageConstants.iconCtgLink1}${snapshot.data?[index].image}${ImageConstants.iconCtgLink2}',
+                          )),
                     ],
                   );
                 },

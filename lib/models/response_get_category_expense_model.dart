@@ -65,17 +65,21 @@ class ResponseGetCategoryExpenseModel {
 
 class Category {
   String categoryName;
+  String image;
 
   Category({
     required this.categoryName,
+    required this.image,
   });
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
         categoryName: json["categoryName"],
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
         "categoryName": categoryName,
+        "image": image,
       };
 }
 

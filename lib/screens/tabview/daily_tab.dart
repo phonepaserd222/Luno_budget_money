@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:luno_budget_money/routes/routes.dart';
 
+import '../../routes/routes.dart';
 import '../../services/api_get_category_expense.dart';
 
 class DailyTab extends StatelessWidget {
   const DailyTab({super.key});
+  // void deleteCategory(int index) {
+  //   // Make sure you have access to the 'categories' list and modify it accordingly
+  //   categories.removeAt(index);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -126,21 +130,24 @@ class DailyTab extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Row(
                                   children: [
-                                    const Column(
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         CircleAvatar(
                                             radius: 15,
                                             backgroundColor: Colors.amber,
                                             backgroundImage: NetworkImage(
-                                                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/'
-                                                '65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png')),
-                                        Text('no more'),
+                                                '${snapshot.data?[index].category.image}')),
+                                        const Text('no more'),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 50,
                                     ),
                                     Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Row(
                                           children: [
@@ -148,7 +155,7 @@ class DailyTab extends StatelessWidget {
                                                 '${snapshot.data?[index].date}')
                                           ],
                                         ),
-                                        SizedBox(height: 10),
+                                        const SizedBox(height: 10),
                                         Row(
                                           children: [
                                             // const SizedBox(width: 50),
@@ -160,7 +167,43 @@ class DailyTab extends StatelessWidget {
                                           ],
                                         ),
                                       ],
-                                    )
+                                    ),
+                                    Column(children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: const Text('Delete ?'),
+                                                actions: [
+                                                  MaterialButton(
+                                                    child: const Text('No'),
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  ),
+                                                  MaterialButton(
+                                                    child: const Text('Yes'),
+                                                    onPressed: () {
+                                                      // Call the deleteCategory function to remove the item from the list
+                                                      // deleteCategory(index);
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                      )
+                                    ]),
                                   ],
                                 ),
                               ),

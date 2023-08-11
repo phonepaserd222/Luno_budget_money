@@ -37,58 +37,60 @@ class CategoryItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Categories'),
-        backgroundColor: const Color.fromRGBO(112, 20, 204, 1),
-      ),
-      body: FutureBuilder(
-        future: ApiGetCategory().getCategory(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) {
-              return GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, // Number of columns in the grid
-          crossAxisSpacing: 1.0,
-          mainAxisSpacing: 1.0,
+        appBar: AppBar(
+          title: const Text('Categories'),
+          backgroundColor: const Color.fromRGBO(112, 20, 204, 1),
         ),
-        itemCount: snapshot.data?.length,
-        itemBuilder: (context, index) {
-          return _buildCategoryCard(context, snapshot.data![index]);
-        },
-      );
+        body: FutureBuilder(
+          future: ApiGetCategory().getCategory(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData) {
+                return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3, // Number of columns in the grid
+                    crossAxisSpacing: 1.0,
+                    mainAxisSpacing: 1.0,
+                  ),
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index) {
+                    return _buildCategoryCard(context, snapshot.data![index]);
+                  },
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-      },)
+          },
+        )
 
-      // GridView.builder(
-      //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      //     crossAxisCount: 3, // Number of columns in the grid
-      //     crossAxisSpacing: 1.0,
-      //     mainAxisSpacing: 1.0,
-      //   ),
-      //   itemCount: categories.length,
-      //   itemBuilder: (context, index) {
-      //     return _buildCategoryCard(context, categories[index]);
-      //   },
-      // ),
-    );
+        // GridView.builder(
+        //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        //     crossAxisCount: 3, // Number of columns in the grid
+        //     crossAxisSpacing: 1.0,
+        //     mainAxisSpacing: 1.0,
+        //   ),
+        //   itemCount: categories.length,
+        //   itemBuilder: (context, index) {
+        //     return _buildCategoryCard(context, categories[index]);
+        //   },
+        // ),
+        );
   }
 
-  void _onCategorySelected(ResponseGetCategoryModel category, BuildContext context) {
-    onCategorySelected(category); // Call the callback function
-    Navigator.pop(context); // Close the bottom sheet after selecting a category
-  }
+  // void _onCategorySelected(ResponseGetCategoryModel category, BuildContext context) {
+  //   onCategorySelected(category); // Call the callback function
+  //   Navigator.pop(context); // Close the bottom sheet after selecting a category
+  // }
 
-  Widget _buildCategoryCard(BuildContext context,ResponseGetCategoryModel  category) {
+  Widget _buildCategoryCard(
+      BuildContext context, ResponseGetCategoryModel category) {
     return Padding(
       padding: const EdgeInsets.all(2),
       child: Container(
@@ -101,17 +103,16 @@ class CategoryItemPage extends StatelessWidget {
         child: InkWell(
           onTap: () {
             saveExpense();
-            _onCategorySelected(category, context);
+            // _onCategorySelected(category, context);
           },
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                          height: 100,
-                          width: 100,
-                          child:
-                              Image.network(category.image)),
+                    height: 100,
+                    width: 100,
+                    child: Image.network(category.image)),
                 Text(
                   category.categoryName,
                   style: const TextStyle(
