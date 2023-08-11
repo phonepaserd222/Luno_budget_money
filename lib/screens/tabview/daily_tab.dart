@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/routes/routes.dart';
 
 import '../../services/api_get_category_expense.dart';
 
@@ -183,14 +184,14 @@ class DailyTab extends StatelessWidget {
           )
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.pushNamed(context, Routes.expensescreen);
-      //   },
-      //   child: const Icon(
-      //     Icons.add,
-      //   ),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.expensescreen);
+        },
+        child: const Icon(
+          Icons.add,
+        ),
+      ),
     );
   }
 }

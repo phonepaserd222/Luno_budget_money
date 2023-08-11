@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:luno_budget_money/constants/api_constants.dart';
-import 'package:luno_budget_money/constants/token_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/response_get_category_screen.dart';
 
@@ -11,7 +11,11 @@ class ApiGetCategory {
   Future<List<ResponseGetCategoryModel>> getCategory() async {
     String path = ApiConstants.pathGetCategory;
     dio.options.baseUrl = ApiConstants.baseUrl;
-    dio.options.headers["authorization"] = TokenConstants.token;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // ern sai pref
+    String? token = prefs.getString("accessToken");
+    //
+    dio.options.headers["authorization"] = token;
     try {
       Response res = await dio.get(path);
       // print(res.data);
