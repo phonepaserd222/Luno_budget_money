@@ -25,31 +25,31 @@ class _ExpenScreenState extends State<ExpenScreen> {
   TextEditingController costController = TextEditingController();
   TextEditingController titleController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getData();
+  // }
 
-  void getData() async {
-    try {
-      final Dio dio = Dio();
-      // dio.options.headers['Authorization'] =
-      //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGM3Mzc5NjVjM2UwYTVjNzY5MzMzMGEiLCJ1c2VyTmFtZSI6bnVsbCwiaWF0IjoxNjkxNDgxNTMwLCJleHAiOjE2OTE0ODUxMzB9._QwBIxwvSCSW7baFaKyusKAQE9yzT-l9nwxJ_jSEq8Y';
-      print('start:');
-      print('test');
-      const uri = 'http://192.168.1.:5000/auth/googleLogin?googleId=Tanoy888';
-      final Response res = await dio.post(uri);
-      print("success");
-      if (res.statusCode == 200) {
-      } else {
-        print(res.statusCode);
-      }
-    } catch (e) {
-      print(e);
-      print('err');
-    }
-  }
+  // void getData() async {
+  //   try {
+  //     final Dio dio = Dio();
+  //     // dio.options.headers['Authorization'] =
+  //     //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGM3Mzc5NjVjM2UwYTVjNzY5MzMzMGEiLCJ1c2VyTmFtZSI6bnVsbCwiaWF0IjoxNjkxNDgxNTMwLCJleHAiOjE2OTE0ODUxMzB9._QwBIxwvSCSW7baFaKyusKAQE9yzT-l9nwxJ_jSEq8Y';
+  //     print('start:');
+  //     print('test');
+  //     const uri = 'http://192.168.1.:5000/auth/googleLogin?googleId=Tanoy888';
+  //     final Response res = await dio.post(uri);
+  //     print("success");
+  //     if (res.statusCode == 200) {
+  //     } else {
+  //       print(res.statusCode);
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //     print('err');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -172,11 +172,11 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Icon(
-                      Icons.category,
+                      Icons.category_outlined,
                       color: Colors.black,
                     ),
                     const SizedBox(
-                      width: 16,
+                      width: 10,
                     ),
                     StreamBuilder<Category>(
                         stream: categoryStrem.categoryStremController,
