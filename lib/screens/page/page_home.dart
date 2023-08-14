@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/services/api_get_user.dart';
 import 'package:luno_budget_money/widget/tab_view.dart';
 
 class PageHome extends StatelessWidget {
@@ -14,10 +15,20 @@ class PageHome extends StatelessWidget {
         centerTitle: true,
         title: const Text('Luno budget buddy'),
         actions: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(user?.photoURL ??
-                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png'),
+          FutureBuilder(
+            future: ApiGetUser().getUser(),
+            builder: (context, snapshot) {
+              return CircleAvatar(
+                backgroundImage:
+                    NetworkImage(user?.photoURL ?? '${snapshot.data?.image}'),
+              );
+            },
           ),
+          // CircleAvatar(
+
+          //   // backgroundImage: NetworkImage(user?.photoURL ??
+          //   //     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png'),
+          // ),
           const SizedBox(
             width: 30,
           )

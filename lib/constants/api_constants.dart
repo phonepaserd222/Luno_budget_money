@@ -7,4 +7,6 @@ class ApiConstants {
   static const String postCategory = "/category/create";
   static const String pathGetCategory = "/category/findMany";
   static const String pathGetExpense = "/expense/findMany";
+  static const String pathGetUser = "/user/findOne";
+  static const String pathPostExpense = "/expense/create";
 }

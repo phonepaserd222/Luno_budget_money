@@ -93,6 +93,8 @@ class LoginScreen extends StatelessWidget {
                                 ).then((value) {
                                   if (value == null) {
                                   } else {
+                                    userNameController.clear();
+                                    passwordController.clear();
                                     Navigator.pushNamed(context, Routes.home);
                                   }
                                 });

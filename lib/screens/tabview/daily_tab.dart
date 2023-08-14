@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/image_contants.dart';
 import '../../routes/routes.dart';
 import '../../services/api_get_category_expense.dart';
 
@@ -138,8 +139,9 @@ class DailyTab extends StatelessWidget {
                                             radius: 15,
                                             backgroundColor: Colors.amber,
                                             backgroundImage: NetworkImage(
-                                                '${snapshot.data?[index].category.image}')),
-                                        const Text('no more'),
+                                                '${ImageConstants.iconCtgLink1}${snapshot.data?[index].category.image}${ImageConstants.iconCtgLink2}')),
+                                        Text(
+                                            '${snapshot.data?[index].category.categoryName}'),
                                       ],
                                     ),
                                     const SizedBox(

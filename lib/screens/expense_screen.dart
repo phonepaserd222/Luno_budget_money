@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
+import 'package:luno_budget_money/models/response_create_expense_model.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
-// Import the category data from the other page
 
-import '../models/data.dart';
+import '../models/response_get_category_screen.dart';
+// Import the category data from the other page
 
 class ExpenScreen extends StatefulWidget {
   const ExpenScreen({super.key});
@@ -17,8 +18,17 @@ class ExpenScreen extends StatefulWidget {
 }
 
 class _ExpenScreenState extends State<ExpenScreen> {
+  List<ResponseCreateExpenseModel> createExpense = [];
+//
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController costController = TextEditingController();
+  final TextEditingController categoryController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+
+  int cost = 0;
+  //
   CategoryStrem categoryStrem = CategoryStrem();
-  Category? selectedCategory;
+  ResponseGetCategoryModel? selectedCategory;
   String dateText = 'Select Date';
 
   @override
@@ -50,7 +60,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                 if (pickeddate != null) {
                   setState(() {
                     dateText =
-                        DateFormat('dd-MM-yyyy').format(pickeddate).toString();
+                        DateFormat('yyyy-MM-dd').format(pickeddate).toString();
                   });
                 }
               },
@@ -73,6 +83,10 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       width: 16,
                     ),
                     Text(dateText),
+                    // TextField(
+                    //   controller: dateController,
+                    //   decoration: InputDecoration(labelText: dateText),
+                    // ),
                   ],
                 ),
               ),
@@ -87,6 +101,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: costController,
                         decoration: InputDecoration(
                           labelText: 'Cost',
                           prefixIcon: const Icon(Icons.money),
@@ -150,12 +165,12 @@ class _ExpenScreenState extends State<ExpenScreen> {
                     const SizedBox(
                       width: 16,
                     ),
-                    StreamBuilder<Category>(
+                    StreamBuilder<ResponseGetCategoryModel>(
                         stream: categoryStrem.categoryStremController,
                         builder: (context, snapshot) {
                           return Text(
                             snapshot.hasData
-                                ? snapshot.data?.name ?? ""
+                                ? snapshot.data?.id ?? ""
                                 : 'No Category Selected',
                             style: const TextStyle(color: Colors.black),
                           );
@@ -173,6 +188,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: titleController,
                         decoration: InputDecoration(
                           labelText: 'Title',
                           prefixIcon: const Icon(Icons.calculate),
@@ -215,7 +231,21 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       elevation: 0.0,
                       shadowColor: Colors.transparent,
                       backgroundColor: const Color.fromRGBO(112, 20, 204, 1)),
-                  onPressed: () {},
+                  onPressed: () {
+                    cost = int.tryParse(costController.text) ?? 0;
+                    String title = titleController.text.trim();
+                    if (title.isNotEmpty) {
+                      setState(() {
+                        createExpense.insert(
+                            0,
+                            ResponseCreateExpenseModel(
+                                date: dateText,
+                                title: title,
+                                amount: cost,
+                                categoryId: selectedCategory?.id ?? ""));
+                      });
+                    }
+                  },
                   child: const Text(
                     'Save',
                   ),

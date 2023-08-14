@@ -1,15 +1,14 @@
 import 'dart:async';
-
-import 'package:luno_budget_money/models/data.dart';
+import '../models/response_get_category_screen.dart';
 
 class CategoryStrem {
-  final StreamController<Category> _categoryStremController =
-      StreamController<Category>();
+  final StreamController<ResponseGetCategoryModel> _categoryStremController =
+      StreamController<ResponseGetCategoryModel>();
 
-  Stream<Category> get categoryStremController =>
+  Stream<ResponseGetCategoryModel> get categoryStremController =>
       _categoryStremController.stream;
 
-  void onCategorySelected(Category category) {
+  void onCategorySelected(ResponseGetCategoryModel category) {
     _categoryStremController.sink.add(category);
   }
 
