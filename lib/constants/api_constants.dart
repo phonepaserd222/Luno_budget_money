@@ -9,4 +9,5 @@ class ApiConstants {
   static const String pathGetExpense = "/expense/findMany";
   static const String pathGetUser = "/user/findOne";
   static const String pathPostExpense = "expense/create";
+  static const String pathDeleteExpense = "/expense/delete";
 }

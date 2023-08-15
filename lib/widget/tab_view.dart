@@ -10,7 +10,7 @@ class TabView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 246, 226, 184),
+      backgroundColor: const Color.fromRGBO(255, 252, 239, 1),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: DefaultTabController(
@@ -21,9 +21,16 @@ class TabView extends StatelessWidget {
                 color: Colors.white,
                 child: TabBar(
                   indicator: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                       border: Border.all(color: Colors.blue),
-
-                      // borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(5),
                       color: Colors.white),
                   labelStyle: const TextStyle(
                     color: Colors.red,

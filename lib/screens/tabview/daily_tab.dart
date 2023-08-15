@@ -1,5 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/constants/color_contants.dart';
+import 'package:luno_budget_money/services/api_delete_expense.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../constants/api_constants.dart';
 import '../../constants/image_contants.dart';
 import '../../routes/routes.dart';
 import '../../services/api_get_category_expense.dart';
@@ -14,9 +19,10 @@ class DailyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 246, 226, 184),
+      backgroundColor: const Color.fromRGBO(255, 252, 239, 1),
       body: Column(
         children: [
+          const SizedBox(height: 15),
           SizedBox(
             child: Column(
               children: [
@@ -119,97 +125,109 @@ class DailyTab extends StatelessWidget {
                     return ListView.builder(
                       itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {
-                        return Container(
-                          height: 70,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Colors.purple)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Row(
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        CircleAvatar(
-                                            radius: 15,
-                                            backgroundColor: Colors.amber,
-                                            backgroundImage: NetworkImage(
-                                                '${ImageConstants.iconCtgLink1}${snapshot.data?[index].category.image}${ImageConstants.iconCtgLink2}')),
-                                        Text(
-                                            '${snapshot.data?[index].category.categoryName}'),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      width: 50,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                                '${snapshot.data?[index].date}')
-                                          ],
-                                        ),
-                                        const SizedBox(height: 10),
-                                        Row(
-                                          children: [
-                                            // const SizedBox(width: 50),
-                                            Text(
-                                                '${snapshot.data?[index].title}'),
-                                            const SizedBox(width: 50),
-                                            Text(
-                                                '${snapshot.data?[index].amount}'),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Column(children: [
-                                      IconButton(
-                                        onPressed: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return AlertDialog(
-                                                title: const Text('Delete ?'),
-                                                actions: [
-                                                  MaterialButton(
-                                                    child: const Text('No'),
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                  ),
-                                                  MaterialButton(
-                                                    child: const Text('Yes'),
-                                                    onPressed: () {
-                                                      // Call the deleteCategory function to remove the item from the list
-                                                      // deleteCategory(index);
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                  ),
-                                                ],
-                                              );
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 70,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(color: Colors.purple)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          CircleAvatar(
+                                              radius: 15,
+                                              backgroundColor: Colors.amber,
+                                              backgroundImage: NetworkImage(
+                                                  '${ImageConstants.iconCtgLink1}${snapshot.data?[index].category.image}${ImageConstants.iconCtgLink2}')),
+                                          Text(
+                                              '${snapshot.data?[index].category.categoryName}'),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        width: 50,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                  '${snapshot.data?[index].date}')
+                                            ],
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Row(
+                                            children: [
+                                              // const SizedBox(width: 50),
+                                              Text(
+                                                  '${snapshot.data?[index].title}'),
+                                              const SizedBox(width: 50),
+                                              Text(
+                                                  '${snapshot.data?[index].amount}'),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Row(children: [
+                                        IconButton(
+                                            onPressed: () async {
+                                              ApiDeleteExpense().deleteData(
+                                                  id: snapshot.data![index].id);
                                             },
-                                          );
-                                        },
-                                        icon: const Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                        ),
-                                      )
-                                    ]),
-                                  ],
+                                            icon: const Icon(
+                                              Icons.delete,
+                                              color: Colors.red,
+                                            )),
+                                        // IconButton(
+                                        //   onPressed: () {
+                                        //     showDialog(
+                                        //       context: context,
+                                        //       builder: (BuildContext context) {
+                                        //         return AlertDialog(
+                                        //           title: const Text('Delete ?'),
+                                        //           actions: [
+                                        //             MaterialButton(
+                                        //               child: const Text('No'),
+                                        //               onPressed: () {
+                                        //                 Navigator.of(context)
+                                        //                     .pop();
+                                        //               },
+                                        //             ),
+                                        //             MaterialButton(
+                                        //               child: const Text('Yes'),
+                                        //               onPressed: () {
+                                        //                 // Call the deleteCategory function to remove the item from the list
+                                        //                 // deleteCategory(index);
+                                        //                 Navigator.of(context)
+                                        //                     .pop();
+                                        //               },
+                                        //             ),
+                                        //           ],
+                                        //         );
+                                        //       },
+                                        //     );
+                                        //   },
+                                        //   icon: const Icon(
+                                        //     Icons.delete,
+                                        //     color: Colors.red,
+                                        //   ),
+                                        // )
+                                      ]),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       },
@@ -230,6 +248,7 @@ class DailyTab extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: ColorConstants.colors3,
         onPressed: () {
           Navigator.pushNamed(context, Routes.expensescreen);
         },

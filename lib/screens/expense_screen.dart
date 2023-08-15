@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:luno_budget_money/constants/api_constants.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
-import 'package:luno_budget_money/models/response_create_expense_model.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,9 +22,9 @@ class ExpenScreen extends StatefulWidget {
 class _ExpenScreenState extends State<ExpenScreen> {
   // List<ResponseCreateExpenseModel> createExpense = [];
 //
-  final TextEditingController dateController = TextEditingController();
+  // final TextEditingController dateController = TextEditingController();
   final TextEditingController costController = TextEditingController();
-  final TextEditingController categoryController = TextEditingController();
+  // final TextEditingController categoryController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
 
   int cost = 0;
@@ -179,7 +178,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                         builder: (context, snapshot) {
                           return Text(
                             snapshot.hasData
-                                ? snapshot.data?.id ?? ""
+                                ? snapshot.data?.categoryName ?? ""
                                 : 'No Category Selected',
                             style: const TextStyle(color: Colors.black),
                           );
@@ -264,7 +263,15 @@ class _ExpenScreenState extends State<ExpenScreen> {
                             "title": title,
                             "amount": cost,
                             "categoryId": categoryId
-                          });
+                          }).then((value) {
+                        if (value == null) {
+                        } else {
+                          titleController.clear();
+                          costController.clear();
+                          dateText = '';
+                          // Navigator.pushNamed(context, Routes.home);
+                        }
+                      });
                       print('success');
                     }
                   },

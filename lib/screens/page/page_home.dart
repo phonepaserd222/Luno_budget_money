@@ -10,7 +10,7 @@ class PageHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = ModalRoute.of(context)!.settings.arguments as User?;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 246, 226, 184),
+      backgroundColor: const Color.fromRGBO(255, 252, 239, 1),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Luno budget buddy'),

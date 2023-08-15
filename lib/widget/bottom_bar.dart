@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/screens/page/page_home.dart';
 
 import '../screens/page/page_profile.dart';
@@ -61,9 +62,9 @@ class _BottomNavigationBarExampleState
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: ColorConstants.colors3,
         onTap: _onItemTapped,
-        backgroundColor: Colors.purple,
+        backgroundColor: ColorConstants.colors4,
       ),
     );
   }

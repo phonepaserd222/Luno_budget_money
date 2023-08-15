@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/services/api_login_by_password.dart';
 
 import '../constants/image_contants.dart';
@@ -15,7 +16,7 @@ class LoginScreen extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 246, 226, 184), //#FFFCEF
+      backgroundColor: ColorConstants.colors1, //#FFFCEF
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(0.0),
@@ -28,6 +29,14 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Container(
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                       color: Colors.white,
                       border: Border.all(
                         color: Colors.white,
@@ -76,6 +85,7 @@ class LoginScreen extends StatelessWidget {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size.fromHeight(35),
+                                backgroundColor: ColorConstants.colors4,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30),
                                 ),
@@ -138,6 +148,14 @@ class LoginScreen extends StatelessWidget {
                     width: 350,
                     decoration: BoxDecoration(
                       color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(20),
                     ),
