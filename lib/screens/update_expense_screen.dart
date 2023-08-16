@@ -1,25 +1,33 @@
 // import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import 'package:luno_budget_money/constants/api_constants.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/response_get_category_screen.dart';
 // Import the category data from the other page
 
-class ExpenScreen extends StatefulWidget {
-  const ExpenScreen({super.key});
+class UpdateExpenseScreen extends StatefulWidget {
+  final String expenseId;
+  final String date;
+  final String title;
+  final String amount;
+  final String categoryId;
+  const UpdateExpenseScreen(
+      {super.key,
+      required this.expenseId,
+      required this.date,
+      required this.title,
+      required this.amount,
+      required this.categoryId});
 
   @override
-  State<ExpenScreen> createState() => _ExpenScreenState();
+  State<UpdateExpenseScreen> createState() => _UpdateExpenseScreenState();
 }
 
-class _ExpenScreenState extends State<ExpenScreen> {
+class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
   // List<ResponseCreateExpenseModel> createExpense = [];
 //
   // final TextEditingController dateController = TextEditingController();
@@ -242,41 +250,10 @@ class _ExpenScreenState extends State<ExpenScreen> {
                   onPressed: () async {
                     cost = int.tryParse(costController.text) ?? 0;
                     String title = titleController.text.trim();
-                    if (title.isNotEmpty) {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      String? token = prefs.getString("accessToken");
-                      final dio = Dio();
-                      dio.options.headers["authorization"] = token;
-                      // print({
-                      //   "date": dateText,
-                      //   "title": title,
-                      //   "amount": cost,
-                      //   "categoryId": categoryId
-                      // });
-                      final response = await dio.post(
-                          "${ApiConstants.baseUrl}"
-                          "${ApiConstants.pathPostExpense}",
-                          // "https://luno-butget-production-43d5.up.railway.app/expense/create",
-                          data: {
-                            "date": dateText,
-                            "title": title,
-                            "amount": cost,
-                            "categoryId": categoryId
-                          }).then((value) {
-                        if (value == null) {
-                        } else {
-                          titleController.clear();
-                          costController.clear();
-                          dateText = "";
-                          // Navigator.pushNamed(context, Routes.home);
-                        }
-                      });
-                      print('success');
-                    }
+                    if (title.isNotEmpty) {}
                   },
                   child: const Text(
-                    'Save',
+                    'Update',
                   ),
                 ),
               ),

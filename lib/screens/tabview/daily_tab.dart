@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
+import 'package:luno_budget_money/screens/update_expense_screen.dart';
 import 'package:luno_budget_money/services/api_delete_expense.dart';
+import 'package:luno_budget_money/services/api_update_expense.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/api_constants.dart';
@@ -187,6 +189,39 @@ class DailyTab extends StatelessWidget {
                                             icon: const Icon(
                                               Icons.delete,
                                               color: Colors.red,
+                                            )),
+                                        IconButton(
+                                            onPressed: () async {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) => UpdateExpenseScreen(
+                                                          expenseId: snapshot
+                                                              .data![index].id,
+                                                          date:
+                                                              '${snapshot.data?[index].date}',
+                                                          title:
+                                                              '${snapshot.data?[index].title}',
+                                                          amount:
+                                                              "${snapshot.data?[index].amount}",
+                                                          categoryId:
+                                                              '${snapshot.data?[index].categoryId}')));
+                                              // ApiUpdateExpense()
+                                              //     .updateExpense(
+                                              //         expenseId: snapshot
+                                              //             .data![index].id,
+                                              //         date:
+                                              //             '${snapshot.data?[index].date}',
+                                              //         title:
+                                              //             '${snapshot.data?[index].title}',
+                                              //         amount:
+                                              //             "${snapshot.data?[index].amount}",
+                                              //         categoryId:
+                                              //             '${snapshot.data?[index].categoryId}');
+                                            },
+                                            icon: const Icon(
+                                              Icons.edit,
+                                              color: ColorConstants.colors3,
                                             )),
                                         // IconButton(
                                         //   onPressed: () {
