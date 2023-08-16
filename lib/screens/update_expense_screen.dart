@@ -7,6 +7,7 @@ import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
 
 import '../models/response_get_category_screen.dart';
+import '../services/api_update_expense.dart';
 // Import the category data from the other page
 
 class UpdateExpenseScreen extends StatefulWidget {
@@ -15,13 +16,16 @@ class UpdateExpenseScreen extends StatefulWidget {
   final String title;
   final String amount;
   final String categoryId;
-  const UpdateExpenseScreen(
-      {super.key,
-      required this.expenseId,
-      required this.date,
-      required this.title,
-      required this.amount,
-      required this.categoryId});
+  final String categoryname;
+  const UpdateExpenseScreen({
+    super.key,
+    required this.expenseId,
+    required this.date,
+    required this.title,
+    required this.amount,
+    required this.categoryId,
+    required this.categoryname,
+  });
 
   @override
   State<UpdateExpenseScreen> createState() => _UpdateExpenseScreenState();
@@ -49,7 +53,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
-            title: const Text('Expense Screen'),
+            title: const Text('Update Expense'),
             backgroundColor: const Color.fromRGBO(112, 20, 204, 1)),
         body: Padding(
           padding: const EdgeInsets.all(12),
@@ -93,7 +97,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                     const SizedBox(
                       width: 16,
                     ),
-                    Text(dateText),
+                    Text(widget.date),
                     // TextField(
                     //   controller: dateController,
                     //   decoration: InputDecoration(labelText: dateText),
@@ -114,7 +118,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                       child: TextFormField(
                         controller: costController,
                         decoration: InputDecoration(
-                          labelText: 'Cost',
+                          labelText: 'cost',
                           prefixIcon: const Icon(Icons.money),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -185,6 +189,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                         stream: categoryStrem.categoryStremController,
                         builder: (context, snapshot) {
                           return Text(
+                            // widget.categoryname,
                             snapshot.hasData
                                 ? snapshot.data?.categoryName ?? ""
                                 : 'No Category Selected',
@@ -206,7 +211,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                       child: TextFormField(
                         controller: titleController,
                         decoration: InputDecoration(
-                          labelText: 'Title',
+                          labelText: 'title',
                           prefixIcon: const Icon(Icons.calculate),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -250,7 +255,16 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                   onPressed: () async {
                     cost = int.tryParse(costController.text) ?? 0;
                     String title = titleController.text.trim();
-                    if (title.isNotEmpty) {}
+                    if (title.isNotEmpty) {
+                      ApiUpdateExpense()
+                          .updateExpense(
+                              expenseId: widget.expenseId,
+                              date: widget.date,
+                              title: title,
+                              amount: cost,
+                              categoryId: categoryId)
+                          .then((value) => Navigator.pop(context));
+                    }
                   },
                   child: const Text(
                     'Update',

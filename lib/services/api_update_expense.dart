@@ -11,7 +11,7 @@ class ApiUpdateExpense {
     required String expenseId,
     required String date,
     required String title,
-    required String amount,
+    required int amount,
     required String categoryId,
   }) async {
     String path = ApiConstants.pathUpdateExpense;
@@ -20,7 +20,7 @@ class ApiUpdateExpense {
     String? token = prefs.getString("accessToken");
     dio.options.headers["authorization"] = token;
     dio.options.queryParameters = {"expenseId": expenseId};
-    Map<String, String> body = {
+    Map<String, dynamic> body = {
       "date": date,
       "title": title,
       "amount": amount,

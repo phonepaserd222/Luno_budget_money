@@ -1,15 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
-import 'package:luno_budget_money/screens/update_expense_screen.dart';
 import 'package:luno_budget_money/services/api_delete_expense.dart';
-import 'package:luno_budget_money/services/api_update_expense.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../constants/api_constants.dart';
 import '../../constants/image_contants.dart';
 import '../../routes/routes.dart';
 import '../../services/api_get_category_expense.dart';
+import '../update_expense_screen.dart';
 
 class DailyTab extends StatelessWidget {
   const DailyTab({super.key});
@@ -151,11 +147,13 @@ class DailyTab extends StatelessWidget {
                                               backgroundImage: NetworkImage(
                                                   '${ImageConstants.iconCtgLink1}${snapshot.data?[index].category.image}${ImageConstants.iconCtgLink2}')),
                                           Text(
-                                              '${snapshot.data?[index].category.categoryName}'),
+                                            '${snapshot.data?[index].category.categoryName}',
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ],
                                       ),
                                       const SizedBox(
-                                        width: 50,
+                                        width: 20,
                                       ),
                                       Column(
                                         mainAxisAlignment:
@@ -195,17 +193,22 @@ class DailyTab extends StatelessWidget {
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                      builder: (context) => UpdateExpenseScreen(
-                                                          expenseId: snapshot
-                                                              .data![index].id,
-                                                          date:
-                                                              '${snapshot.data?[index].date}',
-                                                          title:
-                                                              '${snapshot.data?[index].title}',
-                                                          amount:
-                                                              "${snapshot.data?[index].amount}",
-                                                          categoryId:
-                                                              '${snapshot.data?[index].categoryId}')));
+                                                      builder: (context) =>
+                                                          UpdateExpenseScreen(
+                                                            expenseId: snapshot
+                                                                .data![index]
+                                                                .id,
+                                                            date:
+                                                                '${snapshot.data?[index].date}',
+                                                            title:
+                                                                '${snapshot.data?[index].title}',
+                                                            amount:
+                                                                "${snapshot.data?[index].amount}",
+                                                            categoryId:
+                                                                '${snapshot.data?[index].categoryId}',
+                                                            categoryname:
+                                                                '${snapshot.data?[index].category.categoryName}',
+                                                          )));
                                               // ApiUpdateExpense()
                                               //     .updateExpense(
                                               //         expenseId: snapshot
