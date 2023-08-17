@@ -3,23 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/services/api_get_user.dart';
+import 'package:luno_budget_money/widget/function_logout.dart';
+
+import '../../widget/function_signout.dart';
 
 class PageProfile extends StatelessWidget {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   PageProfile({super.key});
-
-//TODO:
-  void _signOut(BuildContext context) async {
-    try {
-      await _googleSignIn.disconnect();
-      await FirebaseAuth.instance.signOut();
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-    } catch (e) {
-      Navigator.pop(context);
-      debugPrint(e.toString());
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +196,12 @@ class PageProfile extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        const Text('Log out', style: TextStyle(fontSize: 20)),
+                        TextButton(
+                            onPressed: () => signOut(context),
+                            child: const Text(
+                              'LogOut',
+                              style: TextStyle(fontSize: 20),
+                            )),
                       ],
                     ),
                   ],
@@ -214,7 +209,8 @@ class PageProfile extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               ElevatedButton(
-                onPressed: () => _signOut(context),
+                onPressed: () => LogOutUser(context),
+                // _signOut(context),
                 child: const Text('Sign Out'),
               ),
             ],

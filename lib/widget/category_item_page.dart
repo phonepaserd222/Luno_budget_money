@@ -26,7 +26,7 @@ class CategoryItemPage extends StatelessWidget {
 
     try {
       await ExpenseService.saveExpense(body);
-      print(body);
+      // print(body);
       // await ExpenseService.saveExpense(body);
     } catch (e) {
       debugPrint("API call failed: ${e.toString()}");

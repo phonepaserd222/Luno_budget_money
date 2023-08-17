@@ -48,7 +48,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    // TO DO: implement build
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -158,14 +158,14 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.white),
                 onPressed: () {
-                  //TODO: m
+                  //TO DO: m
                   showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {
                       return CategoryItemPage(
                         onCategorySelected: (category) {
-                          print(category);
-                          print('test');
+                          // print(category);
+                          // print('test');
                           categoryStrem.onCategorySelected(category);
                           setState(() {
                             categoryId = category.id;

@@ -26,7 +26,7 @@ class ApiGetCategoryExpense {
         throw Exception("Failed to load data");
       }
     } catch (error) {
-      print('Error: $error');
+      // print('Error: $error');
       return [];
     }
   }

@@ -23,18 +23,27 @@ void main() async {
     debugShowCheckedModeBanner: false,
     home: FutureBuilder(
       future: ApiGetCategoryExpense().getCategoryExpense(),
-      // stream: ,
       builder: (context, snapshot) {
         String? token = prefs.getString("accessToken");
         dio.options.headers["authorization"] = token;
-        if (snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasData) {
           return const HomeScreen();
         } else {
           return const LoginScreen();
         }
+        // Handle other connection states
       },
     ),
     // initialRoute: Routes.login,
+
     onGenerateRoute: Routes.generateRoute,
     theme: ThemeData(
       primarySwatch: Colors.deepPurple,

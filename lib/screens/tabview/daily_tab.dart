@@ -7,13 +7,15 @@ import '../../routes/routes.dart';
 import '../../services/api_get_category_expense.dart';
 import '../update_expense_screen.dart';
 
-class DailyTab extends StatelessWidget {
+class DailyTab extends StatefulWidget {
   const DailyTab({super.key});
-  // void deleteCategory(int index) {
-  //   // Make sure you have access to the 'categories' list and modify it accordingly
-  //   categories.removeAt(index);
-  // }
 
+  @override
+  State<DailyTab> createState() => _DailyTabState();
+}
+
+class _DailyTabState extends State<DailyTab> {
+  // void deleteCategory(int index) {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,19 +37,36 @@ class DailyTab extends StatelessWidget {
                             height: 10,
                           ),
                           Container(
-                            width: 95,
+                            color: Colors.white,
                             height: 44,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                    color:
-                                        const Color.fromRGBO(112, 20, 204, 1))),
-                          )
+                            width: 95,
+                            child: TextFormField(
+                              // controller: iconNameController,
+                              decoration: InputDecoration(
+                                // labelText: 'Email',
+                                suffixIcon: const Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: 5, top: 5, right: 5),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  // ignore: prefer_const_constructors
+
+                                  borderRadius: BorderRadius.circular(3),
+                                  borderSide: const BorderSide(
+                                      width: 1, color: ColorConstants.colors4),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      width: 1, color: ColorConstants.colors4),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       const Padding(
-                        padding: EdgeInsets.all(5),
+                        padding: EdgeInsets.only(top: 25, left: 5, right: 5),
                         child: SizedBox(
                           width: 18,
                           child: Divider(
@@ -62,15 +81,32 @@ class DailyTab extends StatelessWidget {
                             height: 10,
                           ),
                           Container(
-                            width: 95,
+                            color: Colors.white,
                             height: 44,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                    color:
-                                        const Color.fromRGBO(112, 20, 204, 1))),
-                          )
+                            width: 95,
+                            child: TextFormField(
+                              // controller: iconNameController,
+                              decoration: InputDecoration(
+                                // labelText: 'Email',
+                                suffixIcon: const Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: 5, top: 5, right: 5),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  // ignore: prefer_const_constructors
+
+                                  borderRadius: BorderRadius.circular(3),
+                                  borderSide: const BorderSide(
+                                      width: 1, color: ColorConstants.colors4),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      width: 1, color: ColorConstants.colors4),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(
@@ -121,6 +157,7 @@ class DailyTab extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
                     return ListView.builder(
+                      shrinkWrap: true,
                       itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {
                         return Padding(
@@ -143,7 +180,8 @@ class DailyTab extends StatelessWidget {
                                         children: [
                                           CircleAvatar(
                                               radius: 15,
-                                              backgroundColor: Colors.amber,
+                                              backgroundColor:
+                                                  ColorConstants.colors3,
                                               backgroundImage: NetworkImage(
                                                   '${ImageConstants.iconCtgLink1}${snapshot.data?[index].category.image}${ImageConstants.iconCtgLink2}')),
                                           Text(
@@ -181,8 +219,12 @@ class DailyTab extends StatelessWidget {
                                       Row(children: [
                                         IconButton(
                                             onPressed: () async {
-                                              ApiDeleteExpense().deleteData(
-                                                  id: snapshot.data![index].id);
+                                              setState(() {
+                                                ApiDeleteExpense().deleteData(
+                                                    id: snapshot
+                                                        .data![index].id);
+                                              });
+                                              setState(() {});
                                             },
                                             icon: const Icon(
                                               Icons.delete,
@@ -209,57 +251,11 @@ class DailyTab extends StatelessWidget {
                                                             categoryname:
                                                                 '${snapshot.data?[index].category.categoryName}',
                                                           )));
-                                              // ApiUpdateExpense()
-                                              //     .updateExpense(
-                                              //         expenseId: snapshot
-                                              //             .data![index].id,
-                                              //         date:
-                                              //             '${snapshot.data?[index].date}',
-                                              //         title:
-                                              //             '${snapshot.data?[index].title}',
-                                              //         amount:
-                                              //             "${snapshot.data?[index].amount}",
-                                              //         categoryId:
-                                              //             '${snapshot.data?[index].categoryId}');
                                             },
                                             icon: const Icon(
                                               Icons.edit,
                                               color: ColorConstants.colors3,
                                             )),
-                                        // IconButton(
-                                        //   onPressed: () {
-                                        //     showDialog(
-                                        //       context: context,
-                                        //       builder: (BuildContext context) {
-                                        //         return AlertDialog(
-                                        //           title: const Text('Delete ?'),
-                                        //           actions: [
-                                        //             MaterialButton(
-                                        //               child: const Text('No'),
-                                        //               onPressed: () {
-                                        //                 Navigator.of(context)
-                                        //                     .pop();
-                                        //               },
-                                        //             ),
-                                        //             MaterialButton(
-                                        //               child: const Text('Yes'),
-                                        //               onPressed: () {
-                                        //                 // Call the deleteCategory function to remove the item from the list
-                                        //                 // deleteCategory(index);
-                                        //                 Navigator.of(context)
-                                        //                     .pop();
-                                        //               },
-                                        //             ),
-                                        //           ],
-                                        //         );
-                                        //       },
-                                        //     );
-                                        //   },
-                                        //   icon: const Icon(
-                                        //     Icons.delete,
-                                        //     color: Colors.red,
-                                        //   ),
-                                        // )
                                       ]),
                                     ],
                                   ),

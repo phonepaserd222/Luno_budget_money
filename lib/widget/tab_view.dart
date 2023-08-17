@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/screens/tabview/daily_tab.dart';
 import 'package:luno_budget_money/screens/tabview/monthly_tab.dart';
 import 'package:luno_budget_money/screens/tabview/weekly_tab.dart';
@@ -18,18 +19,15 @@ class TabView extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: ColorConstants.colors4, width: 2),
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 child: TabBar(
                   indicator: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                      border: Border.all(color: Colors.blue),
+                      border:
+                          Border.all(color: ColorConstants.colors4, width: 2),
                       borderRadius: BorderRadius.circular(5),
                       color: Colors.white),
                   labelStyle: const TextStyle(
@@ -82,3 +80,11 @@ class TabView extends StatelessWidget {
     );
   }
 }
+// boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.grey.withOpacity(0.5),
+                  //     spreadRadius: 5,
+                  //     blurRadius: 1,
+                  //     offset: Offset(0, 3), // changes position of shadow
+                  //   ),
+                  // ],

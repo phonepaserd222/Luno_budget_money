@@ -10,6 +10,7 @@ import 'package:luno_budget_money/widget/category_item_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/response_get_category_screen.dart';
+import '../routes/routes.dart';
 // Import the category data from the other page
 
 class ExpenScreen extends StatefulWidget {
@@ -36,7 +37,6 @@ class _ExpenScreenState extends State<ExpenScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -146,14 +146,13 @@ class _ExpenScreenState extends State<ExpenScreen> {
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.white),
                 onPressed: () {
-                  //TODO: m
                   showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {
                       return CategoryItemPage(
                         onCategorySelected: (category) {
-                          print(category);
-                          print('test');
+                          // print(category);
+                          // print('test');
                           categoryStrem.onCategorySelected(category);
                           setState(() {
                             categoryId = category.id;
@@ -254,6 +253,7 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       //   "amount": cost,
                       //   "categoryId": categoryId
                       // });
+                      // ignore: unused_local_variable
                       final response = await dio.post(
                           "${ApiConstants.baseUrl}"
                           "${ApiConstants.pathPostExpense}",
@@ -264,15 +264,16 @@ class _ExpenScreenState extends State<ExpenScreen> {
                             "amount": cost,
                             "categoryId": categoryId
                           }).then((value) {
+                        // ignore: unnecessary_null_comparison
                         if (value == null) {
                         } else {
                           titleController.clear();
                           costController.clear();
                           dateText = "";
-                          // Navigator.pushNamed(context, Routes.home);
+                          Navigator.pushNamed(context, Routes.home);
                         }
                       });
-                      print('success');
+                      debugPrint('success');
                     }
                   },
                   child: const Text(

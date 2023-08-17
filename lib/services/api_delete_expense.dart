@@ -19,14 +19,14 @@ class ApiDeleteExpense {
       // Handle the response
       if (response.statusCode == 200) {
         // Data deletion successful
-        print('Data deleted successfully');
+        // print('Data deleted successfully');
       } else {
         // Data deletion failed
-        print('Failed to delete data');
+        // print('Failed to delete data');
       }
     } catch (e) {
       // Error occurred
-      print('Error: $e');
+      // print('Error: $e');
     }
   }
 }

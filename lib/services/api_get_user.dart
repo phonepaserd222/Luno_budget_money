@@ -23,7 +23,7 @@ class ApiGetUser {
         throw Exception('Failed to load post');
       }
     } catch (error) {
-      print('Error: $error');
+      // print('Error: $error');
       // Handle the error appropriately
       return null;
     }
