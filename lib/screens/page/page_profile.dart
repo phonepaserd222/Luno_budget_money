@@ -38,7 +38,7 @@ class PageProfile extends StatelessWidget {
                     CircleAvatar(
                       radius: 50,
                       backgroundImage: NetworkImage(
-                          user?.photoURL ?? '${snapshot.data?.image}'),
+                          snapshot.data?.image ?? '${user?.photoURL}'),
                     ),
                     const SizedBox(
                       width: 30,
@@ -48,7 +48,7 @@ class PageProfile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            ' ${user?.displayName ?? '${snapshot.data?.userName}'}',
+                            ' ${snapshot.data?.userName ?? '${user?.displayName}'}',
                             style: const TextStyle(fontSize: 20),
                           ),
                           Text(
@@ -103,7 +103,7 @@ class PageProfile extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: Text(
-                        ' ${user?.displayName ?? '${snapshot.data?.userName}'}',
+                        ' ${snapshot.data?.userName ?? '${user?.displayName}'}',
                         textAlign: TextAlign.end,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 15),

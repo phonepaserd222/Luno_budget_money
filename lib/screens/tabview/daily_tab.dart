@@ -144,13 +144,11 @@ class _DailyTabState extends State<DailyTab> {
                 const Divider(
                   color: Colors.black, // Customize the color of the divider
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
               ],
             ),
           ),
           Expanded(
+            flex: 2,
             child: FutureBuilder(
               future: ApiGetCategoryExpense().getCategoryExpense(),
               builder: (context, snapshot) {
@@ -161,106 +159,111 @@ class _DailyTabState extends State<DailyTab> {
                       itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(3.0),
                           child: Container(
                             height: 70,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Colors.purple)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Row(
+                              borderRadius: BorderRadius.circular(5),
+                              // color: ColorConstants.colors2,
+                              border: Border.all(color: Colors.purple),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 20,
+                                            backgroundColor:
+                                                ColorConstants.colors3,
+                                            backgroundImage: NetworkImage(
+                                                '${ImageConstants.iconCtgLink1}${snapshot.data?[index].category.image}${ImageConstants.iconCtgLink2}')),
+                                        Text(
+                                          '${snapshot.data?[index].category.categoryName}',
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // Row(
+                                        //   children: [
+                                        //     Text(
+                                        //         '${snapshot.data?[index].date}')
+                                        //   ],
+                                        // ),
+                                        // const SizedBox(height: 10),
+                                        Text(
+                                          '${snapshot.data?[index].title}',
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text('${snapshot.data?[index].amount}'),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    // mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          CircleAvatar(
-                                              radius: 15,
-                                              backgroundColor:
-                                                  ColorConstants.colors3,
-                                              backgroundImage: NetworkImage(
-                                                  '${ImageConstants.iconCtgLink1}${snapshot.data?[index].category.image}${ImageConstants.iconCtgLink2}')),
-                                          Text(
-                                            '${snapshot.data?[index].category.categoryName}',
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                  '${snapshot.data?[index].date}')
-                                            ],
-                                          ),
-                                          const SizedBox(height: 10),
-                                          Row(
-                                            children: [
-                                              // const SizedBox(width: 50),
-                                              Text(
-                                                  '${snapshot.data?[index].title}'),
-                                              const SizedBox(width: 50),
-                                              Text(
-                                                  '${snapshot.data?[index].amount}'),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(children: [
-                                        IconButton(
-                                            onPressed: () async {
-                                              setState(() {
-                                                ApiDeleteExpense().deleteData(
-                                                    id: snapshot
-                                                        .data![index].id);
-                                              });
-                                              setState(() {});
-                                            },
-                                            icon: const Icon(
-                                              Icons.delete,
-                                              color: Colors.red,
-                                            )),
-                                        IconButton(
-                                            onPressed: () async {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          UpdateExpenseScreen(
-                                                            expenseId: snapshot
-                                                                .data![index]
-                                                                .id,
-                                                            date:
-                                                                '${snapshot.data?[index].date}',
-                                                            title:
-                                                                '${snapshot.data?[index].title}',
-                                                            amount:
-                                                                "${snapshot.data?[index].amount}",
-                                                            categoryId:
-                                                                '${snapshot.data?[index].categoryId}',
-                                                            categoryname:
-                                                                '${snapshot.data?[index].category.categoryName}',
-                                                          )));
-                                            },
-                                            icon: const Icon(
-                                              Icons.edit,
-                                              color: ColorConstants.colors3,
-                                            )),
-                                      ]),
+                                      IconButton(
+                                          onPressed: () async {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        UpdateExpenseScreen(
+                                                          expenseId: snapshot
+                                                              .data![index].id,
+                                                          date:
+                                                              '${snapshot.data?[index].date}',
+                                                          title:
+                                                              '${snapshot.data?[index].title}',
+                                                          amount:
+                                                              "${snapshot.data?[index].amount}",
+                                                          categoryId:
+                                                              '${snapshot.data?[index].categoryId}',
+                                                          categoryname:
+                                                              '${snapshot.data?[index].category.categoryName}',
+                                                        )));
+                                          },
+                                          icon: const Icon(
+                                            Icons.edit,
+                                            color: ColorConstants.colors3,
+                                          )),
+                                      IconButton(
+                                          onPressed: () async {
+                                            await ApiDeleteExpense().deleteData(
+                                                id: snapshot.data![index].id);
+                                            setState(() {});
+                                          },
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          )),
                                     ],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         );
