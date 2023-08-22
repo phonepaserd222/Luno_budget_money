@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:luno_budget_money/services/api_register_by_userpass.dart';
 
 import '../constants/image_contants.dart';
 import '../routes/routes.dart';
@@ -10,6 +11,8 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController userNameController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 246, 226, 184),
       body: SingleChildScrollView(
@@ -41,6 +44,7 @@ class RegisterScreen extends StatelessWidget {
                                 fontSize: 35, fontWeight: FontWeight.bold),
                           ),
                           TextFormField(
+                            controller: userNameController,
                             validator: MultiValidator([
                               RequiredValidator(
                                   errorText: 'ກະລຸນາກອກ ຊື່ຜູ້ໃຊ້'),
@@ -55,6 +59,7 @@ class RegisterScreen extends StatelessWidget {
                             height: 15,
                           ),
                           TextFormField(
+                            controller: passwordController,
                             decoration: const InputDecoration(
                               labelText: 'Password',
                               // prefixIcon: Icon(Icons.password_outlined),
@@ -63,15 +68,15 @@ class RegisterScreen extends StatelessWidget {
                                 RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
                             obscureText: true,
                           ),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                              labelText: 'Confirm Password',
-                              // prefixIcon: Icon(Icons.password_outlined),
-                            ),
-                            validator:
-                                RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
-                            obscureText: true,
-                          ),
+                          // TextFormField(
+                          //   decoration: const InputDecoration(
+                          //     labelText: 'Confirm Password',
+                          //     // prefixIcon: Icon(Icons.password_outlined),
+                          //   ),
+                          //   validator:
+                          //       RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
+                          //   obscureText: true,
+                          // ),
                           const SizedBox(height: 30),
                           SizedBox(
                             height: 50,
@@ -88,7 +93,15 @@ class RegisterScreen extends StatelessWidget {
                                 style: TextStyle(fontSize: 20),
                               ),
                               onPressed: () {
-                                Navigator.pushNamed(context, Routes.login);
+                                ApiRegisterByUserpass.registerByUserpass(
+                                  userName: userNameController.text,
+                                  passwords: passwordController.text,
+                                  context: context,
+                                ).then((value) {
+                                  userNameController.clear();
+                                  passwordController.clear();
+                                  Navigator.pushNamed(context, Routes.login);
+                                });
                               },
                             ),
                           ),

@@ -19,7 +19,7 @@ class ApiDeleteExpense {
       // Handle the response
       if (response.statusCode == 200) {
         // Data deletion successful
-        print('Data deleted successfully');
+        // print('Data deleted successfully');
       } else {
         // Data deletion failed
         // print('Failed to delete data');

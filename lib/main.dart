@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/screens/home_screen.dart';
 import 'package:luno_budget_money/screens/login_screen.dart';
-import 'package:luno_budget_money/services/api_get_category_expense.dart';
+import 'package:luno_budget_money/services/api_get_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
@@ -22,10 +22,11 @@ void main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: FutureBuilder(
-      future: ApiGetCategoryExpense().getCategoryExpense(),
+      future: ApiGetUser().getUser(),
       builder: (context, snapshot) {
         String? token = prefs.getString("accessToken");
         dio.options.headers["authorization"] = token;
+
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
             body: Center(
@@ -33,6 +34,7 @@ void main() async {
             ),
           );
         }
+        print(snapshot);
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           return const HomeScreen();

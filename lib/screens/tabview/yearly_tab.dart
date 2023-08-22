@@ -1,142 +1,184 @@
 import 'package:flutter/material.dart';
+// import 'package:intl/intl.dart';
 
+import '../../constants/color_contants.dart';
+import '../../constants/image_contants.dart';
+import '../../models/response_get_category_expense_model.dart';
+import '../../services/api_delete_expense.dart';
 import '../../services/api_get_category_expense.dart';
+import '../update_expense_screen.dart';
 
-class YearlyTab extends StatelessWidget {
+class YearlyTab extends StatefulWidget {
   const YearlyTab({super.key});
+
+  @override
+  YearlyTabState createState() => YearlyTabState();
+}
+
+DateTime getCustomStartDate(int desiredYear) {
+  return DateTime(desiredYear, 1, 1);
+}
+
+class YearlyTabState extends State<YearlyTab> {
+  List<ResponseGetCategoryExpenseModel> filteredList = [];
+
+  late DateTimeRange dateRange;
+
+  @override
+  void initState() {
+    super.initState();
+
+    int desiredYear = 2023;
+    DateTime customStartDate = getCustomStartDate(desiredYear);
+    dateRange = DateTimeRange(
+      start: customStartDate,
+      end: customStartDate
+          .add(const Duration(days: 365)), // Assuming non-leap year
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder(
-      future: ApiGetCategoryExpense().getCategoryExpense(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data?.length,
-              itemBuilder: (context, index) {
-                return Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: Colors.purple)),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Row(
-                              children: [
-                                const Column(
-                                  children: [
-                                    CircleAvatar(
-                                        radius: 15,
-                                        backgroundColor: Colors.amber,
-                                        backgroundImage: NetworkImage(
-                                            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/'
-                                            '65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png')),
-                                    Text('no more'),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text('${snapshot.data?[index].title}'),
-                                Text('${snapshot.data?[index].amount}'),
-                              ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            const Text('For Year'),
+            FutureBuilder(
+              future: ApiGetCategoryExpense().getCategoryExpense(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasData) {
+                    // Filter expenses based on the selected date range
+                    filteredList = snapshot.data!
+                        .where((getCategoryExpense) =>
+                            getCategoryExpense.date.isAfter(dateRange.start) &&
+                            getCategoryExpense.date.isBefore(dateRange.end))
+                        .toList();
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: filteredList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Container(
+                            height: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              // color: ColorConstants.colors2,
+                              border: Border.all(color: Colors.purple),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 20,
+                                            backgroundColor:
+                                                ColorConstants.colors3,
+                                            backgroundImage: NetworkImage(
+                                                '${ImageConstants.iconCtgLink1}${snapshot.data?[index].category.image}${ImageConstants.iconCtgLink2}')),
+                                        Text(
+                                          '${snapshot.data?[index].category.categoryName}',
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${snapshot.data?[index].title}',
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Text('${snapshot.data?[index].amount}'),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    // mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () async {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        UpdateExpenseScreen(
+                                                          expenseId: snapshot
+                                                              .data![index].id,
+                                                          date:
+                                                              '${snapshot.data?[index].date}',
+                                                          title:
+                                                              '${snapshot.data?[index].title}',
+                                                          amount:
+                                                              "${snapshot.data?[index].amount}",
+                                                          categoryId:
+                                                              '${snapshot.data?[index].categoryId}',
+                                                          categoryname:
+                                                              '${snapshot.data?[index].category.categoryName}',
+                                                        )));
+                                          },
+                                          icon: const Icon(
+                                            Icons.edit,
+                                            color: ColorConstants.colors3,
+                                          )),
+                                      IconButton(
+                                          onPressed: () async {
+                                            await ApiDeleteExpense().deleteData(
+                                                id: snapshot.data![index].id);
+                                            setState(() {});
+                                          },
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ]));
+                        );
+                      },
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
               },
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
-    ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
-// 
-// import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-
-// class YearlyTab extends StatefulWidget {
-//   const YearlyTab({super.key});
-
-//   @override
-//   YearlyTabState createState() => YearlyTabState();
-// }
-
-// class YearlyTabState extends State<YearlyTab> {
-//   late SharedPreferences prefs;
-//   String? storedValue;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     initializePreferences();
-//   }
-
-//   Future<void> initializePreferences() async {
-//     prefs = await SharedPreferences.getInstance();
-//     setState(() {
-//       storedValue = prefs.getString('key');
-//     });
-//   }
-
-//   Future<void> storeValue(String value) async {
-//     await prefs.setString('key', value);
-//     setState(() {
-//       storedValue = value;
-//     });
-//   }
-
-//   Future<void> removeValue() async {
-//     await prefs.remove('key');
-//     setState(() {
-//       storedValue = null;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Shared Preferences Demo'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             const Text(
-//               'Stored value:',
-//               style: TextStyle(fontSize: 18),
-//             ),
-//             Text(
-//               storedValue ?? 'No value',
-//               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-//             ),
-//             const SizedBox(height: 20),
-//             ElevatedButton(
-//               onPressed: () => storeValue('Hello, World!'),
-//               child: const Text('Store Value'),
-//             ),
-//             const SizedBox(height: 10),
-//             ElevatedButton(
-//               onPressed: removeValue,
-//               child: const Text('Remove Value'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

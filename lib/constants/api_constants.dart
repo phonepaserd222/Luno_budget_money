@@ -11,4 +11,5 @@ class ApiConstants {
   static const String pathPostExpense = "expense/create";
   static const String pathDeleteExpense = "/expense/delete";
   static const String pathUpdateExpense = "/expense/update";
+  static const String pathUserRegister = "user/signUpWithUserName";
 }

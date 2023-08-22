@@ -25,10 +25,10 @@ class ResponseUserModel {
 
   factory ResponseUserModel.fromJson(Map<String, dynamic> json) =>
       ResponseUserModel(
-        id: json["id"],
-        googleId: json["googleId"],
-        userName: json["userName"],
-        image: json["image"],
+        id: json["id"] ?? "",
+        googleId: json["googleId"] ?? "",
+        userName: json["userName"] ?? "",
+        image: json["image"] ?? "",
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
       );

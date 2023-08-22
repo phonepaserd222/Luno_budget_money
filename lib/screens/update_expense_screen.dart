@@ -7,6 +7,7 @@ import 'package:luno_budget_money/data/category_stream.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
 
 import '../models/response_get_category_screen.dart';
+import '../routes/routes.dart';
 import '../services/api_update_expense.dart';
 // Import the category data from the other page
 
@@ -256,14 +257,16 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                     cost = int.tryParse(costController.text) ?? 0;
                     String title = titleController.text.trim();
                     if (title.isNotEmpty) {
-                      ApiUpdateExpense()
+                      await ApiUpdateExpense()
                           .updateExpense(
                               expenseId: widget.expenseId,
                               date: widget.date,
                               title: title,
                               amount: cost,
                               categoryId: categoryId)
-                          .then((value) => Navigator.pop(context));
+                          .then((value) =>
+                              Navigator.pushNamed(context, Routes.home));
+                      setState(() {});
                     }
                   },
                   child: const Text(
