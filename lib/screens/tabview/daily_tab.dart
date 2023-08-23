@@ -63,8 +63,9 @@ class _DailyTabState extends State<DailyTab> {
                             height: 10,
                           ),
                           ElevatedButton(
-                            onPressed: () {
-                              pickDateRange();
+                            onPressed: () async {
+                              await pickDateRange();
+                              setState(() {});
                             },
                             child: Text(DateFormat('yyyy/MM/dd').format(start)),
                           ),
@@ -86,8 +87,9 @@ class _DailyTabState extends State<DailyTab> {
                             height: 10,
                           ),
                           ElevatedButton(
-                            onPressed: () {
-                              pickDateRange();
+                            onPressed: () async {
+                              await pickDateRange();
+                              setState(() {});
                             },
                             child: Text(DateFormat('yyyy/MM/dd').format(end)),
                           ),
@@ -114,7 +116,7 @@ class _DailyTabState extends State<DailyTab> {
           ),
           // const BuilderExpense(),
           Expanded(
-            flex: 6,
+            flex: 5,
             child: FutureBuilder(
               future: ApiGetCategoryExpense().getCategoryExpense(),
               builder: (context, snapshot) {
@@ -278,5 +280,6 @@ class _DailyTabState extends State<DailyTab> {
               expense.date.isBefore(dateRange.end))
           .toList();
     });
+    setState(() {});
   }
 }
