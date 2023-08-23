@@ -13,4 +13,5 @@ class ApiConstants {
   static const String pathUpdateExpense = "/expense/update";
   static const String pathUserRegister = "user/signUpWithUserName";
   static const String pathGetCategoryD = "/category/findManyDefault";
+  static const String pathGetReportExpense = "reportExpense";
 }

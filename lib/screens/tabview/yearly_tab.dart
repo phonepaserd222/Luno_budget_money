@@ -117,45 +117,66 @@ class YearlyTabState extends State<YearlyTab> {
                                       ],
                                     ),
                                   ),
-                                  Row(
-                                    // mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      IconButton(
-                                          onPressed: () async {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        UpdateExpenseScreen(
-                                                          expenseId: snapshot
-                                                              .data![index].id,
-                                                          date:
-                                                              '${snapshot.data?[index].date}',
-                                                          title:
-                                                              '${snapshot.data?[index].title}',
-                                                          amount:
-                                                              "${snapshot.data?[index].amount}",
-                                                          categoryId:
-                                                              '${snapshot.data?[index].categoryId}',
-                                                          categoryname:
-                                                              '${snapshot.data?[index].category.categoryName}',
-                                                        )));
-                                          },
-                                          icon: const Icon(
-                                            Icons.edit,
-                                            color: ColorConstants.colors3,
-                                          )),
-                                      IconButton(
-                                          onPressed: () async {
-                                            await ApiDeleteExpense().deleteData(
-                                                id: snapshot.data![index].id);
-                                            setState(() {});
-                                          },
-                                          icon: const Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
-                                          )),
-                                    ],
+                                  Expanded(
+                                    flex: 2,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            IconButton(
+                                                onPressed: () async {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              UpdateExpenseScreen(
+                                                                expenseId:
+                                                                    snapshot
+                                                                        .data![
+                                                                            index]
+                                                                        .id,
+                                                                date:
+                                                                    '${snapshot.data?[index].date}',
+                                                                title:
+                                                                    '${snapshot.data?[index].title}',
+                                                                amount:
+                                                                    "${snapshot.data?[index].amount}",
+                                                                categoryId:
+                                                                    '${snapshot.data?[index].categoryId}',
+                                                                categoryname:
+                                                                    '${snapshot.data?[index].category.categoryName}',
+                                                              )));
+                                                },
+                                                icon: const Icon(
+                                                  Icons.edit,
+                                                  color: ColorConstants.colors3,
+                                                )),
+                                            IconButton(
+                                                onPressed: () async {
+                                                  await ApiDeleteExpense()
+                                                      .deleteData(
+                                                          id: snapshot
+                                                              .data![index].id);
+                                                  setState(() {});
+                                                },
+                                                icon: const Icon(
+                                                  Icons.delete,
+                                                  color: Colors.red,
+                                                )),
+                                          ],
+                                        ),
+                                        Row(children: [
+                                          Expanded(
+                                            child: Text(
+                                              '${snapshot.data?[index].date.toLocal()}',
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ])
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),

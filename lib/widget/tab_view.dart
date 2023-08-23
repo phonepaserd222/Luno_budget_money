@@ -13,7 +13,7 @@ class TabView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 252, 239, 1),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(8.0),
         child: DefaultTabController(
           length: 4,
           child: Column(
@@ -50,6 +50,7 @@ class TabView extends StatelessWidget {
                         child: Text(
                       'Monthly',
                       style: TextStyle(color: Colors.black),
+                      overflow: TextOverflow.clip,
                     )),
                     Tab(
                         child: Text(
