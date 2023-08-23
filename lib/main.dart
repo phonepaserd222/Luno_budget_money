@@ -34,7 +34,7 @@ void main() async {
             ),
           );
         }
-        print(snapshot);
+        // print(snapshot);
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           return const HomeScreen();

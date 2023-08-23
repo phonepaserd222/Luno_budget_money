@@ -44,80 +44,78 @@ class _DailyTabState extends State<DailyTab> {
     final end = dateRange.end;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 252, 239, 1),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 15),
-            SizedBox(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            const Text('Start Date'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                pickDateRange();
-                              },
-                              child:
-                                  Text(DateFormat('yyyy/MM/dd').format(start)),
-                            ),
-                          ],
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 25, left: 5, right: 5),
-                          child: SizedBox(
-                            width: 18,
-                            child: Divider(
-                              color: Colors.black,
-                            ),
+      body: Column(
+        children: [
+          const SizedBox(height: 15),
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const Text('Start Date'),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              pickDateRange();
+                            },
+                            child: Text(DateFormat('yyyy/MM/dd').format(start)),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 25, left: 5, right: 5),
+                        child: SizedBox(
+                          width: 18,
+                          child: Divider(
+                            color: Colors.black,
                           ),
                         ),
-                        Column(
-                          children: [
-                            const Text('End Date'),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                pickDateRange();
-                              },
-                              child: Text(DateFormat('yyyy/MM/dd').format(end)),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 18,
-                        ),
-                      ],
-                    ),
+                      ),
+                      Column(
+                        children: [
+                          const Text('End Date'),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              pickDateRange();
+                            },
+                            child: Text(DateFormat('yyyy/MM/dd').format(end)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(28),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Date of Category'),
-                        Text('Total: 200000')
-                      ],
-                    ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 28, right: 28),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [Text('Date of Category'), Text('Total: 200000')],
                   ),
-                  const Divider(
-                    color: Colors.black, // Customize the color of the divider
-                  ),
-                ],
-              ),
+                ),
+                const Divider(
+                  color: Colors.black, // Customize the color of the divider
+                ),
+              ],
             ),
-            // const BuilderExpense(),
-            FutureBuilder(
+          ),
+          // const BuilderExpense(),
+          Expanded(
+            flex: 6,
+            child: FutureBuilder(
               future: ApiGetCategoryExpense().getCategoryExpense(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
@@ -247,8 +245,8 @@ class _DailyTabState extends State<DailyTab> {
                 }
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorConstants.colors3,

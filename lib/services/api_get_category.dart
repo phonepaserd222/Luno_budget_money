@@ -9,7 +9,7 @@ import '../models/response_get_category_screen.dart';
 class ApiGetCategory {
   final dio = Dio();
   Future<List<ResponseGetCategoryModel>> getCategory() async {
-    String path = ApiConstants.pathGetCategory;
+    String path = ApiConstants.pathGetCategoryD;
     dio.options.baseUrl = ApiConstants.baseUrl;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // ern sai pref
