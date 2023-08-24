@@ -15,6 +15,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   final dio = Dio();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   // ern sai pref

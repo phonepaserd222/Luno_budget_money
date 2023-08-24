@@ -17,19 +17,30 @@ class ApiReportExpense {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("accessToken");
     dio.options.headers["authorization"] = token;
-    dio.options.queryParameters = {"startDate": startDate, "endDate ": endDate};
+    dio.options.queryParameters = {"startDate": startDate, "endDate": endDate};
+
     try {
-      Response res = await dio.get(
-        path,
-      );
+      Response res = await dio.get(path);
+
       if (res.statusCode == 200) {
         List<ResponseGetReportExpenseModel> reportExpense =
             responseGetReportExpenseModelFromJson(json.encode(res.data));
         return reportExpense;
       } else {
-        throw Exception("Failed to load data");
+        // Handle specific error cases
+        if (res.statusCode == 400) {
+          // Handle bad request
+          throw Exception("Bad request: ${res.statusMessage}");
+        } else if (res.statusCode == 401) {
+          // Handle unauthorized access
+          throw Exception("Unauthorized access: ${res.statusMessage}");
+        } else {
+          // Handle other error cases
+          throw Exception("Failed to load data: ${res.statusMessage}");
+        }
       }
     } catch (error) {
+      // Handle DioError and other exceptions here
       // print('Error: $error');
       return [];
     }

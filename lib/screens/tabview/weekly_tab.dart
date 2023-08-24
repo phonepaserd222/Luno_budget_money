@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../constants/color_contants.dart';
 import '../../constants/image_contants.dart';
-import '../../models/response_get_category_expense_model.dart';
+import '../../models/response_get_report_expense_model.dart';
 import '../../services/api_delete_expense.dart';
-import '../../services/api_get_category_expense.dart';
+import '../../services/api_report_expense.dart';
+import '../../services/format_date_time.dart';
 import '../update_expense_screen.dart';
 
 class WeeklyTab extends StatefulWidget {
@@ -16,11 +17,7 @@ class WeeklyTab extends StatefulWidget {
 }
 
 class WeeklyTabState extends State<WeeklyTab> {
-  List<ResponseGetCategoryExpenseModel> filteredList = [];
-  // DateTimeRange dateRange = DateTimeRange(
-  //   start: DateTime.now(),
-  //   end: DateTime.now().add(const Duration(days: 6)),
-  // );
+  List<ResponseGetReportExpenseModel> filteredList = [];
   late DateTimeRange dateRange;
 
   @override
@@ -28,10 +25,10 @@ class WeeklyTabState extends State<WeeklyTab> {
     super.initState();
 
     DateTime now = DateTime.now();
-    DateTime startOfWeek = now.subtract(Duration(days: now.weekday - 1));
+    DateTime startOfWeek = now.subtract(Duration(days: now.weekday));
     dateRange = DateTimeRange(
       start: startOfWeek,
-      end: startOfWeek.add(const Duration(days: 7)),
+      end: DateTime.now(),
     );
   }
 
@@ -39,33 +36,35 @@ class WeeklyTabState extends State<WeeklyTab> {
 
   @override
   Widget build(BuildContext context) {
-    // final start = dateRange.start;
-    // final end = dateRange.end;
-    // final difference = dateRange.duration;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             const Text('For Week'),
-            FutureBuilder(
-              future: ApiGetCategoryExpense().getCategoryExpense(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
+            Expanded(
+              flex: 6,
+              child: FutureBuilder(
+                future: ApiReportExpense().reportExpense(
+                    startDate:
+                        FormatDateTime.formatDate(dateRange.start.toString()),
+                    endDate:
+                        FormatDateTime.formatDate(dateRange.end.toString())),
+                builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     // Filter expenses based on the selected date range
                     filteredList = snapshot.data!
-                        .where((getCategoryExpense) =>
-                            getCategoryExpense.date
+                        .where((reportExpense) =>
+                            reportExpense.date
                                 .toLocal()
                                 .isAfter(dateRange.start) &&
-                            getCategoryExpense.date
+                            reportExpense.date
                                 .toLocal()
                                 .isBefore(dateRange.end))
                         .toList();
                     return ListView.builder(
                       shrinkWrap: true,
-                      itemCount: filteredList.length,
+                      itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(3.0),
@@ -197,12 +196,8 @@ class WeeklyTabState extends State<WeeklyTab> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
+                },
+              ),
             ),
           ],
         ),
