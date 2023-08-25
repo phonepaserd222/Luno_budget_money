@@ -100,8 +100,8 @@ class _BuilderExpenseState extends State<BuilderExpense> {
                                                 UpdateExpenseScreen(
                                                   expenseId:
                                                       snapshot.data![index].id,
-                                                  date:
-                                                      '${snapshot.data?[index].date}',
+                                                  // date:
+                                                  //     '${snapshot.data?[index].date}',
                                                   title:
                                                       '${snapshot.data?[index].title}',
                                                   amount:

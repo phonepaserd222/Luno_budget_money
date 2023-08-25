@@ -43,24 +43,18 @@ class CategoryItemPage extends StatelessWidget {
       body: FutureBuilder<List<ResponseGetCategoryModel>>(
         future: ApiGetCategory().getCategory(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) {
-              return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, // Number of columns in the grid
-                  crossAxisSpacing: 1.0,
-                  mainAxisSpacing: 1.0,
-                ),
-                itemCount: snapshot.data?.length,
-                itemBuilder: (context, index) {
-                  return _buildCategoryCard(context, snapshot.data![index]);
-                },
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+          if (snapshot.hasData) {
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, // Number of columns in the grid
+                crossAxisSpacing: 1.0,
+                mainAxisSpacing: 1.0,
+              ),
+              itemCount: snapshot.data?.length,
+              itemBuilder: (context, index) {
+                return _buildCategoryCard(context, snapshot.data![index]);
+              },
+            );
           } else {
             return const Center(
               child: CircularProgressIndicator(),
@@ -97,11 +91,13 @@ class CategoryItemPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.network(
-                        '${ImageConstants.iconCtgLink1}${category.image}${ImageConstants.iconCtgLink2}')),
+                Expanded(
+                  child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Image.network(
+                          '${ImageConstants.iconCtgLink1}${category.image}${ImageConstants.iconCtgLink2}')),
+                ),
                 Text(
                   category.categoryName,
                   style: const TextStyle(

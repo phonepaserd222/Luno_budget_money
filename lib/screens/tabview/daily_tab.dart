@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
-
 import '../../constants/image_contants.dart';
 import '../../models/response_get_report_expense_model.dart';
 import '../../routes/routes.dart';
@@ -51,72 +50,77 @@ class _DailyTabState extends State<DailyTab> {
       body: Column(
         children: [
           // const SizedBox(height: 15),
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          const Text('Start Date'),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ElevatedButton(
-                            child: Text(DateFormat('yyyy/MM/dd').format(start)),
-                            onPressed: () async {
-                              await pickDateRange();
-                              setState(() {});
-                            },
-                          ),
-                        ],
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 25, left: 5, right: 5),
-                        child: SizedBox(
-                          width: 18,
-                          child: Divider(
-                            color: Colors.black,
-                          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        const Text(
+                          'Start Date',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          child: Text(DateFormat('yyyy/MM/dd').format(start)),
+                          onPressed: () async {
+                            await pickDateRange();
+                            setState(() {});
+                          },
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 25, left: 5, right: 5),
+                      child: SizedBox(
+                        width: 18,
+                        child: Divider(
+                          color: Colors.black,
                         ),
                       ),
-                      Column(
-                        children: [
-                          const Text('End Date'),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ElevatedButton(
-                            child: Text(DateFormat('yyyy/MM/dd').format(end)),
-                            onPressed: () async {
-                              await pickDateRange();
-                              setState(() {});
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 18,
-                      ),
-                    ],
-                  ),
+                    ),
+                    Column(
+                      children: [
+                        const Text(
+                          'End Date',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          child: Text(DateFormat('yyyy/MM/dd').format(end)),
+                          onPressed: () async {
+                            await pickDateRange();
+                            setState(() {});
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 18,
+                    ),
+                  ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 28, right: 28),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Date of Category'), Text('Total: 200000')],
-                  ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 28, right: 28),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text('Date of Category'), Text('Total: 200000')],
                 ),
-                const Divider(
-                  color: Colors.black, // Customize the color of the divider
-                ),
-              ],
-            ),
+              ),
+              const Divider(
+                color: Colors.black, // Customize the color of the divider
+              ),
+            ],
           ),
           // const BuilderExpense(),
           Expanded(
@@ -214,8 +218,8 @@ class _DailyTabState extends State<DailyTab> {
                                                                       .data![
                                                                           index]
                                                                       .id,
-                                                              date:
-                                                                  '${snapshot.data?[index].date}',
+                                                              // date:
+                                                              //     '${snapshot.data?[index].date}',
                                                               title:
                                                                   '${snapshot.data?[index].title}',
                                                               amount:

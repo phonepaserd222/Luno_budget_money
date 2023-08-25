@@ -41,7 +41,10 @@ class WeeklyTabState extends State<WeeklyTab> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Text('For Week'),
+            const Text(
+              'For Week',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
             Expanded(
               flex: 6,
               child: FutureBuilder(
@@ -143,8 +146,8 @@ class WeeklyTabState extends State<WeeklyTab> {
                                                                         .data![
                                                                             index]
                                                                         .id,
-                                                                date:
-                                                                    '${snapshot.data?[index].date}',
+                                                                // date:
+                                                                //     '${snapshot.data?[index].date}',
                                                                 title:
                                                                     '${snapshot.data?[index].title}',
                                                                 amount:

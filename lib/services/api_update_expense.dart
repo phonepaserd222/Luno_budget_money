@@ -7,7 +7,7 @@ class ApiUpdateExpense {
   final dio = Dio();
   Future<void> updateExpense({
     required String expenseId,
-    required String date,
+    // required String date,
     required String title,
     required int amount,
     required String categoryId,
@@ -19,7 +19,7 @@ class ApiUpdateExpense {
     dio.options.headers["authorization"] = token;
     dio.options.queryParameters = {"expenseId": expenseId};
     Map<String, dynamic> body = {
-      "date": date,
+      // "date": date,
       "title": title,
       "amount": amount,
       "categoryId": categoryId

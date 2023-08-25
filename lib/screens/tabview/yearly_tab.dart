@@ -43,17 +43,19 @@ class YearlyTabState extends State<YearlyTab> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Text('For Year'),
+            const Text(
+              'For Year',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
             Expanded(
               flex: 6,
               child: FutureBuilder(
-                future: ApiReportExpense().reportExpense(
-                    startDate:
-                        FormatDateTime.formatDate(dateRange.start.toString()),
-                    endDate:
-                        FormatDateTime.formatDate(dateRange.end.toString())),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
+                  future: ApiReportExpense().reportExpense(
+                      startDate:
+                          FormatDateTime.formatDate(dateRange.start.toString()),
+                      endDate:
+                          FormatDateTime.formatDate(dateRange.end.toString())),
+                  builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       // Filter expenses based on the selected date range
                       filteredList = snapshot.data!
@@ -142,8 +144,8 @@ class YearlyTabState extends State<YearlyTab> {
                                                                       .data![
                                                                           index]
                                                                       .id,
-                                                                  date:
-                                                                      '${snapshot.data?[index].date}',
+                                                                  // date:
+                                                                  //     '${snapshot.data?[index].date}',
                                                                   title:
                                                                       '${snapshot.data?[index].title}',
                                                                   amount:
@@ -197,13 +199,7 @@ class YearlyTabState extends State<YearlyTab> {
                         child: CircularProgressIndicator(),
                       );
                     }
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              ),
+                  }),
             ),
           ],
         ),

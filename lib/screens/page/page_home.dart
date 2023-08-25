@@ -19,16 +19,12 @@ class PageHome extends StatelessWidget {
             future: ApiGetUser().getUser(),
             builder: (context, snapshot) {
               return CircleAvatar(
-                backgroundImage:
-                    NetworkImage(user?.photoURL ?? '${snapshot.data?.image}'),
+                backgroundImage: NetworkImage(
+                    snapshot.data?.image ?? '${user?.photoURL}',
+                    scale: 1.0),
               );
             },
           ),
-          // CircleAvatar(
-
-          //   // backgroundImage: NetworkImage(user?.photoURL ??
-          //   //     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png'),
-          // ),
           const SizedBox(
             width: 30,
           )

@@ -32,7 +32,7 @@ class TabView extends StatelessWidget {
                       color: Colors.white),
                   labelStyle: const TextStyle(
                     color: Colors.red,
-                    fontSize: 15,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                   tabs: const [
@@ -50,7 +50,7 @@ class TabView extends StatelessWidget {
                         child: Text(
                       'Monthly',
                       style: TextStyle(color: Colors.black),
-                      overflow: TextOverflow.clip,
+                      overflow: TextOverflow.ellipsis,
                     )),
                     Tab(
                         child: Text(
@@ -70,7 +70,7 @@ class TabView extends StatelessWidget {
                     // // // 3
                     MonthlyTab(),
                     // 4
-                    YearlyTab()
+                    YearlyTab(),
                   ],
                 ),
               ),
@@ -81,11 +81,3 @@ class TabView extends StatelessWidget {
     );
   }
 }
-// boxShadow: [
-                  //   BoxShadow(
-                  //     color: Colors.grey.withOpacity(0.5),
-                  //     spreadRadius: 5,
-                  //     blurRadius: 1,
-                  //     offset: Offset(0, 3), // changes position of shadow
-                  //   ),
-                  // ],

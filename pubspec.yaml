@@ -27,6 +27,7 @@ dependencies:
   shared_preferences: ^2.2.0
   cloud_firestore: ^4.8.4
   flutter_date_range_picker: ^0.0.14
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   json_serializable: ^6.7.1
