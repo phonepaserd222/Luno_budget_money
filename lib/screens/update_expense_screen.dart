@@ -63,51 +63,6 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
               height: 15,
             ),
 
-            // T1 Date
-            // InkWell(
-            //   onTap: () async {
-            //     DateTime? pickeddate = await showDatePicker(
-            //       context: context,
-            //       initialDate: DateTime.now(),
-            //       firstDate: DateTime(2000),
-            //       lastDate: DateTime(2023, 12, 31),
-            //     );
-            //     if (pickeddate != null) {
-            //       setState(() {
-            //         dateText =
-            //             DateFormat('yyyy-MM-dd').format(pickeddate).toString();
-            //       });
-            //     }
-            //   },
-            //   child: Container(
-            //     height: 60,
-            //     width: double.infinity,
-            //     margin:
-            //         const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
-            //     padding: const EdgeInsets.all(8.0),
-            //     decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         borderRadius: BorderRadius.circular(5),
-            //         border: Border.all(
-            //             color: const Color.fromRGBO(112, 20, 204, 1))),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.start,
-            //       children: [
-            //         const Icon(Icons.calendar_today),
-            //         const SizedBox(
-            //           width: 16,
-            //         ),
-            //         // Text(widget.date),
-            //         // TextField(
-            //         //   controller: dateController,
-            //         //   decoration: InputDecoration(labelText: dateText),
-            //         // ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-
-            // T2  Cost
             InkWell(
               child: Container(
                 padding: const EdgeInsets.all(8.0),

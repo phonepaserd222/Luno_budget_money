@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:luno_budget_money/constants/api_constants.dart';
 import 'package:luno_budget_money/models/response_user_model.dart';
+import 'package:luno_budget_money/services/api_refresh_token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiGetUser {
@@ -19,6 +20,8 @@ class ApiGetUser {
         ResponseUserModel user =
             responseUserModelFromJson(json.encode(res.data));
         return user;
+      } else if (res.statusCode == 401) {
+        ApiRefreshToken().refreshToken(refreshToken: '$token');
       } else {
         throw Exception('Failed to load post');
       }
@@ -27,5 +30,6 @@ class ApiGetUser {
       // Handle the error appropriately
       return null;
     }
+    return null;
   }
 }

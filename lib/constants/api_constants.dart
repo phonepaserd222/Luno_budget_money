@@ -14,5 +14,5 @@ class ApiConstants {
   static const String pathUserRegister = "user/signUpWithUserName";
   static const String pathGetCategoryD = "category/findManyDefault";
   static const String pathGetReportExpense = "reportExpense";
-  static const String pathPostRefreshToken = "auth/refreshToken";
+  static const String pathRefreshToken = "auth/refreshToken";
 }

@@ -218,8 +218,6 @@ class _DailyTabState extends State<DailyTab> {
                                                                       .data![
                                                                           index]
                                                                       .id,
-                                                              // date:
-                                                              //     '${snapshot.data?[index].date}',
                                                               title:
                                                                   '${snapshot.data?[index].title}',
                                                               amount:

@@ -19,7 +19,6 @@ void main() async {
   final dio = Dio();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   // ern sai pref
-
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: FutureBuilder(
@@ -27,7 +26,9 @@ void main() async {
       builder: (context, snapshot) {
         String? token = prefs.getString("accessToken");
         dio.options.headers["authorization"] = token;
-
+        if (token == null) {
+          return const LoginScreen();
+        }
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
             body: Center(

@@ -146,8 +146,6 @@ class WeeklyTabState extends State<WeeklyTab> {
                                                                         .data![
                                                                             index]
                                                                         .id,
-                                                                // date:
-                                                                //     '${snapshot.data?[index].date}',
                                                                 title:
                                                                     '${snapshot.data?[index].title}',
                                                                 amount:
