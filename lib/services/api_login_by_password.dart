@@ -28,12 +28,12 @@ class ApiLoginByPassword {
         // log(res.data);
 // save token pass pref
         String accessToken = 'Bearer ${res.data["accessToken"]}';
-        String refreshToken = 'Bearer ${res.data["refreshToken"]}';
+
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString("accessToken", accessToken);
 
         //
-
+        String refreshToken = 'Bearer ${res.data["refreshToken"]}';
         await prefs.setString("refreshToken", refreshToken);
         //
         final ResponseLoginByPasswordModel data =

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/models/response_get_category_find_many_model.dart';
+import 'package:luno_budget_money/services/api_get_category_find_many.dart';
 import '../constants/image_contants.dart';
-import '../models/response_get_category_screen.dart';
-import '../services/api_get_category.dart';
 import '../services/category_expense_service.dart';
 
 class CategoryItemPage extends StatelessWidget {
-  final void Function(ResponseGetCategoryModel category) onCategorySelected;
+  final void Function(ResponseGetCategoryFindManyModel category)
+      onCategorySelected;
 
   const CategoryItemPage({super.key, required this.onCategorySelected});
 
@@ -40,8 +41,8 @@ class CategoryItemPage extends StatelessWidget {
         title: const Text('Categories'),
         backgroundColor: const Color.fromRGBO(112, 20, 204, 1),
       ),
-      body: FutureBuilder<List<ResponseGetCategoryModel>>(
-        future: ApiGetCategory().getCategory(),
+      body: FutureBuilder<List<ResponseGetCategoryFindManyModel>>(
+        future: ApiGetCategoryFindMany().getCategoryFindMany(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return GridView.builder(
@@ -66,13 +67,13 @@ class CategoryItemPage extends StatelessWidget {
   }
 
   void _onCategorySelected(
-      ResponseGetCategoryModel category, BuildContext context) {
+      ResponseGetCategoryFindManyModel category, BuildContext context) {
     onCategorySelected(category); // Call the callback function
     Navigator.pop(context); // Close the bottom sheet after selecting a category
   }
 
   Widget _buildCategoryCard(
-      BuildContext context, ResponseGetCategoryModel category) {
+      BuildContext context, ResponseGetCategoryFindManyModel category) {
     return Padding(
       padding: const EdgeInsets.all(2),
       child: Container(

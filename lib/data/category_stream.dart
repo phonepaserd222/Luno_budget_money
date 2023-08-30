@@ -1,14 +1,15 @@
 import 'dart:async';
-import '../models/response_get_category_screen.dart';
+import 'package:luno_budget_money/models/response_get_category_find_many_model.dart';
 
 class CategoryStrem {
-  final StreamController<ResponseGetCategoryModel> _categoryStremController =
-      StreamController<ResponseGetCategoryModel>();
+  final StreamController<ResponseGetCategoryFindManyModel>
+      _categoryStremController =
+      StreamController<ResponseGetCategoryFindManyModel>();
 
-  Stream<ResponseGetCategoryModel> get categoryStremController =>
+  Stream<ResponseGetCategoryFindManyModel> get categoryStremController =>
       _categoryStremController.stream;
 
-  void onCategorySelected(ResponseGetCategoryModel category) {
+  void onCategorySelected(ResponseGetCategoryFindManyModel category) {
     _categoryStremController.sink.add(category);
   }
 

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:luno_budget_money/data/category_stream.dart';
+import 'package:luno_budget_money/models/response_get_category_find_many_model.dart';
 import 'package:luno_budget_money/widget/category_item_page.dart';
 
 import '../models/response_get_category_screen.dart';
@@ -140,7 +141,7 @@ class _UpdateExpenseScreenState extends State<UpdateExpenseScreen> {
                     const SizedBox(
                       width: 16,
                     ),
-                    StreamBuilder<ResponseGetCategoryModel>(
+                    StreamBuilder<ResponseGetCategoryFindManyModel>(
                         stream: categoryStrem.categoryStremController,
                         builder: (context, snapshot) {
                           return Text(

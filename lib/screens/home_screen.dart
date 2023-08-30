@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luno_budget_money/screens/page/page_category.dart';
+import 'package:luno_budget_money/screens/page/page_category_upload.dart';
 import 'package:luno_budget_money/screens/page/page_home.dart';
 
 import '../screens/page/page_profile.dart';
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // pages Home
     const PageHome(),
     // pages Home
-    const PageCategory(),
+    const PageCategoryUpload(),
     // PageImages(),
     // pages Home
     PageProfile(),
