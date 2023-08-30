@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
 import 'package:luno_budget_money/services/api_delete_category.dart';
 
+import '../../constants/image_contants.dart';
 import '../../services/api_get_category_find_many.dart';
 import '../../services/api_post_category.dart';
 
@@ -63,7 +64,7 @@ class PageCategoryUploadState extends State<PageCategoryUpload> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -96,7 +97,7 @@ class PageCategoryUploadState extends State<PageCategoryUpload> {
               ),
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           const Padding(
             padding: EdgeInsets.only(left: 30),
             child: Row(
@@ -181,7 +182,7 @@ class PageCategoryUploadState extends State<PageCategoryUpload> {
                     itemCount: snapshot.data?.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        height: 40,
+                        height: 50,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(color: Colors.purple)),
@@ -192,11 +193,11 @@ class PageCategoryUploadState extends State<PageCategoryUpload> {
                               padding: const EdgeInsets.only(left: 10),
                               child: Row(
                                 children: [
-                                  const CircleAvatar(
+                                  CircleAvatar(
                                     radius: 30,
                                     backgroundColor: Colors.amber,
-                                    //   backgroundImage:
-                                    //       // NetworkImage(listIcon[index].iconAdd),
+                                    backgroundImage: NetworkImage(
+                                        '${ImageConstants.iconCtgLink1}${snapshot.data?[index].image}${ImageConstants.iconCtgLink2}'),
                                   ),
                                   const SizedBox(
                                     width: 5,
