@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/services/api_login_by_password.dart';
@@ -14,13 +15,14 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController userNameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
-      backgroundColor: ColorConstants.colors1, //#FFFCEF
+      backgroundColor: ColorConstants.bgwhite, //#FFFCEF
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(0.0),
           child: Form(
+            key: formKey,
             child: Column(
               children: [
                 // 3
@@ -55,14 +57,14 @@ class LoginScreen extends StatelessWidget {
                                 fontSize: 35, fontWeight: FontWeight.bold),
                           ),
                           TextFormField(
-                            validator: MultiValidator([
-                              RequiredValidator(
-                                  errorText: 'ກະລຸນາກອກ ຊື່ຜູ້ໃຊ້'),
-                            ]),
                             decoration: const InputDecoration(
                               labelText: 'Username',
                               // prefixIcon: Icon(Icons.person),
                             ),
+                            validator: MultiValidator([
+                              RequiredValidator(
+                                  errorText: 'Please enter username'),
+                            ]),
                             keyboardType: TextInputType.emailAddress,
                             controller: userNameController,
                           ),
@@ -74,8 +76,8 @@ class LoginScreen extends StatelessWidget {
                               labelText: 'Password',
                               // prefixIcon: Icon(Icons.password_outlined),
                             ),
-                            validator:
-                                RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
+                            validator: RequiredValidator(
+                                errorText: 'Please enter password'),
                             obscureText: true,
                             controller: passwordController,
                           ),
@@ -96,19 +98,21 @@ class LoginScreen extends StatelessWidget {
                                 style: TextStyle(fontSize: 20),
                               ),
                               onPressed: () {
-                                // Navigator.pushNamed(context, Routes.welcome);
-                                ApiLoginByPassword.loginByPassword(
-                                  userName: userNameController.text,
-                                  password: passwordController.text,
-                                  context: context,
-                                ).then((value) {
-                                  if (value == null) {
-                                  } else {
-                                    userNameController.clear();
-                                    passwordController.clear();
-                                    Navigator.pushNamed(context, Routes.home);
-                                  }
-                                });
+                                if (formKey.currentState!.validate()) {
+                                  ApiLoginByPassword.loginByPassword(
+                                    userName: userNameController.text,
+                                    password: passwordController.text,
+                                    context: context,
+                                  ).then((value) {
+                                    if (value == null) {
+                                    } else {
+                                      userNameController.clear();
+                                      passwordController.clear();
+                                      Fluttertoast.showToast(msg: 'ກຳລັງເຂົ້າ');
+                                      Navigator.pushNamed(context, Routes.home);
+                                    }
+                                  });
+                                }
                               },
                             ),
                           ),
@@ -183,7 +187,10 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, Routes.register);
                       },
-                      child: const Text("Register"),
+                      child: const Text(
+                        "Register",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
                   ],
                 ),

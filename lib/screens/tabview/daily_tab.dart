@@ -107,6 +107,19 @@ class _DailyTabState extends State<DailyTab> {
                     const SizedBox(
                       width: 18,
                     ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            resetDateRange();
+                          },
+                          child: const Icon(
+                            Icons.refresh,
+                            color: ColorConstants.bgwhite,
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -114,7 +127,7 @@ class _DailyTabState extends State<DailyTab> {
                 padding: EdgeInsets.only(left: 28, right: 28),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('Date of Category'), Text('Total: 200000')],
+                  children: [Text('Date of Category'), Text('Total: ......')],
                 ),
               ),
               const Divider(
@@ -284,6 +297,15 @@ class _DailyTabState extends State<DailyTab> {
         ),
       ),
     );
+  }
+
+  void resetDateRange() {
+    setState(() {
+      dateRange = DateTimeRange(
+        start: startOfMonth,
+        end: DateTime.now(),
+      );
+    });
   }
 
   Future pickDateRange(

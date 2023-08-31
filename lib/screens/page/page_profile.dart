@@ -15,7 +15,7 @@ class PageProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = ModalRoute.of(context)!.settings.arguments as User?;
     return Scaffold(
-      backgroundColor: ColorConstants.colors1, //#FFFCEF
+      backgroundColor: ColorConstants.bgwhite, //#FFFCEF
       appBar: AppBar(
         backgroundColor: Colors.white, //#FFFCEF
         centerTitle: true,

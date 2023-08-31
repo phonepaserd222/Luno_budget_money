@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:luno_budget_money/services/api_register_by_userpass.dart';
 
+import '../constants/color_contants.dart';
 import '../constants/image_contants.dart';
 import '../routes/routes.dart';
 import '../services/auth_service.dart';
@@ -13,12 +14,14 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController userNameController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 246, 226, 184),
+      backgroundColor: ColorConstants.bgwhite, //#FFFCEF
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(0.0),
           child: Form(
+            key: formKey,
             child: Column(
               children: [
                 // 3
@@ -27,6 +30,15 @@ class RegisterScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Container(
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                       color: Colors.white,
                       border: Border.all(
                         color: Colors.white,
@@ -47,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
                             controller: userNameController,
                             validator: MultiValidator([
                               RequiredValidator(
-                                  errorText: 'ກະລຸນາກອກ ຊື່ຜູ້ໃຊ້'),
+                                  errorText: 'Please enter username'),
                             ]),
                             decoration: const InputDecoration(
                               labelText: 'Username',
@@ -64,8 +76,8 @@ class RegisterScreen extends StatelessWidget {
                               labelText: 'Password',
                               // prefixIcon: Icon(Icons.password_outlined),
                             ),
-                            validator:
-                                RequiredValidator(errorText: 'ກະລຸນາກອກ ລະຫັດ'),
+                            validator: RequiredValidator(
+                                errorText: 'Please enter password'),
                             obscureText: true,
                           ),
                           // TextFormField(
@@ -93,15 +105,17 @@ class RegisterScreen extends StatelessWidget {
                                 style: TextStyle(fontSize: 20),
                               ),
                               onPressed: () {
-                                ApiRegisterByUserpass.registerByUserpass(
-                                  userName: userNameController.text,
-                                  passwords: passwordController.text,
-                                  context: context,
-                                ).then((value) {
-                                  userNameController.clear();
-                                  passwordController.clear();
-                                  Navigator.pushNamed(context, Routes.login);
-                                });
+                                if (formKey.currentState!.validate()) {
+                                  ApiRegisterByUserpass.registerByUserpass(
+                                    userName: userNameController.text,
+                                    passwords: passwordController.text,
+                                    context: context,
+                                  ).then((value) {
+                                    userNameController.clear();
+                                    passwordController.clear();
+                                    Navigator.pushNamed(context, Routes.login);
+                                  });
+                                }
                               },
                             ),
                           ),
@@ -141,6 +155,15 @@ class RegisterScreen extends StatelessWidget {
                     height: 50,
                     width: 350,
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                       color: Colors.white,
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(20),
@@ -168,7 +191,10 @@ class RegisterScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, Routes.login);
                       },
-                      child: const Text("Login"),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
                   ],
                 ),
