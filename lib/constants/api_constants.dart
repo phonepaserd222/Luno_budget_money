@@ -16,4 +16,5 @@ class ApiConstants {
   static const String pathGetReportExpense = "reportExpense";
   static const String pathRefreshToken = "auth/refreshToken";
   static const String pathDeleteCategory = "category/delete";
+  static const String pathUpdateUser = "user/update";
 }

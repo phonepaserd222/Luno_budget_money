@@ -109,6 +109,9 @@ class _DailyTabState extends State<DailyTab> {
                     ),
                     Column(
                       children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
                         ElevatedButton(
                           onPressed: () {
                             resetDateRange();

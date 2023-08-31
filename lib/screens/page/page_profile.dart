@@ -1,15 +1,60 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/services/api_get_user.dart';
+import 'package:luno_budget_money/services/api_update_user.dart';
 import 'package:luno_budget_money/widget/function_logout.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
+import '../../constants/image_contants.dart';
 import '../../widget/function_signout.dart';
 
-class PageProfile extends StatelessWidget {
+class PageProfile extends StatefulWidget {
+  const PageProfile({super.key});
+
+  @override
+  State<PageProfile> createState() => _PageProfileState();
+}
+
+class _PageProfileState extends State<PageProfile> {
+  File? _image;
+
+  Future<void> _getImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
+  Future<String?> uploadImageToFirebase(File imageFile) async {
+    try {
+      final fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      final reference =
+          firebase_storage.FirebaseStorage.instance.ref().child(fileName);
+
+      final metadata = firebase_storage.SettableMetadata(
+        contentType: 'image/jpeg', // Adjust the content type if necessary
+      );
+      final uploadTask = reference.putFile(imageFile, metadata);
+      final snapshot = await uploadTask.whenComplete(() {});
+      ApiUpdateUser().updateUser(image: fileName);
+      final downloadURL = await snapshot.ref.getDownloadURL();
+      return downloadURL;
+    } catch (e) {
+      debugPrint('Error uploading image to Firebase: $e');
+      return null;
+    }
+  }
+
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  PageProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +80,45 @@ class PageProfile extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundImage: NetworkImage(
-                          snapshot.data?.image ?? '${user?.photoURL}'),
+                    Stack(
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(
+                            user?.photoURL ??
+                                "${ImageConstants.iconCtgLink1}${snapshot.data?.image}${ImageConstants.iconCtgLink2}",
+                          ),
+                        ),
+                        Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: InkWell(
+                              onTap: () async {
+                                await _getImage(ImageSource.gallery)
+                                    .then((value) {
+                                  uploadImageToFirebase(_image!);
+                                });
+                                setState(() {});
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 4,
+                                    color: Theme.of(context)
+                                        .scaffoldBackgroundColor,
+                                  ),
+                                  color: ColorConstants.colors3,
+                                ),
+                                child: const Icon(
+                                  Icons.edit,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )),
+                      ],
                     ),
                     const SizedBox(
                       width: 30,

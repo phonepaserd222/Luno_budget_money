@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:luno_budget_money/services/api_get_user.dart';
 import 'package:luno_budget_money/widget/tab_view.dart';
 
+import '../../constants/image_contants.dart';
+
 class PageHome extends StatelessWidget {
   const PageHome({super.key});
 
@@ -20,7 +22,8 @@ class PageHome extends StatelessWidget {
             builder: (context, snapshot) {
               return CircleAvatar(
                 backgroundImage: NetworkImage(
-                    snapshot.data?.image ?? '${user?.photoURL}',
+                    user?.photoURL ??
+                        "${ImageConstants.iconCtgLink1}${snapshot.data?.image}${ImageConstants.iconCtgLink2}",
                     scale: 1.0),
               );
             },
