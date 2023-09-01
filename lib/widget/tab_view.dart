@@ -28,7 +28,7 @@ class TabView extends StatelessWidget {
                   indicator: BoxDecoration(
                       border:
                           Border.all(color: ColorConstants.colors4, width: 2),
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(2),
                       color: Colors.white),
                   labelStyle: const TextStyle(
                     color: Colors.red,

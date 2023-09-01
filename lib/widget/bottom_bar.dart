@@ -23,7 +23,7 @@ class _BottomNavigationBarExampleState
     const PageHome(),
     // pages Home
     // PageHome(),
-    PageProfile(),
+    const PageProfile(),
     // pages Home
     const Text(
       'Index 2: School',

@@ -11,7 +11,7 @@ import 'package:luno_budget_money/widget/function_logout.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 import '../../constants/image_contants.dart';
-import '../../widget/function_signout.dart';
+// import '../../widget/function_signout.dart';
 
 class PageProfile extends StatefulWidget {
   const PageProfile({super.key});
@@ -62,8 +62,9 @@ class _PageProfileState extends State<PageProfile> {
     return Scaffold(
       backgroundColor: ColorConstants.bgwhite, //#FFFCEF
       appBar: AppBar(
-        backgroundColor: Colors.white, //#FFFCEF
+        backgroundColor: ColorConstants.colors4, //#FFFCEF
         centerTitle: true,
+        elevation: 0.0,
         title: const Text(
           'Account Setting',
           style: TextStyle(color: Colors.black),
@@ -77,7 +78,7 @@ class _PageProfileState extends State<PageProfile> {
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Row(
                   children: [
                     Stack(
@@ -252,41 +253,41 @@ class _PageProfileState extends State<PageProfile> {
               //
               // logout
               //
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 45,
-                          width: 45,
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 225, 164, 236),
-                            border: Border.all(
-                              color: const Color.fromARGB(255, 225, 164, 236),
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: const Icon(
-                            Icons.logout_outlined,
-                            size: 40,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        TextButton(
-                            onPressed: () => signOut(context),
-                            child: const Text(
-                              'LogOut',
-                              style: TextStyle(fontSize: 20),
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 20, right: 20),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     // crossAxisAlignment: CrossAxisAlignment.center,
+              //     children: [
+              //       Row(
+              //         children: [
+              //           Container(
+              //             height: 45,
+              //             width: 45,
+              //             decoration: BoxDecoration(
+              //               color: const Color.fromARGB(255, 225, 164, 236),
+              //               border: Border.all(
+              //                 color: const Color.fromARGB(255, 225, 164, 236),
+              //               ),
+              //               borderRadius: BorderRadius.circular(8),
+              //             ),
+              //             child: const Icon(
+              //               Icons.logout_outlined,
+              //               size: 40,
+              //             ),
+              //           ),
+              //           const SizedBox(width: 10),
+              //           TextButton(
+              //               onPressed: () => signOut(context),
+              //               child: const Text(
+              //                 'LogOut',
+              //                 style: TextStyle(fontSize: 20),
+              //               )),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
               const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () => LogOutUser(context),

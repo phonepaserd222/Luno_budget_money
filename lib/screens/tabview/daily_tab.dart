@@ -25,6 +25,8 @@ class _DailyTabState extends State<DailyTab> {
   late DateTime startOfMonth;
   late DateTime endOfMonth;
   late DateTimeRange dateRange;
+  double totalAmount = 0;
+
   @override
   void initState() {
     super.initState();
@@ -43,6 +45,9 @@ class _DailyTabState extends State<DailyTab> {
 
   @override
   Widget build(BuildContext context) {
+    final noww = DateTime.now();
+    final formatter = DateFormat('dd/MM/yyyy');
+    final formattedDate = formatter.format(noww);
     final start = dateRange.start;
     final end = dateRange.end;
     return Scaffold(
@@ -126,11 +131,22 @@ class _DailyTabState extends State<DailyTab> {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 28, right: 28),
+              Padding(
+                padding: const EdgeInsets.only(left: 28, right: 28),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('Date of Category'), Text('Total: ......')],
+                  children: [
+                    Text(
+                      formattedDate,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Total: $totalAmount',
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ),
               const Divider(
@@ -155,10 +171,13 @@ class _DailyTabState extends State<DailyTab> {
                               .isAfter(dateRange.start) &&
                           reportExpense.date.toLocal().isBefore(dateRange.end))
                       .toList();
+
+                  // Reset totalAmount before calculating
                   return ListView.builder(
                     shrinkWrap: true,
                     itemCount: snapshot.data?.length,
                     itemBuilder: (context, index) {
+                      totalAmount += snapshot.data![index].amount;
                       return Padding(
                         padding: const EdgeInsets.all(3.0),
                         child: Container(
@@ -326,26 +345,3 @@ class _DailyTabState extends State<DailyTab> {
     });
   }
 }
-
-//  Future pickDateRange(
-//       {required Function(DateTimeRange value) onSelect}) async {
-//     DateTimeRange? newDateRange = await showDateRangePicker(
-//       context: context,
-//       initialDateRange: dateRange,
-//       firstDate: DateTime(1900),
-//       lastDate: DateTime(2100),
-//     );
-//     if (newDateRange == null) return;
-//     setState(() {
-//       onSelect(newDateRange);
-//       dateRange = newDateRange;
-//       // ignore: prefer_typing_uninitialized_variables
-//       var snapshot;
-//       filteredList = snapshot.data
-//           ?.where((expense) =>
-//               expense.date.isAfter(dateRange.start) &&
-//               expense.date.isBefore(dateRange.end))
-//           .toList();
-//     });
-//   }
-// }
