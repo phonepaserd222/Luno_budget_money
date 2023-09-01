@@ -46,6 +46,7 @@ class _PageProfileState extends State<PageProfile> {
       final uploadTask = reference.putFile(imageFile, metadata);
       final snapshot = await uploadTask.whenComplete(() {});
       ApiUpdateUser().updateUser(image: fileName);
+
       final downloadURL = await snapshot.ref.getDownloadURL();
       return downloadURL;
     } catch (e) {
@@ -83,13 +84,18 @@ class _PageProfileState extends State<PageProfile> {
                   children: [
                     Stack(
                       children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage: NetworkImage(
-                            user?.photoURL ??
-                                "${ImageConstants.iconCtgLink1}${snapshot.data?.image}${ImageConstants.iconCtgLink2}",
-                          ),
-                        ),
+                        _image == null
+                            ? CircleAvatar(
+                                radius: 50,
+                                backgroundImage: NetworkImage(
+                                  user?.photoURL ??
+                                      "${ImageConstants.iconCtgLink1}${snapshot.data?.image}${ImageConstants.iconCtgLink2}",
+                                ),
+                              )
+                            : CircleAvatar(
+                                radius: 50,
+                                backgroundImage: FileImage(_image!),
+                              ),
                         Positioned(
                             bottom: 0,
                             right: 0,
@@ -99,7 +105,6 @@ class _PageProfileState extends State<PageProfile> {
                                     .then((value) {
                                   uploadImageToFirebase(_image!);
                                 });
-                                setState(() {});
                               },
                               child: Container(
                                 height: 40,
