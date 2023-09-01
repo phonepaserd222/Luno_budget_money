@@ -238,11 +238,11 @@ class _PageProfileState extends State<PageProfile> {
                     ),
                     // const SizedBox(width: 50),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Text(
-                        ' ${user?.email ?? ''}',
+                        ' ${user?.email ?? '${snapshot.data?.googleId}'}',
                         textAlign: TextAlign.end,
-                        overflow: TextOverflow.ellipsis,
+                        overflow: TextOverflow.clip,
                         style: const TextStyle(fontSize: 15),
                       ),
                     ),

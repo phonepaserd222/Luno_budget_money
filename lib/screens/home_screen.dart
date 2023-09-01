@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/screens/page/page_category.dart';
 import 'package:luno_budget_money/screens/page/page_home.dart';
 
@@ -55,10 +56,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.amber[800],
+        unselectedItemColor: ColorConstants.colors4,
+        selectedItemColor: ColorConstants.colors3,
         onTap: _onItemTapped,
-        backgroundColor: const Color.fromRGBO(112, 20, 204, 1),
+        backgroundColor: ColorConstants.bgwhite,
       ),
     );
   }

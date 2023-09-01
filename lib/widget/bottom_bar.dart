@@ -62,9 +62,9 @@ class _BottomNavigationBarExampleState
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: ColorConstants.colors3,
+        selectedItemColor: ColorConstants.bgwhite,
         onTap: _onItemTapped,
-        backgroundColor: ColorConstants.colors4,
+        backgroundColor: ColorConstants.bgwhite,
       ),
     );
   }

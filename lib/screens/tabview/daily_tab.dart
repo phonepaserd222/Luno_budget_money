@@ -51,7 +51,7 @@ class _DailyTabState extends State<DailyTab> {
     final start = dateRange.start;
     final end = dateRange.end;
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 252, 239, 1),
+      backgroundColor: ColorConstants.bgwhite,
       body: Column(
         children: [
           // const SizedBox(height: 15),
@@ -237,6 +237,23 @@ class _DailyTabState extends State<DailyTab> {
                                   flex: 2,
                                   child: Column(
                                     children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 5, right: 15),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                FormatDateTime.formatDate(
+                                                    '${snapshot.data?[index].date.toLocal()}'),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
@@ -281,14 +298,6 @@ class _DailyTabState extends State<DailyTab> {
                                               )),
                                         ],
                                       ),
-                                      Row(children: [
-                                        Expanded(
-                                          child: Text(
-                                            '${snapshot.data?[index].date.toLocal()}',
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ])
                                     ],
                                   ),
                                 ),

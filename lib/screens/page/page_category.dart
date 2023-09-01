@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
 import 'package:luno_budget_money/services/api_delete_category.dart';
 
+import '../../constants/color_contants.dart';
 import '../../constants/image_contants.dart';
 import '../../services/api_get_category_find_many.dart';
 import '../../services/api_post_category.dart';
@@ -57,6 +58,7 @@ class PageCategoryState extends State<PageCategory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstants.bgwhite,
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Category'),
@@ -74,11 +76,12 @@ class PageCategoryState extends State<PageCategory> {
                 children: [
                   _image == null
                       ? const CircleAvatar(
-                          radius: 80.0,
-                          backgroundColor: Colors.grey,
+                          radius: 65.0,
+                          backgroundImage: NetworkImage(
+                              'https://www.rfalliance.org.za/wp-content/uploads/2022/12/no-picture-available-icon-1.png'),
                         )
                       : CircleAvatar(
-                          radius: 80.0,
+                          radius: 65.0,
                           backgroundImage: FileImage(_image!),
                         ),
                 ],
@@ -87,7 +90,7 @@ class PageCategoryState extends State<PageCategory> {
               InkWell(
                 onTap: () => _getImage(ImageSource.gallery),
                 child: Container(
-                  height: 25,
+                  height: 35,
                   width: 120,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -95,7 +98,11 @@ class PageCategoryState extends State<PageCategory> {
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Select Icon'),
+                      Text(
+                        'Select Icon',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
                       Icon(Icons.file_upload_outlined)
                     ],
                   ),
@@ -106,7 +113,11 @@ class PageCategoryState extends State<PageCategory> {
                 padding: EdgeInsets.only(left: 30),
                 child: Row(
                   children: [
-                    Text('Icon name'),
+                    Text(
+                      'Icon name',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
               ),
@@ -144,7 +155,7 @@ class PageCategoryState extends State<PageCategory> {
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.amber),
+                            backgroundColor: ColorConstants.colors3),
                         onPressed: () async {
                           // String fileName = genName;
                           String iconName = iconNameController.text.trim();
@@ -169,7 +180,11 @@ class PageCategoryState extends State<PageCategory> {
                 padding: EdgeInsets.only(left: 30),
                 child: Row(
                   children: [
-                    Text('Icon list'),
+                    Text(
+                      'Icon list',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
               ),
@@ -195,12 +210,12 @@ class PageCategoryState extends State<PageCategory> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.all(2),
                               child: Row(
                                 children: [
                                   CircleAvatar(
                                     radius: 30,
-                                    backgroundColor: Colors.amber,
+                                    backgroundColor: ColorConstants.colors3,
                                     backgroundImage: NetworkImage(
                                         '${ImageConstants.iconCtgLink1}${snapshot.data?[index].image}${ImageConstants.iconCtgLink2}'),
                                   ),
