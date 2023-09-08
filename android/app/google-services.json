@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:221429173207:android:a039c02bf7134b3d38d992",
         "android_client_info": {
-          "package_name": "com.example.luno_budget_money"
+          "package_name": "com.iquri.luno_budget_money"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "221429173207-kt0pacjrcsaa79d1dfol32sbvg0l6f09.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.luno_budget_money",
+            "package_name": "com.iquri.luno_budget_money",
             "certificate_hash": "e167f49a6d1e0983a84b90a7af2bb18f7cd470df"
           }
         },
@@ -25,7 +25,7 @@
           "client_id": "221429173207-qgshhlt7ouces1ktkhk4hcfnmnt5khbs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.luno_budget_money",
+            "package_name": "com.iquri.luno_budget_money",
             "certificate_hash": "de6db1a055fec89b18ed91b6cb6e39bde50274d8"
           }
         },

@@ -30,6 +30,7 @@ dependencies:
   cached_network_image: ^3.2.3
   jwt_decode: ^0.3.1
   firebase_storage: ^11.2.6
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   json_serializable: ^6.7.1
