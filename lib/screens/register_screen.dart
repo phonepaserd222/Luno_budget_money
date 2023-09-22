@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:luno_budget_money/services/api_register_by_userpass.dart';
+import 'package:luno_budget_money/features/register/data/services/api_register_by_userpass.dart';
 
 import '../constants/color_contants.dart';
 import '../routes/routes.dart';
