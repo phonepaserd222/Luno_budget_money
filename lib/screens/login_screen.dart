@@ -4,9 +4,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/services/api_login_by_password.dart';
 
-import '../constants/image_contants.dart';
 import '../routes/routes.dart';
-import '../services/auth_service.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -108,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                                     } else {
                                       userNameController.clear();
                                       passwordController.clear();
-                                      Fluttertoast.showToast(msg: 'ກຳລັງເຂົ້າ');
+                                      Fluttertoast.showToast(msg: 'Loading...');
                                       Navigator.pushNamed(context, Routes.home);
                                     }
                                   });
@@ -146,39 +144,39 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
 //
-                InkWell(
-                  onTap: () => AuthService().signInWithGoogle(context),
-                  child: Container(
-                    height: 50,
-                    width: 350,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: Image.asset(ImageConstants.logoGoogle),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text('Log In With Google'),
-                      ],
-                    ),
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () => AuthService().signInWithGoogle(context),
+                //   child: Container(
+                //     height: 50,
+                //     width: 350,
+                //     decoration: BoxDecoration(
+                //       color: Colors.white,
+                //       boxShadow: [
+                //         BoxShadow(
+                //           color: Colors.grey.withOpacity(0.5),
+                //           spreadRadius: 5,
+                //           blurRadius: 7,
+                //           offset:
+                //               const Offset(0, 3), // changes position of shadow
+                //         ),
+                //       ],
+                //       border: Border.all(color: Colors.white),
+                //       borderRadius: BorderRadius.circular(20),
+                //     ),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       children: [
+                //         SizedBox(
+                //           height: 40,
+                //           width: 40,
+                //           child: Image.asset(ImageConstants.logoGoogle),
+                //         ),
+                //         const SizedBox(width: 10),
+                //         const Text('Log In With Google'),
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
