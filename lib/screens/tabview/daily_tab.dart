@@ -141,11 +141,11 @@ class _DailyTabState extends State<DailyTab> {
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    const Text(
-                      'Total: 0',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
+                    // const Text(
+                    //   'Total: 0',
+                    //   style:
+                    //       TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    // ),
                   ],
                 ),
               ),
