@@ -68,7 +68,7 @@ class _PageProfileState extends State<PageProfile> {
         elevation: 0.0,
         title: const Text(
           'Account Setting',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: ColorConstants.bgwhite),
         ),
       ),
       body: FutureBuilder(
