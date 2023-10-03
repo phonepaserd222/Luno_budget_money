@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:luno_budget_money/constants/api_constants.dart';
 import 'package:luno_budget_money/data/category_stream.dart';
-import 'package:luno_budget_money/models/response_get_category_find_many_model.dart';
-import 'package:luno_budget_money/widget/category_item_page.dart';
+import 'package:luno_budget_money/features/expense/data/model/response_get_category_find_many_model.dart';
+import 'package:luno_budget_money/features/expense/presentation/widget/category_item_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/response_get_category_screen.dart';
-import '../routes/routes.dart';
+import '../data/model/response_get_category_screen.dart';
+import '../../../routes/routes.dart';
 // Import the category data from the other page
 
 class ExpenScreen extends StatefulWidget {
@@ -248,12 +248,6 @@ class _ExpenScreenState extends State<ExpenScreen> {
                       String? token = prefs.getString("accessToken");
                       final dio = Dio();
                       dio.options.headers["authorization"] = token;
-                      // print({
-                      //   "date": dateText,
-                      //   "title": title,
-                      //   "amount": cost,
-                      //   "categoryId": categoryId
-                      // });
                       // ignore: unused_local_variable
                       final response = await dio.post(
                           "${ApiConstants.baseUrl}"

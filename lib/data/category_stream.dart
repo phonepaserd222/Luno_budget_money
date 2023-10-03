@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:luno_budget_money/models/response_get_category_find_many_model.dart';
+import 'package:luno_budget_money/features/expense/data/model/response_get_category_find_many_model.dart';
 
 class CategoryStrem {
   final StreamController<ResponseGetCategoryFindManyModel>

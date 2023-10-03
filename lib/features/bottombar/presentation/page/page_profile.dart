@@ -10,7 +10,7 @@ import 'package:luno_budget_money/services/api_update_user.dart';
 import 'package:luno_budget_money/widget/function_logout.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
-import '../../constants/image_contants.dart';
+import '../../../../constants/image_contants.dart';
 // import '../../widget/function_signout.dart';
 
 class PageProfile extends StatefulWidget {

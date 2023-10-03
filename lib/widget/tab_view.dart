@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
-import 'package:luno_budget_money/screens/tabview/daily_tab.dart';
-import 'package:luno_budget_money/screens/tabview/monthly_tab.dart';
-import 'package:luno_budget_money/screens/tabview/weekly_tab.dart';
-import 'package:luno_budget_money/screens/tabview/yearly_tab.dart';
+import 'package:luno_budget_money/features/bottombar/presentation/page/tabview/daily_tab.dart';
+import 'package:luno_budget_money/features/bottombar/presentation/page/tabview/monthly_tab.dart';
+import 'package:luno_budget_money/features/bottombar/presentation/page/tabview/weekly_tab.dart';
+import 'package:luno_budget_money/features/bottombar/presentation/page/tabview/yearly_tab.dart';
 
 class TabView extends StatelessWidget {
   const TabView({super.key});

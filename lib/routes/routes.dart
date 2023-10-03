@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 // import 'package:luno_budget_money/widget/date_pop_screen.dart';
 // import 'package:luno_budget_money/screens/home_screen.dart';
 import 'package:luno_budget_money/features/login/presentation/screen/login_screen.dart';
-import 'package:luno_budget_money/screens/register_screen.dart';
-import 'package:luno_budget_money/screens/welcome_screen.dart';
-import 'package:luno_budget_money/screens/expense_screen.dart';
+import 'package:luno_budget_money/features/register/presentation/screen/register_screen.dart';
+import 'package:luno_budget_money/features/expense/presentation/expense_screen.dart';
 
-import '../screens/home_screen.dart';
+import '../features/bottombar/presentation/home_screen.dart';
 
 class Routes {
   Routes._();
@@ -24,8 +23,7 @@ class Routes {
         return MaterialPageRoute(builder: (context) => const RegisterScreen());
       case login:
         return MaterialPageRoute(builder: (context) => const LoginScreen());
-      case welcome:
-        return MaterialPageRoute(builder: (context) => WelcomeScreen());
+
       case expensescreen:
         return MaterialPageRoute(builder: (context) => const ExpenScreen());
       case home:

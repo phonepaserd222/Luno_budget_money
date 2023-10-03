@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:luno_budget_money/models/response_get_category_find_many_model.dart';
-import 'package:luno_budget_money/services/api_get_category_find_many.dart';
-import '../constants/image_contants.dart';
-import '../services/category_expense_service.dart';
+import 'package:luno_budget_money/features/expense/data/model/response_get_category_find_many_model.dart';
+import 'package:luno_budget_money/features/expense/data/service/api_get_category_find_many.dart';
+import '../../../../constants/image_contants.dart';
+import '../../../../services/category_expense_service.dart';
 
 class CategoryItemPage extends StatelessWidget {
   final void Function(ResponseGetCategoryFindManyModel category)

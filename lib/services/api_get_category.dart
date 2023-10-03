@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:luno_budget_money/constants/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../models/response_get_category_screen.dart';
+import '../features/expense/data/model/response_get_category_screen.dart';
 
 class ApiGetCategory {
   final dio = Dio();

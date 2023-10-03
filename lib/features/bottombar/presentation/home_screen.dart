@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
-import 'package:luno_budget_money/screens/page/page_category.dart';
-import 'package:luno_budget_money/screens/page/page_home.dart';
+import 'package:luno_budget_money/features/bottombar/presentation/page/page_category.dart';
+import 'package:luno_budget_money/features/bottombar/presentation/page/page_home.dart';
 
-import '../screens/page/page_profile.dart';
+import 'page/page_profile.dart';
 // import 'package:luno_budget_money/screens/page/page_profile.dart';
 
 class HomeScreen extends StatefulWidget {

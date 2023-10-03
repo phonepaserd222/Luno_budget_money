@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constants/api_constants.dart';
-import '../models/response_get_category_find_many_model.dart';
+import '../../../../constants/api_constants.dart';
+import '../model/response_get_category_find_many_model.dart';
 
 class ApiGetCategoryFindMany {
   final dio = Dio();

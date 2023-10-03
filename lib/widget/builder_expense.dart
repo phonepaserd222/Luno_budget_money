@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants/color_contants.dart';
 import '../constants/image_contants.dart';
 import '../models/response_get_category_expense_model.dart';
-import '../screens/update_expense_screen.dart';
+import '../features/expense/presentation/update_expense_screen.dart';
 import '../services/api_delete_expense.dart';
 import '../services/api_get_category_expense.dart';
 

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:luno_budget_money/routes/routes.dart';
-import 'package:luno_budget_money/screens/home_screen.dart';
+import 'package:luno_budget_money/features/bottombar/presentation/home_screen.dart';
 
 class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();

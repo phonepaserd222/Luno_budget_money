@@ -6,10 +6,10 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
 import 'package:luno_budget_money/services/api_delete_category.dart';
 
-import '../../constants/color_contants.dart';
-import '../../constants/image_contants.dart';
-import '../../services/api_get_category_find_many.dart';
-import '../../services/api_post_category.dart';
+import '../../../../constants/color_contants.dart';
+import '../../../../constants/image_contants.dart';
+import '../../../expense/data/service/api_get_category_find_many.dart';
+import '../../../../services/api_post_category.dart';
 
 class PageCategory extends StatefulWidget {
   const PageCategory({Key? key}) : super(key: key);
