@@ -2,37 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:luno_budget_money/features/expense/data/model/response_get_category_find_many_model.dart';
 import 'package:luno_budget_money/features/expense/data/service/api_get_category_find_many.dart';
 import '../../../../constants/image_contants.dart';
-import '../../../../services/category_expense_service.dart';
 
 class CategoryItemPage extends StatelessWidget {
   final void Function(ResponseGetCategoryFindManyModel category)
       onCategorySelected;
 
   const CategoryItemPage({super.key, required this.onCategorySelected});
-
-  void saveExpense() async {
-    String date = 'dateText';
-    String cost = "";
-    String categoryId = "";
-    //   String categoryId = categoryStrem
-    // .selectedCategoryId;
-    String title = "";
-
-    Map<String, String> body = {
-      "date": date,
-      "cost": cost,
-      "categoryId": categoryId,
-      "title": title,
-    };
-
-    try {
-      await ExpenseService.saveExpense(body);
-      // print(body);
-      // await ExpenseService.saveExpense(body);
-    } catch (e) {
-      debugPrint("API call failed: ${e.toString()}");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +60,6 @@ class CategoryItemPage extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            saveExpense();
             _onCategorySelected(category, context);
           },
           child: Center(

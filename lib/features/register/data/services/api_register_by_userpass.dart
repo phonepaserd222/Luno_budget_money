@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/features/register/data/models/response_register_by_userpass_model.dart';
 import '../../../../constants/api_constants.dart';
-import '../../../../widget/error_dialog.dart';
-import '../../../../widget/loading.dart';
+import '../../../../widgetgobal/error_dialog.dart';
+import '../../../../widgetgobal/loading.dart';
 
 class ApiRegisterByUserpass {
   static final dio = Dio();

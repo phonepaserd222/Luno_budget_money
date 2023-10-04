@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:luno_budget_money/constants/api_constants.dart';
 import 'package:luno_budget_money/features/login/data/models/response_login_by_password_model.dart';
-import 'package:luno_budget_money/widget/error_dialog.dart';
-import 'package:luno_budget_money/widget/loading.dart';
+import 'package:luno_budget_money/widgetgobal/error_dialog.dart';
+import 'package:luno_budget_money/widgetgobal/loading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiLoginByPassword {

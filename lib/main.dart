@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:luno_budget_money/constants/color_contants.dart';
 import 'package:luno_budget_money/features/bottombar/presentation/home_screen.dart';
 import 'package:luno_budget_money/features/login/presentation/screen/login_screen.dart';
-import 'package:luno_budget_money/services/api_get_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'features/profile/data/service/api_get_user.dart';
 import 'firebase_options.dart';
 import 'routes/routes.dart';
 
